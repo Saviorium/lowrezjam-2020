@@ -32,67 +32,20 @@ Player = Class {
 }
 
 function Player:update( dt )
-    if not self.grounded then 
-        self.speed = self.speed + gravity * dt
-    else
-        self.speed.y = 0
-    end
+    self.speed.x = 0
 
     if love.keyboard.isDown(self.buttons["up"]) and self.grounded then
         self.speed.y = -self.jump_height
+    end 
 
-        self.lastPressedButton = self.buttons["up"]
+    if love.keyboard.isDown(self.buttons["right"]) then
+        self.speed.x = self.max_speed
+    end 
 
-    elseif love.keyboard.isDown(self.buttons["right"]) then
-
-        if self.lastPressedButton then
-            if not (self.lastPressedButton == self.buttons["right"]) then
-                self.sprite:setTag("turn")
-                self.direction = 1
-            end
-        end
-
-        if self.grounded then
-            self.sprite:setTag("run")
-            self.speed.x = self.deltaVector:perpendicular():normalized().x * self.max_speed
-            self.speed.y = self.deltaVector:perpendicular():normalized().y * self.max_speed
-        else
-            self.speed.x = self.max_speed
-        end
-
-        self.lastPressedButton = self.buttons["right"]
-
-    elseif love.keyboard.isDown(self.buttons["left"]) then
-
-        if self.lastPressedButton then
-            if not (self.lastPressedButton == self.buttons["left"]) then
-                self.sprite:setTag("turn")
-                self.direction = -1
-            end
-        end
-
-        if self.grounded then
-            self.sprite:setTag("run")
-            self.speed.x = - self.deltaVector:perpendicular():normalized().x * self.max_speed
-            self.speed.y = - self.deltaVector:perpendicular():normalized().y * self.max_speed
-        else
-            self.speed.x = -self.max_speed
-        end
-
-        self.lastPressedButton = self.buttons["left"]
-    else
-        self.speed.x = 0
+    if love.keyboard.isDown(self.buttons["left"]) then
+        self.speed.x = -self.max_speed
     end
 
-    if self.speed.x == 0 and self.speed.y == 0 then
-        self.sprite:setTag("idle")
-    elseif self.speed.y < 0 and not self.grounded then
-        self.sprite:setTag("jumpup")
-    elseif self.speed.y > 0 and not self.grounded then
-        self.sprite:setTag("jumpdown")
-    end
-
-    self.grounded = false
     self:onCollide()
     self:move( self.speed )
 

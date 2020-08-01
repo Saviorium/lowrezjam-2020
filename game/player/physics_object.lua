@@ -21,7 +21,7 @@ end
 
 function PhysicsObject:update( dt )
     
-    self.cur_speed.x = 10
+    self.speed.x = 10
     self:onCollide()
     self:move( self.speed )
 end
@@ -36,10 +36,7 @@ function PhysicsObject:onCollide()
     for shape, delta in pairs(collisions) do
         self.deltaVector = Vector( delta.x, delta.y)
 
-        -- self:move(self.deltaVector)
-        if math.abs(delta.y) > self.minGroundNormal or math.abs(delta.x) > self.minGroundNormal then
-	        self.grounded = true
-        end  		
+        		
     end
 end
 
