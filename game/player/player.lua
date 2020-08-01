@@ -6,24 +6,28 @@ Images  = require "resource.images"
 Player = Class {
     __includes = PhysicsObject,
     init = function(self, x, y, hc)
-      PhysicsObject.init(self, x, y, 12, 5, hc)
-      self.max_speed = 1
-      self.jump_height = 1
+        PhysicsObject.init(self, x, y, 12, 5, hc)
+        self.max_speed = 1
+        self.jump_height = 1
 
-      self.sprite = Images['player']
-      self.sprite:setTag("run")
-      self.sprite:play()
+        self.scalex = scale
 
-      self.hc = hc
-      self:registerCollider(self.hc)
+        self.sprite = Images['player']
+        self.sprite:setTag("idle")
+        self.sprite:play()
 
-      self.buttons = {
-          up = "w",
-          down = "s",
-          left = "a",
-          right = "d",
-          use = "f"
-      }
+        self.hc = hc
+        self:registerCollider(self.hc)
+
+        self.lastPressedButton = nil
+
+        self.buttons = {
+            up = "w",
+            down = "s",
+            left = "a",
+            right = "d",
+            use = "f"
+        }
     end,
 }
 
@@ -33,26 +37,61 @@ function Player:update( dt )
     else
         self.speed.y = 0
     end
-    self.speed.x = 0
 
     if love.keyboard.isDown(self.buttons["up"]) and self.grounded then
         self.speed.y = -self.jump_height
-    end
-    if love.keyboard.isDown(self.buttons["right"]) then
+
+        self.lastPressedButton = self.buttons["up"]
+
+    elseif love.keyboard.isDown(self.buttons["right"]) then
+
+        if self.lastPressedButton then
+            if not (self.lastPressedButton == self.buttons["right"]) then
+                self.sprite:setTag("turn")
+                self.scalex = scale
+            end
+        end
+
         if self.grounded then
+            self.sprite:setTag("run")
             self.speed.x = self.deltaVector:perpendicular():normalized().x * self.max_speed
             self.speed.y = self.deltaVector:perpendicular():normalized().y * self.max_speed
         else
             self.speed.x = self.max_speed
         end
+
+        self.lastPressedButton = self.buttons["right"]
+
     elseif love.keyboard.isDown(self.buttons["left"]) then
+
+        if self.lastPressedButton then
+            if not (self.lastPressedButton == self.buttons["left"]) then
+                self.sprite:setTag("turn")
+                self.scalex = -scale
+            end
+        end
+
         if self.grounded then
+            self.sprite:setTag("run")
             self.speed.x = - self.deltaVector:perpendicular():normalized().x * self.max_speed
             self.speed.y = - self.deltaVector:perpendicular():normalized().y * self.max_speed
         else
-          self.speed.x = -self.max_speed
+            self.speed.x = -self.max_speed
         end
+
+        self.lastPressedButton = self.buttons["left"]
+    else
+        self.speed.x = 0
     end
+
+    if self.speed.x == 0 and self.speed.y == 0 then
+        self.sprite:setTag("idle")
+    elseif self.speed.y < 0 and not self.grounded then
+        self.sprite:setTag("jumpup")
+    elseif self.speed.y > 0 and self.grounded then
+        self.sprite:setTag("jumpdown")
+    end
+    
     self.grounded = false
     self:onCollide()
     self:move( self.speed )
@@ -61,7 +100,7 @@ function Player:update( dt )
 end
 
 function Player:draw()
-    self.sprite:draw(self.position.x, self.position.y, 0, scale, scale)
+    self.sprite:draw(self.position.x, self.position.y, 0, self.scalex, scale, self.width/2, self.height/2)
 end
 
 function Player:drawDebug()

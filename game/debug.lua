@@ -1,5 +1,6 @@
 Debug = {
     DrawDebugForPlayer   = 1,
+    DrawDebugForMapPiece   = 1,
 }
 
 -- usage: vardump(x1, test, myVar) or vardump({ship = self, dt = dt})
