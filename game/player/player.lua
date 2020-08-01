@@ -6,7 +6,7 @@ Images  = require "resource.images"
 Player = Class {
     __includes = PhysicsObject,
     init = function(self, x, y, hc)
-        PhysicsObject.init(self, x, y, 12, 5, hc)
+        PhysicsObject.init(self, x, y, 11, 5, hc)
         self.max_speed = 1
         self.jump_height = 1
 
@@ -53,7 +53,7 @@ function Player:update( dt )
 end
 
 function Player:draw()
-    self.sprite:draw(self.position.x, self.position.y, 0, self.direction * scale, scale, self.direction < 0 and self.width or 0 , 0)
+    self.sprite:draw(self.position.x, self.position.y, 0, self.direction, 1, self.direction < 0 and self.width or 0 , 0)
 end
 
 function Player:drawDebug()

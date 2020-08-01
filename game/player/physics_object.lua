@@ -16,7 +16,7 @@ PhysicsObject = Class {
 
 
 function PhysicsObject:registerCollider(hc_instance)
-    self.collider = hc_instance:rectangle(self.position.x , self.position.y , self.width*scale, self.height*scale)
+    self.collider = hc_instance:rectangle(self.position.x , self.position.y , self.width, self.height)
 end
 
 function PhysicsObject:update( dt )

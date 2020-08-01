@@ -1,5 +1,5 @@
-scale = 3
+scale = 6
 function love.conf(t)
-    t.window.width = 400 * scale
-    t.window.height = 300 * scale
+    t.window.width = 200 * scale
+    t.window.height = 200 * scale
 end
