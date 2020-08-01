@@ -32,17 +32,14 @@ function PhysicsObject:move( moveVector )
 end
 
 function PhysicsObject:onCollide()
-	local collisions = self.HC:collisions(self.collider)
+	  local collisions = self.HC:collisions(self.collider)
     for shape, delta in pairs(collisions) do
         self.deltaVector = Vector( delta.x, delta.y)
+
         self:move(self.deltaVector)
         if delta.y < -self.minGroundNormal then
 	        self.grounded = true
-	        self.speed.x = self.speed:projectOn( self.deltaVector:perpendicular()).x
         end  		
-        if delta.y > self.minGroundNormal then
-	        self.speed = self.speed:projectOn( self.deltaVector:perpendicular()) 
-        end  	
 
         if math.abs(delta.x) > self.minGroundNormal then
 	        self.speed.x = 0

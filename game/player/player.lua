@@ -27,19 +27,30 @@ Player = Class {
 }
 
 function Player:update( dt )
-    self.speed = self.speed + gravity * dt
-
-    if love.keyboard.isDown(self.buttons["down"]) then
-        self.speed.y = self.speed.y + self.max_speed
+    if not self.grounded then 
+        self.speed = self.speed + gravity * dt
+    else
+        self.speed.y = 0
     end
-    if love.keyboard.isDown(self.buttons["up"]) then
-        self.speed.y = self.speed.y + -self.max_speed
+    self.speed.x = 0
+
+    if love.keyboard.isDown(self.buttons["up"]) and self.grounded then
+        self.speed.y = -self.jump_height
     end
     if love.keyboard.isDown(self.buttons["right"]) then
-        self.speed.x = self.speed.x + self.max_speed
-    end
-    if love.keyboard.isDown(self.buttons["left"]) then
-        self.speed.x = self.speed.x + -self.max_speed
+        if self.grounded then
+            self.speed.x = self.deltaVector:perpendicular():normalized().x * self.max_speed
+            self.speed.y = self.deltaVector:perpendicular():normalized().y * self.max_speed
+        else
+            self.speed.x = self.max_speed
+        end
+    elseif love.keyboard.isDown(self.buttons["left"]) then
+        if self.grounded then
+            self.speed.x = - self.deltaVector:perpendicular():normalized().x * self.max_speed
+            self.speed.y = - self.deltaVector:perpendicular():normalized().y * self.max_speed
+        else
+          self.speed.x = -self.max_speed
+        end
     end
   self.grounded = false
   self:onCollide()
@@ -60,17 +71,27 @@ function Player:draw()
 end
 
 function Player:drawDebug()
-    local x = self.position.x
-    local y = self.position.y
-    local width, height = love.graphics.getWidth() / 2, love.graphics.getHeight() / 2
+      local x = self.position.x
+      local y = self.position.y
+      local width, height = love.graphics.getWidth() / 2, love.graphics.getHeight() / 2
 
-    love.graphics.setColor(0, 255, 0)
-    love.graphics.line(x, y, x + self.speed.x * 10, y + self.speed.y * 10)
-    love.graphics.setColor(255, 255, 0)
-    -- Сделать ещё дебаг
-    love.graphics.setColor(0, 0, 255) 
-    -- Сделать ещё дебаг
-    love.graphics.setColor(255, 255, 255)
+      love.graphics.setColor(0, 255, 0)
+      love.graphics.line(x, y, x + self.speed.x * 10, y + self.speed.y * 10)
+
+      love.graphics.setColor(255, 0, 0)
+      if self.deltaVector then
+        local normDeltaVector = self.deltaVector:normalized()
+        love.graphics.line(self.position.x, self.position.y, self.position.x + normDeltaVector.x * 10, self.position.y + normDeltaVector.y * 10)
+      end
+      -- Сделать ещё дебаг
+      love.graphics.setColor(0, 0, 255) 
+      if self.deltaVector then
+        local perpendicularDeltaVector = self.deltaVector:perpendicular():normalized()
+        love.graphics.line(self.position.x, self.position.y, self.position.x + perpendicularDeltaVector.x * 10, self.position.y + perpendicularDeltaVector.y * 10)
+      end
+
+      -- Сделать ещё дебаг
+      love.graphics.setColor(255, 255, 255)
 end
 
 return Player
