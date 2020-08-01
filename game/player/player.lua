@@ -10,8 +10,9 @@ Player = Class {
       self.max_speed = 1
       self.jump_height = 1
 
-      self.image = Images['main_character']
-      self.image:setFilter("nearest", "nearest")
+      self.sprite = Images['player']
+      self.sprite:setTag("run")
+      self.sprite:play()
 
       self.hc = hc
       self:registerCollider(self.hc)
@@ -52,22 +53,15 @@ function Player:update( dt )
           self.speed.x = -self.max_speed
         end
     end
-  self.grounded = false
-  self:onCollide()
-  self:move( self.speed )
+    self.grounded = false
+    self:onCollide()
+    self:move( self.speed )
+
+    self.sprite:update(dt)
 end
 
 function Player:draw()
-    love.graphics.draw(
-        self.image,
-        self.position.x,
-        self.position.y,
-        0,
-        scale,
-        scale,
-        self.width/2,
-        self.height/2
-    )
+    self.sprite:draw(self.position.x, self.position.y, 0, scale, scale)
 end
 
 function Player:drawDebug()
