@@ -2,11 +2,11 @@ Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 
 PhysicsObject = Class {
-    init = function(self, x, y, width, height, hc)
-    	  self.position = Vector( x, y )
+    init = function(self, x, y, height, width, hc)
+    	self.position = Vector( x, y )
         self.speed = Vector( 0, 0)
-        self.height = width and width or 11
         self.width  = width and width or 5
+        self.height = height and height or 11
         self.HC = hc
         self.grounded = false
     end,
@@ -16,7 +16,7 @@ PhysicsObject = Class {
 
 
 function PhysicsObject:registerCollider(hc_instance)
-    self.collider = hc_instance:rectangle(self.position.x + self.width/2, self.position.y + self.height/2, self.width, self.height)
+    self.collider = hc_instance:rectangle(self.position.x , self.position.y , self.width*scale, self.height*scale)
 end
 
 function PhysicsObject:update( dt )
@@ -32,17 +32,13 @@ function PhysicsObject:move( moveVector )
 end
 
 function PhysicsObject:onCollide()
-	  local collisions = self.HC:collisions(self.collider)
+	local collisions = self.HC:collisions(self.collider)
     for shape, delta in pairs(collisions) do
         self.deltaVector = Vector( delta.x, delta.y)
 
-        self:move(self.deltaVector)
-        if delta.y < -self.minGroundNormal then
+        -- self:move(self.deltaVector)
+        if math.abs(delta.y) > self.minGroundNormal or math.abs(delta.x) > self.minGroundNormal then
 	        self.grounded = true
-        end  		
-
-        if math.abs(delta.x) > self.minGroundNormal then
-	        self.speed.x = 0
         end  		
     end
 end

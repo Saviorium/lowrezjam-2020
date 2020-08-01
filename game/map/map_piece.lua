@@ -32,21 +32,27 @@ MapPiece = Class {
 function MapPiece:update( dt )
     self.player:update(dt)
     self.map:update(dt)
+    for ind, object in pairs(self.objects) do
+        object:update(dt)
+    end
 end
 
 function MapPiece:draw()
 
     self.map:drawLayer(self.map.layers["ground"])
 
-    if debug_physics then
-        love.graphics.setColor(0, 0, 1)
-        local shapes = self.HC:hash():shapes()
-        for _, shape in pairs(shapes) do
-            shape:draw()
-        end
+    love.graphics.setColor(0, 0, 1)
+    local shapes = self.HC:hash():shapes()
+    for _, shape in pairs(shapes) do
+        shape:draw()
     end
 
     self.player:draw()
+
+    for ind, object in pairs(self.objects) do
+        object:draw()
+    end
+
     if Debug.DrawDebugForPlayer == 1 then
         self.player:drawDebug()
     end

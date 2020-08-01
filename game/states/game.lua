@@ -30,7 +30,6 @@ function game:draw()
     love.graphics.setColor(1, 1, 1)
     self.currentMapPiece:draw()
 
-
     love.graphics.pop()
 end
 
