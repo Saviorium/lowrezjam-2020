@@ -70,6 +70,8 @@ function Player:addSomethingInEnd( dt )
                                                     player)
                             end, 
                             self)
+    else
+        self.sprite:setTag("idle")
     end
     self.sprite:update(dt)
 end

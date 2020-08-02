@@ -48,7 +48,11 @@ function PhysicsObject:changeSpeed(direction, dt)
     local movementDirection = self.speed.x > 0 and 1 or -1
 
     if (math.abs(self.speed.x) < self.maxSpeed or not(movementDirection == direction)) and not( direction  == 0) then
-        self.speed.x = self.speed.x + direction * self.acceleration*dt
+        if math.abs(self.speed.x + direction * self.acceleration*dt) > self.maxSpeed then
+            self.speed.x = direction * self.maxSpeed
+        else
+            self.speed.x = self.speed.x + direction * self.acceleration*dt
+        end
     elseif math.abs(self.speed.x) > 0 and direction == 0 then 
         if self.speed.x > movementDirection * self.slowDownSpeed*dt then
             self.speed.x = self.speed.x - movementDirection * self.slowDownSpeed*dt
@@ -76,7 +80,7 @@ function PhysicsObject:onCollide()
 
         if math.abs(self.deltaVector.y) > self.maxGroundNormal then
             
-            self.speed.y = self.deltaVector.y < 0 and 0 or self.speed.y
+            self.speed.y = self.speed.y < 0 and 0 or self.speed.y
             self:move(self.deltaVector/2)
             self.grounded = self.deltaVector.y < 0
         end
