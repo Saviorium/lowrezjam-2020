@@ -11,7 +11,7 @@ gravity = Vector(0, 0.98)
 function game:enter()
 
     self.HC = HC.new()
-    self.currentMapPiece = MapPiece(50, 100, "resource/maps/physics-test.lua", nil, self.HC )
+    self.currentMapPiece = MapPiece("resource/maps/sample_level.lua", self.HC)
 
 end
 

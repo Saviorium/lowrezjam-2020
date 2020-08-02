@@ -5,16 +5,22 @@ Images        = require "resource.images"
 local sti     = require "lib/sti"
 
 MapPiece = Class {
-    init = function(self, entrance_x, entrance_y, scheme, objects, HC)
+    init = function(self, scheme, HC)
         self.HC = HC
-        self.player = Player(entrance_x, entrance_y, self.HC)
 
         love.physics.setMeter(16)
         self.map = sti(scheme) -- "resource/maps/physics-test.lua"
         self.world = love.physics.newWorld(0, 0)
-        love.graphics.setBackgroundColor({.3,.5,1,1})
+        love.graphics.setBackgroundColor({.3,.3,.3,1})
 
-        self.objects = objects and objects or {}
+        self.objects = {}
+        for _, object in ipairs(self.map.layers["objects"].objects) do
+            print(serpent.block(object))
+            if object.type == "player" then
+                newObject = Player(object.x, object.y, self.HC)
+            end
+            table.insert(self.objects, newObject)
+        end
 
         for _, object in ipairs(self.map.layers["solid"].objects) do
             if object.polygon then
@@ -30,7 +36,6 @@ MapPiece = Class {
 }
 
 function MapPiece:update( dt )
-    self.player:update(dt)
     self.map:update(dt)
     for ind, object in pairs(self.objects) do
         object:update(dt)
@@ -47,14 +52,8 @@ function MapPiece:draw()
         shape:draw()
     end
 
-    self.player:draw()
-
     for ind, object in pairs(self.objects) do
         object:draw()
-    end
-
-    if Debug.DrawDebugForPlayer == 1 then
-        self.player:drawDebug()
     end
 
     if Debug.DrawDebugForMapPiece == 1 then

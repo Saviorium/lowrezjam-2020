@@ -78,6 +78,9 @@ end
 
 function Player:draw()
     self.sprite:draw(self.position.x, self.position.y, 0, self.direction, 1, self.direction < 0 and self.width or 0 , 0)
+    if Debug.DrawDebugForPlayer and Debug.DrawDebugForPlayer == 1 then
+        self:drawDebug()
+    end
 end
 
 function Player:drawDebug()
