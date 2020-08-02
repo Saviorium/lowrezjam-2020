@@ -2,15 +2,22 @@ Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 
 PhysicsObject = Class {
-    init = function(self, x, y, height, width, hc)
+    init = function(self, x, y, height, width, acceleration, maxSpeed, slowDownSpeed, hc)
     	self.position = Vector( x, y )
         self.speed = Vector( 0, 0)
-        self.width  = width and width or 5
-        self.height = height and height or 11
+        self.width  = width 
+        self.height = height 
         self.HC = hc
-        self.grounded = false
+
+        self.isGrounded = false
+
+        self.acceleration = acceleration
+        self.maxSpeed = maxSpeed
+        self.slowDownSpeed = slowDownSpeed
+
     end,
-    minGroundNormal = 0.05,
+    maxGroundNormal = 0.05,
+    minGroundNormal = 0.005,
     minMove		    = 0.01
 }
 
@@ -20,10 +27,35 @@ function PhysicsObject:registerCollider(hc_instance)
 end
 
 function PhysicsObject:update( dt )
-    
-    self.speed.x = 10
+    if not self.grounded then
+        self.speed = self.speed + gravity * dt
+    end
+    self:changeVelocity(dt)
     self:onCollide()
     self:move( self.speed )
+    self:addSomethingInEnd(dt)
+end
+
+function PhysicsObject:changeVelocity( dt )
+    self.speed.x = 0
+end
+
+function PhysicsObject:addSomethingInEnd( dt )
+    -- Функция для добавления всякого что выполняется после всех действий со скоростью и перемещение, например анимация
+end
+
+function PhysicsObject:changeSpeed(direction, dt)
+    local movementDirection = self.speed.x > 0 and 1 or -1
+
+    if (math.abs(self.speed.x) < self.maxSpeed or not(movementDirection == direction)) and not( direction  == 0) then
+        self.speed.x = self.speed.x + direction * self.acceleration*dt
+    elseif math.abs(self.speed.x) > 0 and direction == 0 then 
+        if self.speed.x > movementDirection * self.slowDownSpeed*dt then
+            self.speed.x = self.speed.x - movementDirection * self.slowDownSpeed*dt
+        else
+            self.speed.x = 0
+        end
+    end
 end
 
 function PhysicsObject:move( moveVector )
@@ -33,10 +65,24 @@ end
 
 function PhysicsObject:onCollide()
 	local collisions = self.HC:collisions(self.collider)
+    self.deltaVector = Vector( 0, 0)
     for shape, delta in pairs(collisions) do
         self.deltaVector = Vector( delta.x, delta.y)
 
-        		
+
+        if math.abs(self.deltaVector.x) > self.maxGroundNormal then
+            self:move(self.deltaVector)
+        end
+
+        if math.abs(self.deltaVector.y) > self.maxGroundNormal then
+            
+            self.speed.y = self.deltaVector.y < 0 and 0 or self.speed.y
+            self:move(self.deltaVector/2)
+            self.grounded = self.deltaVector.y < 0
+        end
+    end
+    if math.abs(self.deltaVector.y) < self.minGroundNormal and self.grounded then
+        self.grounded = false
     end
 end
 

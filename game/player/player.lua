@@ -6,9 +6,7 @@ Images  = require "resource.images"
 Player = Class {
     __includes = PhysicsObject,
     init = function(self, x, y, hc)
-        PhysicsObject.init(self, x, y, 11, 5, hc)
-        self.max_speed = 1
-        self.jump_height = 1
+        PhysicsObject.init(self, x, y, 11, 5, 60, 1, 20, hc)
 
         self.direction = 1
 
@@ -19,7 +17,7 @@ Player = Class {
         self.hc = hc
         self:registerCollider(self.hc)
 
-        self.lastPressedButton = nil
+        self.jumpHeight = 0.5
 
         self.buttons = {
             up = "w",
@@ -31,24 +29,48 @@ Player = Class {
     end,
 }
 
-function Player:update( dt )
-    self.speed.x = 0
+
+function Player:changeVelocity( dt )
+    -- self.speed.x = 0
 
     if love.keyboard.isDown(self.buttons["up"]) and self.grounded then
-        self.speed.y = -self.jump_height
+        self.speed.y = self.speed.y + -self.jumpHeight
+        -- self.grounded = false
     end 
 
     if love.keyboard.isDown(self.buttons["right"]) then
-        self.speed.x = self.max_speed
-    end 
-
-    if love.keyboard.isDown(self.buttons["left"]) then
-        self.speed.x = -self.max_speed
+        self.direction = 1
+        self:changeSpeed(self.direction, dt)
+    elseif love.keyboard.isDown(self.buttons["left"]) then
+        self.direction = -1
+        self:changeSpeed(self.direction, dt)
+    else
+        self:changeSpeed(0, dt)
+        if math.abs(self.speed.x) > 0 then
+            self.sprite:setTag("brake")
+        end
     end
 
-    self:onCollide()
-    self:move( self.speed )
+end
 
+function Player:addSomethingInEnd( dt )
+    if self.speed.y < 0 then
+        self.sprite:setTag("jumpup")
+    elseif self.speed.y > 0 then
+        self.sprite:setTag("jumpdown")
+    elseif math.abs(self.speed.x) > 0 then
+        self.sprite:setTag("run")
+        self.sprite:onLoop (function( player ) 
+                                print("Loop1")
+                                player.sprite:setTag("brake") 
+                                player.sprite:onLoop (function( player ) 
+                                                        print("Loop2")
+                                                        player.sprite:setTag("idle") 
+                                                    end, 
+                                                    player)
+                            end, 
+                            self)
+    end
     self.sprite:update(dt)
 end
 
@@ -80,19 +102,48 @@ function Player:drawDebug()
         love.graphics.setColor(255, 255, 0)
         if self.deltaVector then
             love.graphics.line(self.position.x, self.position.y, 
-                self.position.x + - self.deltaVector:perpendicular():normalized().x * self.max_speed * 10, 
-                self.position.y + - self.deltaVector:perpendicular():normalized().y * self.max_speed * 10)
+                self.position.x + - self.deltaVector:perpendicular():normalized().x * self.maxSpeed * 10, 
+                self.position.y + - self.deltaVector:perpendicular():normalized().y * self.maxSpeed * 10)
         end
         -- Сделать ещё дебаг
         love.graphics.setColor(0, 255, 255)
         if self.deltaVector then
             love.graphics.line(self.position.x, self.position.y, 
-                self.position.x +  self.deltaVector:perpendicular():normalized().x * self.max_speed * 10, 
-                self.position.y +  self.deltaVector:perpendicular():normalized().y * self.max_speed * 10)
+                self.position.x +  self.deltaVector:perpendicular():normalized().x * self.maxSpeed * 10, 
+                self.position.y +  self.deltaVector:perpendicular():normalized().y * self.maxSpeed * 10)
         end
 
       -- Сделать ещё дебаг
       love.graphics.setColor(255, 255, 255)
+
+
+    x = self.position.x+8;
+    y = self.position.y+8;
+    love.graphics.print( "Position x = "..self.position.x,
+                        x,
+                        y+24,
+                        0,
+                        1/scale,
+                        1/scale
+                        )
+    love.graphics.print( "Position y = "..self.position.y,
+                        x,
+                        y+16,
+                        0,
+                        1/scale,
+                        1/scale)
+    love.graphics.print( "Speed x = "..self.speed.x,
+                        x,
+                        y+8,
+                        0,
+                        1/scale,
+                        1/scale)
+    love.graphics.print( "Speed y = "..self.speed.y,
+                        x,
+                        y,
+                        0,
+                        1/scale,
+                        1/scale)
 end
 
 return Player
