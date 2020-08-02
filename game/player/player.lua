@@ -75,7 +75,7 @@ function Player:addSomethingInEnd(dt)
         self.sprite:setTag("jumpdown")
     elseif math.abs(self.speed.x) > 0 and self.speed.y == 0 and self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" then
         self.sprite:setTag("run")
-    elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "idle" and self.speed.x == 0 then
+    elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
         self.sprite:setTag("brake")
     elseif self.sprite.tagName ~= "idle" and self.sprite.tagName ~= "brake" and self.speed.y == 0 and self.speed.x == 0 then
         self.sprite:setTag("idle")
