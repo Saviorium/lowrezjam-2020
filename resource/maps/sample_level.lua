@@ -1,7 +1,7 @@
 return {
-  version = "1.2",
+  version = "1.4",
   luaversion = "5.1",
-  tiledversion = "1.3.2",
+  tiledversion = "2020.07.21",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 24,
@@ -9,7 +9,7 @@ return {
   tilewidth = 8,
   tileheight = 8,
   nextlayerid = 4,
-  nextobjectid = 19,
+  nextobjectid = 20,
   properties = {},
   tilesets = {
     {
@@ -24,6 +24,7 @@ return {
       image = "../graphics/placeholder_tileset.png",
       imagewidth = 48,
       imageheight = 24,
+      objectalignment = "unspecified",
       tileoffset = {
         x = 0,
         y = 0
@@ -42,12 +43,12 @@ return {
   layers = {
     {
       type = "tilelayer",
-      id = 1,
-      name = "ground",
       x = 0,
       y = 0,
       width = 24,
       height = 8,
+      id = 1,
+      name = "ground",
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -67,13 +68,13 @@ return {
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 2,
       name = "solid",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {},
       objects = {
         {
@@ -349,13 +350,13 @@ return {
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 3,
       name = "objects",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {},
       objects = {
         {
@@ -365,6 +366,19 @@ return {
           shape = "point",
           x = 16,
           y = 48,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 19,
+          name = "",
+          type = "box",
+          shape = "ellipse",
+          x = 104,
+          y = 40,
           width = 0,
           height = 0,
           rotation = 0,
