@@ -11,10 +11,19 @@ Player =
 
         self.exited = 0
         self.direction = 1
+        self.prevDirection = 0
 
         self.sprite = Images["player"]
         self.sprite:setTag("idle")
         self.sprite:play()
+        self.sprite:onLoop(
+                    function(player)
+                        if player.sprite.tagName == "brake" then
+                          player.sprite:setTag("run")
+                          end
+                    end,
+                    self
+                )
 
         self.hc = hc
         self:registerCollider(self.hc)
@@ -54,30 +63,22 @@ function Player:changeVelocity(dt)
 end
 
 function Player:addSomethingInEnd(dt)
-    if self.speed.y < 0 then
+    if self.direction ~= self.prevDirection and self.sprite.tagName == "run" then
+        self.sprite:setTag("brake")
+    end
+    if self.speed.y < 0 and self.sprite.tagName ~= "jumpup" then
         self.sprite:setTag("jumpup")
-    elseif self.speed.y > 0 then
+    elseif self.speed.y > 0 and self.sprite.tagName ~= "jumpdown" then
         self.sprite:setTag("jumpdown")
-    elseif math.abs(self.speed.x) > 0 then
+    elseif math.abs(self.speed.x) > 0 and self.speed.y == 0 and self.sprite.tagName ~= "run" and self.sprite.tagName ~= "brake" then
         self.sprite:setTag("run")
-        self.sprite:onLoop(
-            function(player)
-                player.sprite:setTag("brake")
-                player.sprite:onLoop(
-                    function(player)
-                        player.sprite:setTag("idle")
-                    end,
-                    player
-                )
-            end,
-            self
-        )
-    else
+    elseif self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
         self.sprite:setTag("idle")
     end
     if self.exited <= 1 then
         self.exited = self.exited + dt
     end
+    self.prevDirection = self.direction
     self.sprite:update(dt)
 end
 
