@@ -27,6 +27,7 @@ end
 function game:draw()
     love.graphics.push()
     love.graphics.setColor(1, 1, 1)
+    love.graphics.translate(-64, 0)
     self.currentMapPiece:draw()
 
     love.graphics.pop()
