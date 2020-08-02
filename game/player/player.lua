@@ -9,6 +9,7 @@ Player =
     init = function(self, x, y, hc)
         PhysicsObject.init(self, x, y, 11, 5, 20, 0.5, 20, hc)
 
+        self.exited = 0
         self.direction = 1
 
         self.sprite = Images["player"]
@@ -18,7 +19,7 @@ Player =
         self.hc = hc
         self:registerCollider(self.hc)
 
-        self.jumpHeight = 0.5
+        self.jumpHeight = 0.25
 
         self.buttons = {
             up = "w",
@@ -61,11 +62,9 @@ function Player:addSomethingInEnd(dt)
         self.sprite:setTag("run")
         self.sprite:onLoop(
             function(player)
-                print("Loop1")
                 player.sprite:setTag("brake")
                 player.sprite:onLoop(
                     function(player)
-                        print("Loop2")
                         player.sprite:setTag("idle")
                     end,
                     player
@@ -76,7 +75,32 @@ function Player:addSomethingInEnd(dt)
     else
         self.sprite:setTag("idle")
     end
+    if self.exited <= 1 then
+        self.exited = self.exited + dt
+    end
     self.sprite:update(dt)
+end
+
+function Player:checkIfExited(mapPos, dt)
+    local deltaX = self.position.x + mapPos.x
+    local deltaY = self.position.y + mapPos.y
+    if self.exited >= 1 then
+        if deltaX < 0 then
+            mapPos.x = mapPos.x + 64
+            self.exited = 0
+        elseif deltaX > 64 then
+            mapPos.x = mapPos.x - 64
+            self.exited = 0
+        end
+
+        if deltaY < 0 then
+            mapPos.y = mapPos.y + 64
+            self.exited = 0
+        elseif deltaY > 64 then
+            mapPos.y = mapPos.y - 64
+            self.exited = 0
+        end
+    end
 end
 
 function Player:draw()

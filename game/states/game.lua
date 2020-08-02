@@ -1,7 +1,7 @@
 Images 			= require "resource.images"
 Fonts           = require "resource.fonts"
 HC 				= require 'lib/hardoncollider'
-MapPiece        = require "game.map.map_piece"
+Map        		= require "game.map.map"
 local sti 		= require "lib/sti"
 local Player 	= require "game/player/player"
 
@@ -11,7 +11,8 @@ gravity = Vector(0, 0.98)
 function game:enter()
 
     self.HC = HC.new()
-    self.currentMapPiece = MapPiece("resource/maps/sample_level.lua", self.HC)
+    self.currentMap = Map("resource/maps/sample_level.lua", self.HC)
+    self.curPosX = 0
 
 end
 
@@ -27,14 +28,14 @@ end
 function game:draw()
     love.graphics.push()
     love.graphics.setColor(1, 1, 1)
-    love.graphics.translate(-64, 0)
-    self.currentMapPiece:draw()
+    love.graphics.translate(self.curPosX, 0)
+    self.currentMap:draw()
 
     love.graphics.pop()
 end
 
 function game:update(dt)
-    self.currentMapPiece:update(dt)
+    self.currentMap:update(dt)
 end
 
 return game
