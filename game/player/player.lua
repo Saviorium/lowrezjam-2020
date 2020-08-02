@@ -124,37 +124,26 @@ function Player:drawDebug()
 
     x = self.position.x+8;
     y = self.position.y+8;
-    love.graphics.print( "Position x = "..self.position.x,
+    love.graphics.print( "P.x "..self.position.x,
                         x,
                         y+24,
-                        0,
-                        1/scale,
-                        1/scale
-                        )
-    love.graphics.print( "Position y = "..self.position.y,
+                        0)
+    love.graphics.print( "P.y "..self.position.y,
                         x,
                         y+16,
-                        0,
-                        1/scale,
-                        1/scale)
-    love.graphics.print( "Speed x = "..self.speed.x,
+                        0)
+    love.graphics.print( "S.x "..self.speed.x,
                         x,
                         y+8,
-                        0,
-                        1/scale,
-                        1/scale)
-    love.graphics.print( "Speed y = "..self.speed.y,
+                        0)
+    love.graphics.print( "S.y "..self.speed.y,
                         x,
                         y,
-                        0,
-                        1/scale,
-                        1/scale)
-    love.graphics.print( "Grounded = "..(self.isGrounded and 1 or 0),
+                        0)
+    love.graphics.print( "Gr "..(self.isGrounded and 1 or 0),
                         x,
                         y - 8,
-                        0,
-                        1/scale,
-                        1/scale)
+                        0)
 end
 
 return Player

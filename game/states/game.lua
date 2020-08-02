@@ -1,6 +1,5 @@
 Images 			= require "resource.images"
 HC 				= require 'lib/hardoncollider'
-Debug           = require "game.debug"
 MapPiece        = require "game.map.map_piece"
 local sti 		= require "lib/sti"
 local Player 	= require "game/player/player"
@@ -26,7 +25,6 @@ end
 
 function game:draw()
     love.graphics.push()
-    love.graphics.scale(scale, scale)
     love.graphics.setColor(1, 1, 1)
     self.currentMapPiece:draw()
 
