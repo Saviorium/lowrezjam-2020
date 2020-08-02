@@ -27,7 +27,7 @@ function PhysicsObject:registerCollider(hc_instance)
 end
 
 function PhysicsObject:update( dt )
-    if not self.grounded then
+    if not self.isGrounded then
         self.speed = self.speed + gravity * dt
     end
     self:changeVelocity(dt)
@@ -80,13 +80,13 @@ function PhysicsObject:onCollide()
 
         if math.abs(self.deltaVector.y) > self.maxGroundNormal then
             
-            self.speed.y = self.speed.y < 0 and 0 or self.speed.y
+            self.speed.y = (self.speed.y < 0 or self.deltaVector.y < 0) and 0 or self.speed.y
             self:move(self.deltaVector/2)
-            self.grounded = self.deltaVector.y < 0
+            self.isGrounded = self.deltaVector.y < 0
         end
     end
-    if math.abs(self.deltaVector.y) < self.minGroundNormal and self.grounded then
-        self.grounded = false
+    if math.abs(self.deltaVector.y) < self.minGroundNormal and self.isGrounded then
+        self.isGrounded = false
     end
 end
 

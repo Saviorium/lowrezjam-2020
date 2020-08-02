@@ -33,7 +33,7 @@ Player = Class {
 function Player:changeVelocity( dt )
     -- self.speed.x = 0
 
-    if love.keyboard.isDown(self.buttons["up"]) and self.grounded then
+    if love.keyboard.isDown(self.buttons["up"]) and self.isGrounded then
         self.speed.y = self.speed.y + -self.jumpHeight
         -- self.grounded = false
     end 
@@ -143,6 +143,12 @@ function Player:drawDebug()
     love.graphics.print( "Speed y = "..self.speed.y,
                         x,
                         y,
+                        0,
+                        1/scale,
+                        1/scale)
+    love.graphics.print( "Grounded = "..(self.isGrounded and 1 or 0),
+                        x,
+                        y - 8,
                         0,
                         1/scale,
                         1/scale)
