@@ -18,9 +18,12 @@ Player =
         self.sprite:play()
         self.sprite:onLoop(
                     function(player)
-                        if player.sprite.tagName == "brake" then
+                        if player.sprite.tagName == "turn" then
                           player.sprite:setTag("run")
-                          end
+                        end
+                        if player.sprite.tagName == "brake" then
+                            player.sprite:setTag("idle")
+                        end
                     end,
                     self
                 )
@@ -64,15 +67,17 @@ end
 
 function Player:addSomethingInEnd(dt)
     if self.direction ~= self.prevDirection and self.sprite.tagName == "run" then
-        self.sprite:setTag("brake")
+        self.sprite:setTag("turn")
     end
     if self.speed.y < 0 and self.sprite.tagName ~= "jumpup" then
         self.sprite:setTag("jumpup")
     elseif self.speed.y > 0 and self.sprite.tagName ~= "jumpdown" then
         self.sprite:setTag("jumpdown")
-    elseif math.abs(self.speed.x) > 0 and self.speed.y == 0 and self.sprite.tagName ~= "run" and self.sprite.tagName ~= "brake" then
+    elseif math.abs(self.speed.x) > 0 and self.speed.y == 0 and self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" then
         self.sprite:setTag("run")
-    elseif self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
+    elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "idle" and self.speed.x == 0 then
+        self.sprite:setTag("brake")
+    elseif self.sprite.tagName ~= "idle" and self.sprite.tagName ~= "brake" and self.speed.y == 0 and self.speed.x == 0 then
         self.sprite:setTag("idle")
     end
     if self.exited <= 1 then
