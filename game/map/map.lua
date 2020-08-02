@@ -2,6 +2,7 @@ Class         = require "lib.hump.class"
 Vector        = require "lib.hump.vector"
 PhysicsObject = require "game.player.physics_object"
 Images        = require "resource.images"
+DialogWindow  = require "game.player.dialog_window"
 local sti     = require "lib/sti"
 
 Map = Class {
@@ -39,32 +40,47 @@ Map = Class {
 }
 
 function Map:update( dt )
-    self.map:update(dt)
-    for ind, object in pairs(self.objects) do
-        object:update(dt)
+    if self.dialog then
+        if self.dialog:update(dt) then
+            self.dialog = nil
+        end
+    else
+        self.map:update(dt)
+        for ind, object in pairs(self.objects) do
+            object:update(dt)
+        end
+        self.player:checkIfExited(self.curPos, dt)
+
+
+        if love.keyboard.isDown('e') then
+            self.dialog = DialogWindow(self.curPos, 1)
+        end
     end
-    self.player:checkIfExited(self.curPos, dt)
 end
 
 function Map:draw()
 
-    love.graphics.translate(self.curPos.x, self.curPos.y)
+    if self.dialog then
+        self.dialog:draw()
+    else
+        love.graphics.translate(self.curPos.x, self.curPos.y)
 
-    self.map:drawLayer(self.map.layers["ground"])
+        self.map:drawLayer(self.map.layers["ground"])
 
-    love.graphics.setColor(0, 0, 1)
-    local shapes = self.HC:hash():shapes()
-    for _, shape in pairs(shapes) do
-        shape:draw()
-    end
-    love.graphics.setColor(1, 1, 1)
+        love.graphics.setColor(0, 0, 1)
+        local shapes = self.HC:hash():shapes()
+        for _, shape in pairs(shapes) do
+            shape:draw()
+        end
+        love.graphics.setColor(1, 1, 1)
 
-    for ind, object in pairs(self.objects) do
-        object:draw()
-    end
+        for ind, object in pairs(self.objects) do
+            object:draw()
+        end
 
-    if Debug.DrawDebugForMapPiece == 1 then
-        -- Draw some debug
+        if Debug.DrawDebugForMapPiece == 1 then
+            -- Draw some debug
+        end
     end
     
 end

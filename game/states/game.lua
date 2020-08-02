@@ -12,7 +12,6 @@ function game:enter()
 
     self.HC = HC.new()
     self.currentMap = Map("resource/maps/sample_level.lua", self.HC)
-    self.curPosX = 0
 
 end
 
@@ -28,7 +27,6 @@ end
 function game:draw()
     love.graphics.push()
     love.graphics.setColor(1, 1, 1)
-    love.graphics.translate(self.curPosX, 0)
     self.currentMap:draw()
 
     love.graphics.pop()
