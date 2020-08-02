@@ -1,9 +1,9 @@
 local fonts = {
-	numbers = love.graphics.newFont("data/fonts/CursedTimerUlil-Aznm.ttf", 11 ), -- https://www.fontspace.com/heaven-castro/cursed-timer-ulil Freeware
-	char    = love.graphics.newFont("data/fonts/CustomFontTtf12H20-mLWya.ttf", 12*scale),
-	smallNumbers = love.graphics.newFont("data/fonts/CustomFontTtf12H20-mLWya.ttf", 27 )
+	medium = love.graphics.newFont("resource/fonts/blocks-3x3-monospaced.ttf", 7 ), -- http://dacosta.itch.io CC4.0
+	small = love.graphics.newFont("resource/fonts/IttyBitty.ttf", 4 ), -- https://bathwater.itch.io/ittybitty-3x3-pixel-font free
 }
-fonts.numbers:setFilter( "nearest", "nearest" )
-fonts.char:setFilter( "nearest", "nearest" )
-fonts.smallNumbers:setFilter( "nearest", "nearest" )
+
+fonts.medium:setFilter( "nearest", "nearest" )
+fonts.small:setFilter( "nearest", "nearest" )
+
 return fonts

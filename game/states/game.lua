@@ -1,4 +1,5 @@
 Images 			= require "resource.images"
+Fonts           = require "resource.fonts"
 HC 				= require 'lib/hardoncollider'
 MapPiece        = require "game.map.map_piece"
 local sti 		= require "lib/sti"
