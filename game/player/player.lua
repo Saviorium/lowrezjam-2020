@@ -172,12 +172,12 @@ function Player:drawDebug()
     x = self.position.x + 8
     y = self.position.y + 8
 
-    love.graphics.setFont(Fonts.small)
-    love.graphics.print("P.x " .. self.position.x, x, y + 12, 0)
-    love.graphics.print("P.y " .. self.position.y, x, y + 8, 0)
-    love.graphics.print("S.x " .. self.speed.x, x, y + 4, 0)
-    love.graphics.print("S.y " .. self.speed.y, x, y, 0)
-    love.graphics.print("Gr " .. (self.isGrounded and 1 or 0), x, y - 4, 0)
+    love.graphics.setFont(Fonts.thin)
+    love.graphics.print("P.x " .. self.position.x, math.floor(x), math.floor(y + 21), 0)
+    love.graphics.print("P.y " .. self.position.y, math.floor(x), math.floor(y + 14), 0)
+    love.graphics.print("S.x " .. self.speed.x, math.floor(x), math.floor(y + 7), 0)
+    love.graphics.print("S.y " .. self.speed.y, math.floor(x), math.floor(y), 0)
+    love.graphics.print("Gr " .. (self.isGrounded and 1 or 0), math.floor(x), math.floor(y - 7), 0)
 end
 
 return Player
