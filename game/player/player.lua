@@ -11,7 +11,7 @@ Player =
 
         self.exited = 0
         self.direction = 1
-        self.prevDirection = 0
+        self.prevDirection = 1
 
         self.sprite = Images["player"]
         self.sprite:setTag("idle")
@@ -45,7 +45,6 @@ Player =
 
 function Player:changeVelocity(dt)
     -- self.speed.x = 0
-
     if love.keyboard.isDown(self.buttons["up"]) and self.isGrounded then
         self.speed.y = self.speed.y + -self.jumpHeight
     -- self.grounded = false
@@ -66,18 +65,23 @@ function Player:changeVelocity(dt)
 end
 
 function Player:addSomethingInEnd(dt)
-    if self.direction ~= self.prevDirection and self.sprite.tagName == "run" then
+    if self.speed.y < 0 then
+        if (self.sprite.tagName ~= "jumpup") then
+            self.sprite:setTag("jumpup")
+        end
+    elseif self.speed.y > 0 then
+        if (self.sprite.tagName ~= "jumpdown") then
+            self.sprite:setTag("jumpdown")
+        end
+    elseif self.direction ~= self.prevDirection and self.sprite.tagName == "run" then
         self.sprite:setTag("turn")
-    end
-    if self.speed.y < 0 and self.sprite.tagName ~= "jumpup" then
-        self.sprite:setTag("jumpup")
-    elseif self.speed.y > 0 and self.sprite.tagName ~= "jumpdown" then
-        self.sprite:setTag("jumpdown")
-    elseif math.abs(self.speed.x) > 0 and self.speed.y == 0 and self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" then
-        self.sprite:setTag("run")
-    elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
+    elseif math.abs(self.speed.x) > 0  then
+        if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn") then
+            self.sprite:setTag("run")
+        end
+    elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "jumpdown" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
         self.sprite:setTag("brake")
-    elseif self.sprite.tagName ~= "idle" and self.sprite.tagName ~= "brake" and self.speed.y == 0 and self.speed.x == 0 then
+    elseif self.sprite.tagName ~= "brake" and self.speed.y == 0 and self.speed.x == 0 then
         self.sprite:setTag("idle")
     end
     if self.exited <= 1 then
