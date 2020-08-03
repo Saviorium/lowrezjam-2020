@@ -3,7 +3,7 @@ PixelCanvas = require "game.pixel_canvas"
 require "conf"
 require "game.utils"
 
-Debug = {} --require "game.debug"
+Debug = require "game.debug"
 serpent = require "lib.debug.serpent"
 states = {
     game = require "game.states.game"
