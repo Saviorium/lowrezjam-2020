@@ -18,7 +18,6 @@ Map = Class {
 
         self.objects = {}
         for _, object in ipairs(self.map.layers["objects"].objects) do
-            print(serpent.block(object))
             if object.type == "player" then
                 newObject = Player(object.x, object.y, self.HC)
                 self.player = newObject
@@ -67,12 +66,14 @@ function Map:draw()
 
         self.map:drawLayer(self.map.layers["ground"])
 
-        love.graphics.setColor(0, 0, 1)
-        local shapes = self.HC:hash():shapes()
-        for _, shape in pairs(shapes) do
-            shape:draw()
+        if Debug.DrawDebugColliders and Debug.DrawDebugColliders == 1 then
+            love.graphics.setColor(0, 0, 1)
+            local shapes = self.HC:hash():shapes()
+            for _, shape in pairs(shapes) do
+                shape:draw()
+            end
+            love.graphics.setColor(1, 1, 1)
         end
-        love.graphics.setColor(1, 1, 1)
 
         for ind, object in pairs(self.objects) do
             object:draw()

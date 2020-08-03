@@ -2,7 +2,6 @@ Class = require "lib.hump.class"
 
 PixelCanvas = Class {
     init = function(self, width, height, scale)
-        print("HERE")
         self.canvas = love.graphics.newCanvas(width, height)
         self.canvas:setFilter("nearest", "nearest")
         self.scale = scale
