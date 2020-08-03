@@ -1,6 +1,7 @@
 Class         = require "lib.hump.class"
 Vector        = require "lib.hump.vector"
 PhysicsObject = require "game.player.physics_object"
+Box           = require "game.player.box"
 Images        = require "resource.images"
 DialogWindow  = require "game.player.dialog_window"
 local sti     = require "lib/sti"
@@ -18,12 +19,20 @@ Map = Class {
 
         self.objects = {}
         for _, object in ipairs(self.map.layers["objects"].objects) do
+            local newObject = nil
             if object.type == "player" then
                 newObject = Player(object.x, object.y, self.HC)
                 self.player = newObject
             end
-            table.insert(self.objects, newObject)
+            if object.type == "box" then
+                newObject = Box(object.x, object.y, self.HC)
+            end
+
+            if newObject then
+                table.insert(self.objects, newObject)
+            end
         end
+        print(table.getn(self.objects))
 
         for _, object in ipairs(self.map.layers["solid"].objects) do
             if object.polygon then

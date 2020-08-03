@@ -29,7 +29,6 @@ Player =
                 )
 
         self.hc = hc
-        self:registerCollider(self.hc)
 
         self.jumpHeight = 0.25
 

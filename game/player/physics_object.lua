@@ -14,7 +14,8 @@ PhysicsObject = Class {
         self.acceleration = acceleration
         self.maxSpeed = maxSpeed
         self.slowDownSpeed = slowDownSpeed
-
+        
+        self:registerCollider(self.HC)
     end,
     maxGroundNormal = 0.05,
     minGroundNormal = 0.005,
