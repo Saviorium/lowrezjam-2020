@@ -81,7 +81,7 @@ function Player:addSomethingInEnd(dt)
         end
     elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "jumpdown" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
         self.sprite:setTag("brake")
-    elseif self.sprite.tagName ~= "brake" and self.speed.y == 0 and self.speed.x == 0 then
+    elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
         self.sprite:setTag("idle")
     end
     if self.exited <= 1 then
