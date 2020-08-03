@@ -70,18 +70,18 @@ function PhysicsObject:onCollide()
 	local collisions = self.HC:collisions(self.collider[1])
     self.deltaVector = Vector( 0, 0)
     for shape, delta in pairs(collisions) do
-        self.deltaVector = Vector( delta.x, delta.y)
+        self.deltaVector = self.deltaVector + delta
+    end
 
-        if math.abs(self.deltaVector.x) > self.maxGroundNormal then
-            self:move(self.deltaVector)
-        end
+    if math.abs(self.deltaVector.x) > self.maxGroundNormal then
+        self:move(self.deltaVector)
+    end
 
-        if math.abs(self.deltaVector.y) > self.maxGroundNormal then
-            
-            self.speed.y = (self.speed.y < 0 or self.deltaVector.y < 0) and 0 or self.speed.y
-            self:move(self.deltaVector/2)
-            self.isGrounded = self.deltaVector.y < 0
-        end
+    if math.abs(self.deltaVector.y) > self.maxGroundNormal then
+        
+        self.speed.y = (self.speed.y < 0 or self.deltaVector.y < 0) and 0 or self.speed.y
+        self:move(self.deltaVector/2)
+        self.isGrounded = self.deltaVector.y < 0
     end
     if math.abs(self.deltaVector.y) < self.minGroundNormal and self.isGrounded then
         self.isGrounded = false

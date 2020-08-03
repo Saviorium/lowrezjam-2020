@@ -12,6 +12,8 @@ DialogWindow =
         self.changedSlide = 0
 
         self.textHeight = 32
+        self.index = 0
+        self.textSpeed = 5
     end
 }
 
@@ -21,7 +23,9 @@ function DialogWindow:update(dt)
     if love.keyboard.isDown(self.buttonToContinue) and self.changedSlide >= 1 then
         self:nextSlide(dt)
         self.changedSlide = 0
+        self.index = 0
     end
+    self.index = self.index + self.textSpeed * dt
     return not self.scenario[self.currentSlide]
 end
 
@@ -39,7 +43,7 @@ function DialogWindow:draw()
                          self.displayPos.x + 16 + (32 - self.scenario[self.currentSlide].whoTalks:len()*4)/2, 
                          self.displayPos.y + (64 - self.textHeight - 4), 
                          16)
-    love.graphics.printf(self.scenario[self.currentSlide].text, 
+    love.graphics.printf(self.scenario[self.currentSlide].text:sub(0, math.floor(self.index)), 
                          Fonts.thin, 
                          self.displayPos.x, 
                          self.displayPos.y + (64 - self.textHeight), 

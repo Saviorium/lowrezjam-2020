@@ -48,6 +48,9 @@ function Player:changeVelocity(dt)
     if love.keyboard.isDown(self.buttons["up"]) and self.isGrounded then
         self.speed.y = self.speed.y + -self.jumpHeight
         self.isGrounded = false
+    elseif love.keyboard.isDown(self.buttons["down"]) and self.isGrounded and self.deltaVector.y == 0  then
+        self:move(Vector(0, 2))
+        self.isGrounded = false
     end
 
     if love.keyboard.isDown(self.buttons["right"]) then
@@ -104,12 +107,12 @@ function Player:additionalCollide()
     local collisions = self.HC:collisions(self.collider[2])
     self.deltaVectorCap = Vector( 0, 0)
     for shape, delta in pairs(collisions) do
-        self.deltaVectorCap = Vector( delta.x, delta.y)
-        if not self.isGrounded and delta.y < -self.minGroundNormal and delta.x == 0 then
-            self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
-            self:move(self.deltaVector/2)
-            self.isGrounded = delta.y < -self.minGroundNormal and self.speed.y >= 0
-        end
+        self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
+    end
+    if not self.isGrounded and self.deltaVectorCap.y < -self.minGroundNormal and self.deltaVectorCap.x == 0 then
+        self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
+        self:move(self.deltaVector/2)
+        self.isGrounded = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
     end
 end
 
