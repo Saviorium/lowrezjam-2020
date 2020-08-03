@@ -7,7 +7,7 @@ DialogWindow  = require "game.player.dialog_window"
 local sti     = require "lib/sti"
 
 Map = Class {
-    init = function(self, scheme, HC)
+    init = function(self, scheme, layerName, HC)
         self.HC = HC
         
         self.curPos = Vector(0,0)
@@ -17,17 +17,17 @@ Map = Class {
         self.world = love.physics.newWorld(0, 0)
         love.graphics.setBackgroundColor({.3,.3,.3,1})
 
+        self.ground = self.map.layers["ground_" .. layerName]
+
         self.objects = {}
-        for _, object in ipairs(self.map.layers["objects"].objects) do
+        for _, object in ipairs(self.map.layers["objects_" .. layerName].objects) do
             local newObject = nil
             if object.type == "player" then
                 newObject = Player(object.x, object.y, self.HC)
                 self.player = newObject
             end
             if object.type == "box" then
-                if love.math.random(1, 100) > 33 then
-                    newObject = Box(object.x, object.y, self.HC)
-                end
+                newObject = Box(object.x, object.y, self.HC)
             end
 
             if newObject then
@@ -36,7 +36,7 @@ Map = Class {
         end
         print(table.getn(self.objects))
 
-        for _, object in ipairs(self.map.layers["solid"].objects) do
+        for _, object in ipairs(self.map.layers["solid_" .. layerName].objects) do
             if object.polygon then
                 local polygon = {}
                 for _, vertex in ipairs(object.polygon) do
@@ -75,7 +75,7 @@ function Map:draw()
         love.graphics.push()
         love.graphics.translate(self.curPos.x, self.curPos.y)
 
-        self.map:drawLayer(self.map.layers["ground"])
+        self.map:drawLayer(self.ground)
 
         if Debug.DrawDebugColliders and Debug.DrawDebugColliders == 1 then
             love.graphics.setColor(0, 0, 1)
