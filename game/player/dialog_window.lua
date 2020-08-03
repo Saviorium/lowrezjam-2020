@@ -40,7 +40,7 @@ function DialogWindow:draw()
                          self.displayPos.y + (64 - self.textHeight - 4), 
                          16)
     love.graphics.printf(self.scenario[self.currentSlide].text, 
-                         Fonts.medium, 
+                         Fonts.thin, 
                          self.displayPos.x, 
                          self.displayPos.y + (64 - self.textHeight), 
                          64)

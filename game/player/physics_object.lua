@@ -15,17 +15,13 @@ PhysicsObject = Class {
         self.maxSpeed = maxSpeed
         self.slowDownSpeed = slowDownSpeed
         
-        self:registerCollider(self.HC)
+        self.collider = {}
+        table.insert(self.collider, self.HC:rectangle(self.position.x, self.position.y, self.width, self.height))
     end,
     maxGroundNormal = 0.05,
     minGroundNormal = 0.005,
     minMove		    = 0.01
 }
-
-
-function PhysicsObject:registerCollider(hc_instance)
-    self.collider = hc_instance:rectangle(self.position.x , self.position.y , self.width, self.height)
-end
 
 function PhysicsObject:update( dt )
     if not self.isGrounded then
@@ -64,16 +60,17 @@ function PhysicsObject:changeSpeed(direction, dt)
 end
 
 function PhysicsObject:move( moveVector )
-  self.position = self.position + moveVector
-  self.collider:move(moveVector)
+    self.position = self.position + moveVector
+    for ind, collider in pairs(self.collider) do
+        collider:move(moveVector)
+    end    
 end
 
 function PhysicsObject:onCollide()
-	local collisions = self.HC:collisions(self.collider)
+	local collisions = self.HC:collisions(self.collider[1])
     self.deltaVector = Vector( 0, 0)
     for shape, delta in pairs(collisions) do
         self.deltaVector = Vector( delta.x, delta.y)
-
 
         if math.abs(self.deltaVector.x) > self.maxGroundNormal then
             self:move(self.deltaVector)
@@ -89,6 +86,12 @@ function PhysicsObject:onCollide()
     if math.abs(self.deltaVector.y) < self.minGroundNormal and self.isGrounded then
         self.isGrounded = false
     end
+
+    self:additionalCollide()
+end
+
+function PhysicsObject:additionalCollide()
+
 end
 
 return PhysicsObject
