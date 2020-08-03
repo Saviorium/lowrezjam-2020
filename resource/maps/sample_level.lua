@@ -377,7 +377,7 @@ return {
           name = "",
           type = "box",
           shape = "ellipse",
-          x = 104,
+          x = 100,
           y = 40,
           width = 0,
           height = 0,

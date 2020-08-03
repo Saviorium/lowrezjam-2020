@@ -25,7 +25,9 @@ Map = Class {
                 self.player = newObject
             end
             if object.type == "box" then
-                newObject = Box(object.x, object.y, self.HC)
+                if love.math.random(1, 100) > 33 then
+                    newObject = Box(object.x, object.y, self.HC)
+                end
             end
 
             if newObject then
@@ -67,10 +69,10 @@ function Map:update( dt )
 end
 
 function Map:draw()
-
     if self.dialog then
         self.dialog:draw()
     else
+        love.graphics.push()
         love.graphics.translate(self.curPos.x, self.curPos.y)
 
         self.map:drawLayer(self.map.layers["ground"])
@@ -91,6 +93,7 @@ function Map:draw()
         if Debug.DrawDebugForMapPiece == 1 then
             -- Draw some debug
         end
+        love.graphics.pop()
     end
     
 end

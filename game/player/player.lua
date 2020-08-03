@@ -93,23 +93,8 @@ end
 function Player:checkIfExited(mapPos, dt)
     local deltaX = self.position.x + mapPos.x
     local deltaY = self.position.y + mapPos.y
-    if self.exited >= 1 then
-        if deltaX < 0 then
-            mapPos.x = mapPos.x + 64
-            self.exited = 0
-        elseif deltaX > 64 then
-            mapPos.x = mapPos.x - 64
-            self.exited = 0
-        end
-
-        if deltaY < 0 then
-            mapPos.y = mapPos.y + 64
-            self.exited = 0
-        elseif deltaY > 64 then
-            mapPos.y = mapPos.y - 64
-            self.exited = 0
-        end
-    end
+    mapPos.x = - math.floor(self.position.x/64)*64
+    mapPos.y = - math.floor(self.position.y/64)*64
 end
 
 function Player:draw()
