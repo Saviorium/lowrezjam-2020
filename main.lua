@@ -14,6 +14,9 @@ strings = {""}
 maxScale = 1
 
 function love.load()
+   if arg[#arg] == "-debug" then
+        require("mobdebug").start()
+    end
     maxScale = getMaxScale()
     mainCanvas = PixelCanvas(64, 64, config.graphics.scale)
     setScale(config.graphics.scale)
