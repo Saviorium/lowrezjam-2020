@@ -53,7 +53,17 @@ function Level:update(dt)
 end
 
 LEVELS = {
-    sample_level = {r = {1, 0, 0}, g = {0, 1, 0}, b = {0, 0, 1}}
+    sample_level = {r = {1, 0, 0}, g = {0, 1, 0}, b = {0, 0, 1}},
+    rainbow_test = {
+        a = {1,0,0},
+        b = {1,0.75,0},
+        c = {0.5,1,0},
+        d = {0,1,0.25},
+        e = {0,1,1},
+        f = {0,0.25,1},
+        g = {0.5,0,1},
+        h = {1,0,0.75}
+    }
 }
 
 return Level

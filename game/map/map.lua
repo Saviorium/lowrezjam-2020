@@ -17,10 +17,10 @@ Map = Class {
         self.world = love.physics.newWorld(0, 0)
         love.graphics.setBackgroundColor({.3,.3,.3,1})
 
-        self.ground = self.map.layers["ground_" .. layerName]
+        self.ground = self.map.layers[layerName .. ".ground"]
 
         self.objects = {}
-        for _, object in ipairs(self.map.layers["objects_" .. layerName].objects) do
+        for _, object in ipairs(self.map.layers[layerName .. ".objects"].objects) do
             local newObject = nil
             if object.type == "player" then
                 newObject = Player(object.x, object.y, self.HC)
@@ -36,7 +36,7 @@ Map = Class {
         end
         print(table.getn(self.objects))
 
-        for _, object in ipairs(self.map.layers["solid_" .. layerName].objects) do
+        for _, object in ipairs(self.map.layers[layerName .. ".solid"].objects) do
             if object.polygon then
                 local polygon = {}
                 for _, vertex in ipairs(object.polygon) do
