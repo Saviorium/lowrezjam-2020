@@ -13,7 +13,7 @@ Player =
         self.prevDirection = 1
         self.deltaVectorCap = Vector( 0, 0)
 
-        self.sprite = Images["player"]
+        self.sprite = Images:getNewPeachySprite("player")
         self.sprite:setTag("idle")
         self.sprite:play()
         self.sprite:onLoop(

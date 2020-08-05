@@ -8,7 +8,7 @@ Door = Class {
     init = function(self, x, y)
         self.position = Vector( x, y )
 
-        self.sprite = Images["door"]
+        self.sprite = Images:getNewPeachySprite("door")
         self.sprite:setTag("closed")
         self.sprite:play()
 

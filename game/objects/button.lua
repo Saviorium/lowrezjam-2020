@@ -8,7 +8,7 @@ Button = Class {
     init = function(self, x, y)
         self.position = Vector( x, y )
 
-        self.sprite = Images["button"]
+        self.sprite = Images:getNewPeachySprite("button")
         self.sprite:setTag("up")
         self.sprite:play()
 
