@@ -32,6 +32,7 @@ function PhysicsObject:update( dt )
     self:calcAllCollisionsResult()
     self:move( self.speed )
     self:updateAnimation(dt)
+    self.deltaVector = Vector( 0, 0)
 end
 
 function PhysicsObject:setVelocityForFrame( dt )
@@ -92,7 +93,6 @@ function PhysicsObject:calcAllCollisionsResult()
 
     self:additionalCollide()
     
-    self.deltaVector = Vector( 0, 0)
 end
 
 function PhysicsObject:additionalCollide()
