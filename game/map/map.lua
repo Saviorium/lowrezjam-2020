@@ -39,6 +39,7 @@ Map = Class {
 
         self.collideObjects.box:registerRule('player', function(box, player, delta) box.deltaVector = box.deltaVector + delta end) 
         self.collideObjects.box:registerRule('terrain', function(box, terrain, delta) box.deltaVector = box.deltaVector + delta end)  
+        self.collideObjects.box:registerRule('door', function(box, door, delta) box.deltaVector = box.deltaVector + delta end)  
 
         self.collideObjects.button:registerRule('player', function(button, player, delta) button:handlePushDown() end)  
 

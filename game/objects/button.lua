@@ -35,7 +35,6 @@ function Button:update(dt)
 end
 
 function Button:handlePushDown()
-    print('Button pushed')
     if not self.isPushed then
         self.isPushed = true
         self.sprite:setTag("down")

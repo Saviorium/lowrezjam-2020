@@ -17,10 +17,6 @@ end
 
 function ColliderLayer:registerRule(collideName, onCollideAction)
     self.collideRulesList[collideName] = onCollideAction
-    print(self.name)
-    for name, rule in pairs(self.collideRulesList) do
-    	print(name, rule)
-    end
 end
 
 function ColliderLayer:regiterCollision(object, collideObject, delta)
