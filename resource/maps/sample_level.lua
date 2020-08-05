@@ -1,7 +1,7 @@
 return {
-  version = "1.2",
+  version = "1.4",
   luaversion = "5.1",
-  tiledversion = "1.3.2",
+  tiledversion = "2020.07.21",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 24,
@@ -9,7 +9,7 @@ return {
   tilewidth = 8,
   tileheight = 8,
   nextlayerid = 26,
-  nextobjectid = 86,
+  nextobjectid = 93,
   properties = {},
   tilesets = {
     {
@@ -24,6 +24,7 @@ return {
       image = "../graphics/placeholder_tileset.png",
       imagewidth = 48,
       imageheight = 24,
+      objectalignment = "unspecified",
       tileoffset = {
         x = 0,
         y = 0
@@ -44,7 +45,7 @@ return {
       type = "group",
       id = 22,
       name = "b",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -52,12 +53,12 @@ return {
       layers = {
         {
           type = "tilelayer",
-          id = 23,
-          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
+          id = 23,
+          name = "ground",
           visible = true,
           opacity = 1,
           offsetx = 0,
@@ -77,13 +78,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 24,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -359,13 +360,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 25,
           name = "objects",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -393,6 +394,34 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 88,
+              name = "",
+              type = "button",
+              shape = "rectangle",
+              x = 32,
+              y = 24,
+              width = 8,
+              height = 8,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["link"] = { id = 91 }
+              }
+            },
+            {
+              id = 92,
+              name = "",
+              type = "door",
+              shape = "rectangle",
+              x = 49,
+              y = 40,
+              width = 8,
+              height = 16,
+              rotation = 0,
+              visible = true,
+              properties = {}
             }
           }
         }
@@ -402,7 +431,7 @@ return {
       type = "group",
       id = 18,
       name = "g",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -410,12 +439,12 @@ return {
       layers = {
         {
           type = "tilelayer",
-          id = 19,
-          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
+          id = 19,
+          name = "ground",
           visible = true,
           opacity = 1,
           offsetx = 0,
@@ -435,13 +464,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 20,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -717,13 +746,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 21,
           name = "objects",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -751,6 +780,34 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 87,
+              name = "",
+              type = "button",
+              shape = "rectangle",
+              x = 40,
+              y = 24,
+              width = 8,
+              height = 8,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["link"] = { id = 92 }
+              }
+            },
+            {
+              id = 91,
+              name = "",
+              type = "door",
+              shape = "rectangle",
+              x = 49,
+              y = 40,
+              width = 8,
+              height = 16,
+              rotation = 0,
+              visible = true,
+              properties = {}
             }
           }
         }
@@ -768,12 +825,12 @@ return {
       layers = {
         {
           type = "tilelayer",
-          id = 9,
-          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
+          id = 9,
+          name = "ground",
           visible = true,
           opacity = 1,
           offsetx = 0,
@@ -793,13 +850,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 7,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -1075,13 +1132,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 3,
           name = "objects",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -1119,6 +1176,34 @@ return {
               y = 45,
               width = 8,
               height = 8,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 86,
+              name = "",
+              type = "button",
+              shape = "rectangle",
+              x = 48,
+              y = 24,
+              width = 8,
+              height = 8,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["link1"] = { id = 90 }
+              }
+            },
+            {
+              id = 90,
+              name = "",
+              type = "door",
+              shape = "rectangle",
+              x = 49,
+              y = 40,
+              width = 8,
+              height = 16,
               rotation = 0,
               visible = true,
               properties = {}

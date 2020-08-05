@@ -2,6 +2,7 @@ Class = require "lib.hump.class"
 HC = require "lib.hardoncollider"
 Layer = require "game.map.level_layer"
 Map = require "game.map.map"
+Link = require "game.map.link"
 
 Level = Class {
     init = function(self, name)
@@ -11,14 +12,37 @@ Level = Class {
             return
         end
         self.layers = {}
+        self.objects = {} -- { id => object } dictionary
+        self.links = {} 
         for layerName, layerColor in pairs(level) do
             table.insert( self.layers, Layer(
-                Map("resource/maps/" .. name .. ".lua", layerName, HC.new()),
+                Map("resource/maps/" .. name .. ".lua", layerName, HC.new(), self),
                 layerColor
             ))
         end
+        self:finalizeLinks()
     end
 }
+
+function Level:addObject(id, obj)
+    self.objects[id] = obj
+end
+
+function Level:linkObjects(idFrom, idTo, linkName)
+    table.insert(self.links, Link(idFrom, idTo, linkName))
+end
+
+function Level:finalizeLinks()
+    -- links added as id to id because objects are not created yet
+    -- here we change ids to links to objects
+    -- only then links can be used
+    for _, link in pairs(self.links) do
+        local fromObj = self.objects[link.from]
+        local toObj = self.objects[link.to]
+        link:finalize(fromObj, toObj)
+        fromObj:addLink(link)
+    end
+end
 
 function Level:draw()
     love.graphics.push()

@@ -2,13 +2,16 @@ Class         = require "lib.hump.class"
 Vector        = require "lib.hump.vector"
 PhysicsObject = require "game.player.physics_object"
 Box           = require "game.player.box"
+Button        = require "game.player.button"
+Door          = require "game.player.door"
 Images        = require "resource.images"
 DialogWindow  = require "game.player.dialog_window"
 local sti     = require "lib/sti"
 
 Map = Class {
-    init = function(self, scheme, layerName, HC)
+    init = function(self, scheme, layerName, HC, level)
         self.HC = HC
+        self.level = level
         
         self.curPos = Vector(0,0)
 
@@ -29,9 +32,22 @@ Map = Class {
             if object.type == "box" then
                 newObject = Box(object.x, object.y, self.HC)
             end
+            if object.type == "button" then
+                newObject = Button(object.x, object.y)
+            end
+
+            if object.type == "door" then
+                newObject = Door(object.x, object.y)
+            end
 
             if newObject then
                 table.insert(self.objects, newObject)
+                self.level:addObject(object.id, newObject)
+            end
+
+            -- save links to level
+            for propertyName, property in pairs(object.properties) do
+                self.level:linkObjects(object.id, property.id, propertyName)
             end
         end
         print(table.getn(self.objects))
