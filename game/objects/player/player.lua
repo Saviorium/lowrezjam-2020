@@ -1,6 +1,6 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
-PhysicsObject = require "game.player.physics_object"
+PhysicsObject = require "game.physic.physics_object"
 Images = require "resource.images"
 
 Player =
@@ -30,7 +30,6 @@ Player =
 
         self.hc = hc
 
-
         self.buttons = {
             up = "w",
             down = "s",
@@ -39,7 +38,11 @@ Player =
             use = "f"
         }
 
-        table.insert(self.collider, self.HC:rectangle(self.position.x - 3, self.position.y - 2, self.width + 6, 1))
+        local capUnderPlayerWidth = 1
+        self.collider.capCollider = self.HC:rectangle(self.position.x - capUnderPlayerWidth, 
+                                                      self.position.y - 1, 
+                                                      self.width + capUnderPlayerWidth * 2, 
+                                                      1)
     end
 }
 
@@ -111,7 +114,7 @@ function Player:draw()
 end
 
 function Player:additionalCollide()
-    local collisions = self.HC:collisions(self.collider[2])
+    local collisions = self.HC:collisions(self.collider.capCollider)
     self.deltaVectorCap = Vector( 0, 0)
     for shape, delta in pairs(collisions) do
         self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)

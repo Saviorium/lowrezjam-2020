@@ -1,6 +1,6 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
-EventReciever = require "game.player.event_reciever"
+EventReciever = require "game.map.event_reciever"
 Images = require "resource.images"
 
 Door = Class {

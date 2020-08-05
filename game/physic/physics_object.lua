@@ -17,9 +17,10 @@ PhysicsObject = Class {
         self.jumpSpeed     = 40
         self.maxSpeed      = maxSpeed
         self.slowDownSpeed = slowDownSpeed
+
+        self.deltaVector = Vector( 0, 0)
         
-        self.collider = {}
-        table.insert(self.collider, self.HC:rectangle(self.position.x, self.position.y, self.width, self.height))
+        self.collider = { mainCollider = self.HC:rectangle(self.position.x, self.position.y, self.width, self.height)}
     end,
     maxGroundNormal = 0.05,
     minGroundNormal = 0.005,
@@ -53,8 +54,7 @@ function PhysicsObject:addSpeedInDirection(acceleration, direction, dt)
 
     self.speed.y = self.speed.y + changeSpeedVector.y
 
-
-    -- Блок снижения скороти (гравитация и трение о поверхность воздух, вся фигня)
+    -- Блок снижения скорости (гравитация и трение о поверхность воздух, вся фигня)
     local slowDownDirection = self.speed.x >= 0 and -1 or 1
     if -slowDownDirection * (self.speed.x + slowDownDirection * self.slowDownSpeed * dt) > 0 then
         self.speed.x = self.speed.x + slowDownDirection * self.slowDownSpeed * dt
@@ -75,7 +75,7 @@ function PhysicsObject:move( moveVector )
 end
 
 function PhysicsObject:onCollide()
-	local collisions = self.HC:collisions(self.collider[1])
+	local collisions = self.HC:collisions(self.collider.mainCollider)
     self.deltaVector = Vector( 0, 0)
     for shape, delta in pairs(collisions) do
         self.deltaVector = self.deltaVector + delta
@@ -91,6 +91,7 @@ function PhysicsObject:onCollide()
         self:move(self.deltaVector/2)
         self.isGrounded = self.deltaVector.y < 0
     end
+    
     if math.abs(self.deltaVector.y) < self.minGroundNormal and self.isGrounded then
         self.isGrounded = false
     end

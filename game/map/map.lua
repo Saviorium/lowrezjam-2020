@@ -1,11 +1,11 @@
 Class         = require "lib.hump.class"
 Vector        = require "lib.hump.vector"
-PhysicsObject = require "game.player.physics_object"
-Box           = require "game.player.box"
-Button        = require "game.player.button"
-Door          = require "game.player.door"
+PhysicsObject = require "game.physic.physics_object"
+Box           = require "game.objects.box"
+Button        = require "game.objects.button"
+Door          = require "game.objects.door"
 Images        = require "resource.images"
-DialogWindow  = require "game.player.dialog_window"
+DialogWindow  = require "game.objects.player.dialog_window"
 local sti     = require "lib/sti"
 
 Map = Class {

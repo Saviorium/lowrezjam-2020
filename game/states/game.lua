@@ -3,7 +3,7 @@ Fonts           = require "resource.fonts"
 HC 				= require 'lib/hardoncollider'
 Level           = require "game.map.level"
 local sti 		= require "lib/sti"
-local Player 	= require "game/player/player"
+local Player 	= require "game/objects/player/player"
 
 local game = {}
 gravity = Vector(0, 0.98)
