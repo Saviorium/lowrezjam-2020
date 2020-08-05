@@ -12,7 +12,6 @@ Link = Class {
 function Link:finalize(fromObj, toObj)
     self.from = fromObj
     self.to = toObj
-    vardump(self)
     if not self.from or not self.to or self.to.onEvent == nil then
         print("Error: can't initialize link " .. self.name)
         return
