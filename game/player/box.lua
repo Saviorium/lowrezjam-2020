@@ -15,4 +15,8 @@ function Box:draw()
     love.graphics.draw(self.sprite, self.position.x, self.position.y)
 end
 
+function Box:setVelocityForFrame(dt)
+    self:addSpeedInDirection(Vector(0, 0), Vector(0,0), dt)
+end
+
 return Box

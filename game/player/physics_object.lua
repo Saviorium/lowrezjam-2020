@@ -4,15 +4,18 @@ Vector = require "lib.hump.vector"
 PhysicsObject = Class {
     init = function(self, x, y, height, width, acceleration, maxSpeed, slowDownSpeed, hc)
     	self.position = Vector( x, y )
-        self.speed = Vector( 0, 0)
+        self.speed    = Vector( 0, 0)
         self.width  = width 
         self.height = height 
         self.HC = hc
 
+        self.gravity = Vector(0, 1)
+
         self.isGrounded = false
 
-        self.acceleration = acceleration
-        self.maxSpeed = maxSpeed
+        self.acceleration  = acceleration
+        self.jumpSpeed     = 40
+        self.maxSpeed      = maxSpeed
         self.slowDownSpeed = slowDownSpeed
         
         self.collider = {}
@@ -24,38 +27,43 @@ PhysicsObject = Class {
 }
 
 function PhysicsObject:update( dt )
-    if not self.isGrounded then
-        self.speed = self.speed + gravity * dt
-    end
-    self:changeVelocity(dt)
+    self:setVelocityForFrame(dt)
     self:onCollide()
     self:move( self.speed )
-    self:addSomethingInEnd(dt)
+    self:updateAnimation(dt)
 end
 
-function PhysicsObject:changeVelocity( dt )
-    self.speed.x = 0
+function PhysicsObject:setVelocityForFrame( dt )
+    self:addSpeedInDirection(Vector(0, 0), Vector(0,0), dt)
 end
 
-function PhysicsObject:addSomethingInEnd( dt )
+function PhysicsObject:updateAnimation( dt )
     -- Функция для добавления всякого что выполняется после всех действий со скоростью и перемещение, например анимация
 end
 
-function PhysicsObject:changeSpeed(direction, dt)
-    local movementDirection = self.speed.x > 0 and 1 or -1
+function PhysicsObject:addSpeedInDirection(acceleration, direction, dt)
 
-    if (math.abs(self.speed.x) < self.maxSpeed or not(movementDirection == direction)) and not( direction  == 0) then
-        if math.abs(self.speed.x + direction * self.acceleration*dt) > self.maxSpeed then
-            self.speed.x = direction * self.maxSpeed
-        else
-            self.speed.x = self.speed.x + direction * self.acceleration*dt
-        end
-    elseif math.abs(self.speed.x) > 0 and direction == 0 then 
-        if self.speed.x > movementDirection * self.slowDownSpeed*dt then
-            self.speed.x = self.speed.x - movementDirection * self.slowDownSpeed*dt
-        else
-            self.speed.x = 0
-        end
+    -- Блок накидывания скорости объекту
+    local changeSpeedVector = Vector(direction.x * acceleration.x*dt, direction.y * acceleration.y*dt)
+    if direction.x * (self.speed.x + changeSpeedVector.x) <= self.maxSpeed then
+        self.speed.x = self.speed.x + changeSpeedVector.x
+    else
+        self.speed.x = direction.x * self.maxSpeed
+    end
+
+    self.speed.y = self.speed.y + changeSpeedVector.y
+
+
+    -- Блок снижения скороти (гравитация и трение о поверхность воздух, вся фигня)
+    local slowDownDirection = self.speed.x >= 0 and -1 or 1
+    if -slowDownDirection * (self.speed.x + slowDownDirection * self.slowDownSpeed * dt) > 0 then
+        self.speed.x = self.speed.x + slowDownDirection * self.slowDownSpeed * dt
+    else
+        self.speed.x = 0
+    end
+
+    if not self.isGrounded then
+        self.speed = self.speed + self.gravity * dt
     end
 end
 

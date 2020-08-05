@@ -7,9 +7,9 @@ Player =
     Class {
     __includes = PhysicsObject,
     init = function(self, x, y, hc)
-        PhysicsObject.init(self, x, y, 11, 5, 20, 0.5, 20, hc)
+        PhysicsObject.init(self, x, y, 11, 5, 80, 0.9, 20, hc)
 
-        self.direction = 1
+        self.direction = Vector(1, 1)
         self.prevDirection = 1
         self.deltaVectorCap = Vector( 0, 0)
 
@@ -30,7 +30,6 @@ Player =
 
         self.hc = hc
 
-        self.jumpHeight = 0.65
 
         self.buttons = {
             up = "w",
@@ -44,30 +43,38 @@ Player =
     end
 }
 
-function Player:changeVelocity(dt)
+function Player:setVelocityForFrame(dt)
+
+    local moveDirection = Vector(self.direction.x, self.direction.y)
+
     if love.keyboard.isDown(self.buttons["up"]) and self.isGrounded then
-        self.speed.y = self.speed.y + -self.jumpHeight
+        moveDirection.y = -1
         self.isGrounded = false
     elseif love.keyboard.isDown(self.buttons["down"]) and self.isGrounded and self.deltaVector.y == 0  then
-        self:move(Vector(0, 2))
+        moveDirection.y = 1
         self.isGrounded = false
+    else
+        moveDirection.y = 0
     end
 
     if love.keyboard.isDown(self.buttons["right"]) then
-        self.direction = 1
-        self:changeSpeed(self.direction, dt)
+        moveDirection.x = 1
     elseif love.keyboard.isDown(self.buttons["left"]) then
-        self.direction = -1
-        self:changeSpeed(self.direction, dt)
+        moveDirection.x = -1
     else
-        self:changeSpeed(0, dt)
-        if math.abs(self.speed.x) > 0 then
-            self.sprite:setTag("brake")
-        end
+        moveDirection.x = 0
     end
+
+    self:addSpeedInDirection(Vector(self.acceleration, self.jumpSpeed), moveDirection, dt)
+
+    if math.abs(self.speed.x) > 0 and moveDirection.x == 0 then
+        self.sprite:setTag("brake")
+    end
+    -- Это дерьмо появилось из-за того что перса надо поворачивать ручками в коде
+    self.direction = Vector(moveDirection.x == 0 and self.direction.x or moveDirection.x, moveDirection.y) 
 end
 
-function Player:addSomethingInEnd(dt)
+function Player:updateAnimation(dt)
     if self.speed.y < 0 then
         if (self.sprite.tagName ~= "jumpup") then
             self.sprite:setTag("jumpup")
@@ -97,7 +104,7 @@ function Player:checkIfExited(mapPos, dt)
 end
 
 function Player:draw()
-    self.sprite:draw(self.position.x, self.position.y, 0, self.direction, 1, self.direction < 0 and self.width or 0, 0)
+    self.sprite:draw(self.position.x, self.position.y, 0, self.direction.x, 1, self.direction.x < 0 and self.width or 0, 0)
     if Debug.DrawDebugForPlayer and Debug.DrawDebugForPlayer == 1 then
         self:drawDebug()
     end
@@ -133,10 +140,8 @@ function Player:drawDebug()
             self.position.x + normDeltaVector.x * 10,
             self.position.y + normDeltaVector.y * 10
         )
-    end
     -- Сделать ещё дебаг
     love.graphics.setColor(0, 0, 255)
-    if self.deltaVector then
         local perpendicularDeltaVector = self.deltaVector:perpendicular():normalized()
         love.graphics.line(
             self.position.x,
@@ -146,11 +151,10 @@ function Player:drawDebug()
         )
     end
 
-    -- Сделать ещё дебаг
     love.graphics.setColor(255, 255, 255)
 
     x = self.position.x + 8
-    y = self.position.y + 8
+    y = self.position.y - 8
 
     love.graphics.setFont(Fonts.thin)
     love.graphics.print("P.x " .. self.position.x, math.floor(x), math.floor(y + 21), 0)
