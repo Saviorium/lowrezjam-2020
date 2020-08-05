@@ -29,7 +29,7 @@ PhysicsObject = Class {
 
 function PhysicsObject:update( dt )
     self:setVelocityForFrame(dt)
-    self:onCollide()
+    self:calcAllCollisionsResult()
     self:move( self.speed )
     self:updateAnimation(dt)
 end
@@ -74,13 +74,7 @@ function PhysicsObject:move( moveVector )
     end    
 end
 
-function PhysicsObject:onCollide()
-	local collisions = self.HC:collisions(self.collider.mainCollider)
-    self.deltaVector = Vector( 0, 0)
-    for shape, delta in pairs(collisions) do
-        self.deltaVector = self.deltaVector + delta
-    end
-
+function PhysicsObject:calcAllCollisionsResult()
     if math.abs(self.deltaVector.x) > self.maxGroundNormal then
         self:move(self.deltaVector)
     end
@@ -97,6 +91,8 @@ function PhysicsObject:onCollide()
     end
 
     self:additionalCollide()
+    
+    self.deltaVector = Vector( 0, 0)
 end
 
 function PhysicsObject:additionalCollide()

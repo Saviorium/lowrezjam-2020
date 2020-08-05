@@ -6,6 +6,7 @@ Button        = require "game.objects.button"
 Door          = require "game.objects.door"
 Images        = require "resource.images"
 DialogWindow  = require "game.ui.dialog_window"
+ColliderLayer  = require "game.physics.collider_layer"
 local sti     = require "lib/sti"
 
 Map = Class {
@@ -24,6 +25,24 @@ Map = Class {
         self.world = love.physics.newWorld(0, 0)
         love.graphics.setBackgroundColor({.3,.3,.3,1})
 
+        self.collideObjects = { player  = ColliderLayer('player'),
+                                box     = ColliderLayer('box'),
+                                button  = ColliderLayer('button'),
+                                door    = ColliderLayer('door'),
+                                background_objects = ColliderLayer('background_objects'),
+                                terrain = ColliderLayer('terrain')} 
+
+        self.collideObjects.player:registerRule('box', function(player, box, delta) player.deltaVector = player.deltaVector + delta end)  
+        -- self.collideObjects.player:registerRule('button', function(player, delta) player.deltaVector = player.deltaVector + delta end)  
+        self.collideObjects.player:registerRule('door', function(player, door, delta) if not door.isOpen then player.deltaVector = player.deltaVector + delta end end)  
+        self.collideObjects.player:registerRule('terrain', function(player, terrain, delta) player.deltaVector = player.deltaVector + delta end)  
+
+        self.collideObjects.box:registerRule('player', function(box, player, delta) box.deltaVector = box.deltaVector + delta end) 
+        self.collideObjects.box:registerRule('terrain', function(box, terrain, delta) box.deltaVector = box.deltaVector + delta end)  
+
+        self.collideObjects.button:registerRule('player', function(button, player, delta) button:handlePushDown() end)  
+
+
         self.ground = self.map.layers[layerName .. ".ground"]
 
         self.objects = {}
@@ -31,17 +50,21 @@ Map = Class {
             local newObject = nil
             if object.type == "player" then
                 newObject = Player(object.x, object.y, self.HC)
+                newObject.collider.mainCollider.layer = 'player'
                 self.player = newObject
             end
             if object.type == "box" then
                 newObject = Box(object.x, object.y, self.HC)
+                newObject.collider.mainCollider.layer = 'box'
             end
             if object.type == "button" then
-                newObject = Button(object.x, object.y)
+                newObject = Button(object.x, object.y, self.HC)
+                newObject.collider.mainCollider.layer = 'button'
             end
 
             if object.type == "door" then
-                newObject = Door(object.x, object.y)
+                newObject = Door(object.x, object.y, self.HC)
+                newObject.collider.mainCollider.layer = 'door'
             end
 
             if newObject then
@@ -54,7 +77,6 @@ Map = Class {
                 self.level:linkObjects(object.id, property.id, propertyName)
             end
         end
-        print(table.getn(self.objects))
 
         for _, object in ipairs(self.map.layers[layerName .. ".solid"].objects) do
             if object.polygon then
@@ -63,9 +85,12 @@ Map = Class {
                     table.insert(polygon, vertex.x)
                     table.insert(polygon, vertex.y)
                 end
-                self.HC:polygon(unpack(polygon))
+                local poligonCollider = self.HC:polygon(unpack(polygon))
+                poligonCollider.layer = 'terrain'
             end
         end
+
+
     end,
 }
 
@@ -77,7 +102,25 @@ function Map:update( dt )
     else
         self.map:update(dt)
         for ind, object in pairs(self.objects) do
+
+            local collisions = self.HC:collisions(object.collider.mainCollider)
+            for shape, delta in pairs(collisions) do
+                local collideObject
+                if shape.layer == 'terrain' then
+                   collideObject = shape.layer 
+                else
+                    for ind, secondObject in pairs(self.objects) do
+                        collideObject = secondObject.collider.mainCollider == shape and secondObject or collideObject
+                    end
+                end
+
+                if collideObject then    
+                    self.collideObjects[object.collider.mainCollider.layer]:regiterCollision(object, collideObject, delta)
+                end
+            end
+
             object:update(dt)
+
         end
         self.player:checkIfExited(self.curentRoomPos, dt)
 
@@ -85,6 +128,8 @@ function Map:update( dt )
         if love.keyboard.isDown('e') then
             self.dialog = DialogWindow(self.curentRoomPos, 1)
         end
+
+
     end
 end
 

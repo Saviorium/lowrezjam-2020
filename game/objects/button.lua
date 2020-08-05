@@ -5,7 +5,7 @@ Images = require "resource.images"
 
 Button = Class {
     __includes = EventSender,
-    init = function(self, x, y)
+    init = function(self, x, y, hc)
         self.position = Vector( x, y )
 
         self.sprite = Images:getNewPeachySprite("button")
@@ -13,6 +13,9 @@ Button = Class {
         self.sprite:play()
 
         self.isPushed = false
+        self.width = 4
+        self.height = 4
+        self.collider = { mainCollider = hc:rectangle(self.position.x, self.position.y, self.width, self.height)}
 
         EventSender.init(self)
     end
@@ -23,24 +26,29 @@ function Button:update(dt)
         if not self.isPushed then
             self:handlePushDown()
         end
-    else
-        if self.isPushed then
-            self:handlePushUp()
-        end
+    -- else
+    --     if self.isPushed then
+    --         self:handlePushUp()
+    --     end
     end
     self.sprite:update(dt)
 end
 
 function Button:handlePushDown()
-    self.isPushed = true
-    self.sprite:setTag("down")
-    self:sendEvent("Activate")
+    print('Button pushed')
+    if not self.isPushed then
+        self.isPushed = true
+        self.sprite:setTag("down")
+        self:sendEvent("Activate")
+    end
 end
 
 function Button:handlePushUp()
-    self.isPushed = false
-    self.sprite:setTag("up")
-    self:sendEvent("Deactivate")
+    if self.isPushed then
+        self.isPushed = false
+        self.sprite:setTag("up")
+        self:sendEvent("Deactivate")
+    end
 end
 
 function Button:draw()

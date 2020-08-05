@@ -5,7 +5,7 @@ Images = require "resource.images"
 
 Door = Class {
     __includes = EventReciever,
-    init = function(self, x, y)
+    init = function(self, x, y, hc)
         self.position = Vector( x, y )
 
         self.sprite = Images:getNewPeachySprite("door")
@@ -15,6 +15,10 @@ Door = Class {
         self.links = {}
 
         self.isOpen = false
+
+        self.width = 8
+        self.height = 16
+        self.collider = { mainCollider = hc:rectangle(self.position.x, self.position.y, self.width, self.height)}
 
         EventReciever.init(self)
     end
