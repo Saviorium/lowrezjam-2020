@@ -39,7 +39,7 @@ function Images.getNewPeachySprite(self, name)
         error("I dont have image with name "..name, 2)
     else
         jsonFilePath = Images[name].path..".json"
-        if love.filesystem.exists(jsonFilePath) --если нет файла json
+        if love.filesystem.getInfo(jsonFilePath) --если нет файла json
         then
             return Peachy.new(jsonFilePath, Images[name].img)
         else
