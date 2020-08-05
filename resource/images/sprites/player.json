@@ -151,6 +151,51 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 12 },
     "sourceSize": { "w": 8, "h": 12 },
     "duration": 99
+   },
+   {
+    "filename": "player_17.aseprite",
+    "frame": { "x": 136, "y": 0, "w": 8, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 12 },
+    "sourceSize": { "w": 8, "h": 12 },
+    "duration": 99
+   },
+   {
+    "filename": "player_18.aseprite",
+    "frame": { "x": 144, "y": 0, "w": 8, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 12 },
+    "sourceSize": { "w": 8, "h": 12 },
+    "duration": 99
+   },
+   {
+    "filename": "player_19.aseprite",
+    "frame": { "x": 152, "y": 0, "w": 8, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 12 },
+    "sourceSize": { "w": 8, "h": 12 },
+    "duration": 99
+   },
+   {
+    "filename": "player_20.aseprite",
+    "frame": { "x": 160, "y": 0, "w": 8, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 12 },
+    "sourceSize": { "w": 8, "h": 12 },
+    "duration": 1000
+   },
+   {
+    "filename": "player_21.aseprite",
+    "frame": { "x": 168, "y": 0, "w": 8, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 12 },
+    "sourceSize": { "w": 8, "h": 12 },
+    "duration": 99
    }
  ],
  "meta": {
@@ -158,7 +203,7 @@
   "version": "1.2.21",
   "image": "player.png",
   "format": "RGBA8888",
-  "size": { "w": 136, "h": 12 },
+  "size": { "w": 176, "h": 12 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
@@ -167,7 +212,9 @@
    { "name": "jumpdown", "from": 10, "to": 10, "direction": "forward" },
    { "name": "turn", "from": 11, "to": 13, "direction": "forward" },
    { "name": "hurt", "from": 14, "to": 14, "direction": "forward" },
-   { "name": "brake", "from": 15, "to": 16, "direction": "forward" }
+   { "name": "brake", "from": 15, "to": 16, "direction": "forward" },
+   { "name": "hang", "from": 17, "to": 17, "direction": "forward" },
+   { "name": "yawn", "from": 18, "to": 21, "direction": "forward" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }

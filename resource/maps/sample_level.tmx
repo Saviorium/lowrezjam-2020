@@ -18,47 +18,47 @@
 </data>
   </layer>
   <objectgroup id="24" name="solid">
-   <object id="65" x="24" y="0">
+   <object id="65" x="24" y="-1">
     <polygon points="0,0 0,8 -16,8 -16,56 8,56 8,64 -24,64 -24,0"/>
    </object>
-   <object id="66" x="40" y="8">
+   <object id="66" x="40" y="7">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="67" x="56" y="0">
+   <object id="67" x="56" y="-1">
     <polygon points="0,0 0,32 -32,32 -32,40 8,40 8,0"/>
    </object>
-   <object id="68" x="40" y="56">
+   <object id="68" x="40" y="55">
     <polygon points="0,0 0,8 24,8 24,0"/>
    </object>
-   <object id="69" x="64" y="64">
+   <object id="69" x="64" y="63">
     <polygon points="0,0 48,0 48,-8 0,-8"/>
    </object>
-   <object id="70" x="120" y="32">
+   <object id="70" x="120" y="31">
     <polygon points="0,0 32,0 32,-8 24,-8 24,-16 8,-16 8,-8 0,-8"/>
    </object>
-   <object id="71" x="128" y="64">
+   <object id="71" x="128" y="63">
     <polygon points="0,0 0,-8 16,-8 16,-16 24,-16 24,-24 32,-24 32,-32 40,-32 40,-40 48,-40 48,-48 56,-48 56,-56 64,-56 64,0"/>
    </object>
-   <object id="72" x="64" y="0">
+   <object id="72" x="64" y="-1">
     <polygon points="0,0 0,40 8,40 8,0"/>
    </object>
-   <object id="73" x="72" y="24">
+   <object id="73" x="72" y="23">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="74" x="80" y="32">
+   <object id="74" x="80" y="31">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="75" x="80" y="24">
+   <object id="75" x="80" y="23">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
-   <object id="76" x="104" y="16">
+   <object id="76" x="104" y="15">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
-   <object id="77" x="112" y="8">
+   <object id="77" x="112" y="7">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
   </objectgroup>
-  <objectgroup id="25" name="objects">
+  <objectgroup id="25" name="objects" visible="0">
    <object id="78" type="player" x="16" y="48">
     <point/>
    </object>
@@ -85,47 +85,47 @@
 </data>
   </layer>
   <objectgroup id="20" name="solid">
-   <object id="50" x="24" y="0">
+   <object id="50" x="24" y="-1">
     <polygon points="0,0 0,8 -16,8 -16,56 8,56 8,64 -24,64 -24,0"/>
    </object>
-   <object id="51" x="40" y="8">
+   <object id="51" x="40" y="7">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="52" x="56" y="0">
+   <object id="52" x="56" y="-1">
     <polygon points="0,0 0,32 -32,32 -32,40 8,40 8,0"/>
    </object>
-   <object id="53" x="40" y="56">
+   <object id="53" x="40" y="55">
     <polygon points="0,0 0,8 24,8 24,0"/>
    </object>
-   <object id="54" x="64" y="64">
+   <object id="54" x="64" y="63">
     <polygon points="0,0 48,0 48,-8 0,-8"/>
    </object>
-   <object id="55" x="120" y="32">
+   <object id="55" x="120" y="31">
     <polygon points="0,0 32,0 32,-8 24,-8 24,-16 8,-16 8,-8 0,-8"/>
    </object>
-   <object id="56" x="128" y="64">
+   <object id="56" x="128" y="63">
     <polygon points="0,0 0,-8 16,-8 16,-16 24,-16 24,-24 32,-24 32,-32 40,-32 40,-40 48,-40 48,-48 56,-48 56,-56 64,-56 64,0"/>
    </object>
-   <object id="57" x="64" y="0">
+   <object id="57" x="64" y="-1">
     <polygon points="0,0 0,40 8,40 8,0"/>
    </object>
-   <object id="58" x="72" y="24">
+   <object id="58" x="72" y="23">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="59" x="80" y="32">
+   <object id="59" x="80" y="31">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="60" x="80" y="24">
+   <object id="60" x="80" y="23">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
-   <object id="61" x="104" y="16">
+   <object id="61" x="104" y="15">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
-   <object id="62" x="112" y="8">
+   <object id="62" x="112" y="7">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
   </objectgroup>
-  <objectgroup id="21" name="objects">
+  <objectgroup id="21" name="objects" visible="0">
    <object id="63" type="player" x="16" y="48">
     <point/>
    </object>
@@ -152,47 +152,47 @@
 </data>
   </layer>
   <objectgroup id="7" name="solid">
-   <object id="37" x="24" y="0">
+   <object id="37" x="24" y="-1">
     <polygon points="0,0 0,8 -16,8 -16,56 8,56 8,64 -24,64 -24,0"/>
    </object>
-   <object id="38" x="40" y="8">
+   <object id="38" x="40" y="7">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="39" x="56" y="0">
+   <object id="39" x="56" y="-1">
     <polygon points="0,0 0,32 -32,32 -32,40 8,40 8,0"/>
    </object>
-   <object id="40" x="40" y="56">
+   <object id="40" x="40" y="55">
     <polygon points="0,0 0,8 24,8 24,0"/>
    </object>
-   <object id="41" x="64" y="64">
+   <object id="41" x="64" y="63">
     <polygon points="0,0 48,0 48,-8 0,-8"/>
    </object>
-   <object id="42" x="120" y="32">
+   <object id="42" x="120" y="31">
     <polygon points="0,0 32,0 32,-8 24,-8 24,-16 8,-16 8,-8 0,-8"/>
    </object>
-   <object id="43" x="128" y="64">
+   <object id="43" x="128" y="63">
     <polygon points="0,0 0,-8 16,-8 16,-16 24,-16 24,-24 32,-24 32,-32 40,-32 40,-40 48,-40 48,-48 56,-48 56,-56 64,-56 64,0"/>
    </object>
-   <object id="44" x="64" y="0">
+   <object id="44" x="64" y="-1">
     <polygon points="0,0 0,40 8,40 8,0"/>
    </object>
-   <object id="45" x="72" y="24">
+   <object id="45" x="72" y="23">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="46" x="80" y="32">
+   <object id="46" x="80" y="31">
     <polygon points="0,0 0,8 8,8 8,0"/>
    </object>
-   <object id="47" x="80" y="24">
+   <object id="47" x="80" y="23">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
-   <object id="48" x="104" y="16">
+   <object id="48" x="104" y="15">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
-   <object id="49" x="112" y="8">
+   <object id="49" x="112" y="7">
     <polygon points="0,0 8,0 8,-8 0,-8"/>
    </object>
   </objectgroup>
-  <objectgroup id="3" name="objects">
+  <objectgroup id="3" name="objects" visible="0">
    <object id="5" type="player" x="16" y="48">
     <point/>
    </object>

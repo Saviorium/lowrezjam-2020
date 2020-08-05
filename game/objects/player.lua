@@ -38,11 +38,12 @@ Player =
             use = "f"
         }
 
-        local capUnderPlayerWidth = 1
-        self.collider.capCollider = self.HC:rectangle(self.position.x - capUnderPlayerWidth, 
-                                                      self.position.y - 1, 
-                                                      self.width + capUnderPlayerWidth * 2, 
-                                                      1)
+        self.hangCapWidth = 2
+        self.collider.capCollider = self.HC:rectangle(
+            self.position.x - self.hangCapWidth, 
+            self.position.y - 1, 
+            self.hangCapWidth, 
+            1)
     end
 }
 
@@ -54,7 +55,6 @@ function Player:setVelocityForFrame(dt)
         moveDirection.y = -1
         self.isGrounded = false
     elseif love.keyboard.isDown(self.buttons["down"]) and self.isGrounded and self.deltaVector.y == 0  then
-        moveDirection.y = 1
         self.isGrounded = false
     else
         moveDirection.y = 0
@@ -74,7 +74,25 @@ function Player:setVelocityForFrame(dt)
         self.sprite:setTag("brake")
     end
     -- Это дерьмо появилось из-за того что перса надо поворачивать ручками в коде
-    self.direction = Vector(moveDirection.x == 0 and self.direction.x or moveDirection.x, moveDirection.y) 
+    self.direction = Vector(moveDirection.x == 0 and self.direction.x or moveDirection.x, moveDirection.y)
+    
+    if love.keyboard.isDown(self.buttons["down"]) then
+        self:disableCapCollider()
+    else
+        self:turnCapCollider(self.direction)
+    end
+end
+
+function Player:turnCapCollider(direction)
+    if direction.x > 0 then
+        self.collider.capCollider:moveTo(self.position.x + self.width, self.position.y - 1)
+    else
+        self.collider.capCollider:moveTo(self.position.x - self.hangCapWidth, self.position.y - 1)
+    end
+end
+
+function Player:disableCapCollider()
+    self.collider.capCollider:moveTo(self.position.x + 1 --[[ +1 as collider is not aligned with position (´д｀) ]], self.position.y - 1) -- 
 end
 
 function Player:updateAnimation(dt)
@@ -86,6 +104,8 @@ function Player:updateAnimation(dt)
         if (self.sprite.tagName ~= "jumpdown") then
             self.sprite:setTag("jumpdown")
         end
+    elseif self.deltaVector.y == 0 and self.isGrounded then
+        self.sprite:setTag("hang")
     elseif self.direction ~= self.prevDirection and self.sprite.tagName == "run" then
         self.sprite:setTag("turn")
     elseif math.abs(self.speed.x) > 0  then
