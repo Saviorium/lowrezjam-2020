@@ -1,6 +1,6 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
-PhysicsObject = require "game.physic.physics_object"
+PhysicsObject = require "game.physics.physics_object"
 Images = require "resource.images"
 
 Box = Class {

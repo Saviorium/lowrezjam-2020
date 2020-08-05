@@ -2,7 +2,7 @@ Class   = require "lib.hump.class"
 HC      = require "lib.hardoncollider"
 Layer   = require "game.map.level_layer"
 Map     = require "game.map.map"
-Link    = require "game.map.link"
+Link    = require "game.links.link"
 
 Level = Class {
     init = function(self, name)
