@@ -18,7 +18,7 @@ function love.load()
         require("mobdebug").start()
     end
     maxScale = getMaxScale()
-    mainCanvas = PixelCanvas(64, 64, config.graphics.scale)
+    mainCanvas = PixelCanvas(config.graphics.resolution.x, config.graphics.resolution.y, config.graphics.scale)
     setScale(config.graphics.scale)
     StateManager.switch(states.game)
 end
@@ -63,11 +63,13 @@ end
 
 function getMaxScale()
     local width, height = love.window.getDesktopDimensions()
-    return math.floor( math.min(width, height) / 64 )
+    local maxWidthScale  = width  / config.graphics.resolution.x
+    local maxHeightScale = height / config.graphics.resolution.y
+    return math.floor( math.min(maxWidthScale, maxHeightScale) )
 end
 
 function setScale(scaleFactor)
     scaleFactor = math.min(maxScale, scaleFactor)
     mainCanvas:setScale(scaleFactor)
-    love.window.setMode(64*scaleFactor, 64*scaleFactor)
+    love.window.setMode(config.graphics.resolution.x*scaleFactor, config.graphics.resolution.y*scaleFactor)
 end

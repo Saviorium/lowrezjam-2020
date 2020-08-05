@@ -122,8 +122,9 @@ function Player:updateAnimation(dt)
 end
 
 function Player:checkIfExited(mapPos, dt)
-    mapPos.x = -math.floor(self.position.x/64)*64
-    mapPos.y = -math.floor(self.position.y/64)*64
+    local roomWidth, roomHeight = config.game.roomSize.x, config.game.roomSize.y
+    mapPos.x = -math.floor(self.position.x/roomWidth)*roomWidth
+    mapPos.y = -math.floor(self.position.y/roomHeight)*roomHeight
 end
 
 function Player:draw()

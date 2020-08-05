@@ -13,7 +13,11 @@ Map = Class {
         self.HC = HC
         self.level = level
         
-        self.curPos = Vector(0,0)
+        self.curentRoomPos = Vector(0,0)
+        self.displayStartPos = Vector(
+            (config.graphics.resolution.x - config.game.roomSize.x) / 2,
+            (config.graphics.resolution.y - config.game.roomSize.y) / 2
+        )
 
         love.physics.setMeter(16)
         self.map = sti(scheme) -- "resource/maps/physics-test.lua"
@@ -75,11 +79,11 @@ function Map:update( dt )
         for ind, object in pairs(self.objects) do
             object:update(dt)
         end
-        self.player:checkIfExited(self.curPos, dt)
+        self.player:checkIfExited(self.curentRoomPos, dt)
 
 
         if love.keyboard.isDown('e') then
-            self.dialog = DialogWindow(self.curPos, 1)
+            self.dialog = DialogWindow(self.curentRoomPos, 1)
         end
     end
 end
@@ -89,7 +93,8 @@ function Map:draw()
         self.dialog:draw()
     else
         love.graphics.push()
-        love.graphics.translate(self.curPos.x, self.curPos.y)
+        love.graphics.translate(self.curentRoomPos.x, self.curentRoomPos.y)
+        love.graphics.translate(self.displayStartPos.x, self.displayStartPos.y)
 
         self.map:drawLayer(self.ground)
 
