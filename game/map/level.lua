@@ -21,6 +21,9 @@ Level = Class {
             ))
         end
         self:finalizeLinks()
+
+        self.backgroundCanvas = love.graphics.newCanvas()
+        self.foregroundCanvas = love.graphics.newCanvas()
     end
 }
 
@@ -46,26 +49,37 @@ end
 
 function Level:draw()
     love.graphics.push()
-    local mainCanvas = love.graphics.getCanvas() -- save for later
+    local mainCanvas = love.graphics.getCanvas() -- save for later, as this may be not the main screen
 
+    -- draw layers on virtual canvases
     love.graphics.setColor(1, 1, 1)
-    for layerName, layer in pairs(self.layers) do -- draw maps on virtual canvases
+    for layerName, layer in pairs(self.layers) do
         love.graphics.setCanvas(layer.canvas)
-        love.graphics.clear({0,0,0,1})
+        love.graphics.clear({0,0,0,0})
         layer.map:draw()
     end
 
-    love.graphics.setCanvas(mainCanvas)
-    love.graphics.clear({0,0,0,1})
-    love.graphics.setBlendMode("add", "premultiplied") -- mix colors, not redraw
+    -- draw common background for level
+    love.graphics.setCanvas(self.backgroundCanvas)
+    love.graphics.clear({0.3,0.3,0.3,1})
 
-    for layerName, layer in pairs(self.layers) do -- draw canvases on main screen(canvas)
+    -- merge layers of foreground objects
+    love.graphics.setCanvas(self.foregroundCanvas)
+    love.graphics.clear({0,0,0,0})
+    love.graphics.setBlendMode("screen", "premultiplied") -- mix colors, not redraw
+
+    for layerName, layer in pairs(self.layers) do
         love.graphics.setColor(layer.color)
         love.graphics.draw(layer.canvas)
     end
 
+    -- draw on main screen
+    love.graphics.setCanvas(mainCanvas)
     love.graphics.setBlendMode("alpha")
     love.graphics.setColor(1, 1, 1)
+
+    love.graphics.draw(self.backgroundCanvas)
+    love.graphics.draw(self.foregroundCanvas)
 
     love.graphics.pop()
 end
