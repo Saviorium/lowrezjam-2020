@@ -25,24 +25,7 @@ Map = Class {
         self.world = love.physics.newWorld(0, 0)
         love.graphics.setBackgroundColor({.3,.3,.3,1})
 
-        self.collideObjects = { player  = ColliderLayer('player'),
-                                box     = ColliderLayer('box'),
-                                button  = ColliderLayer('button'),
-                                door    = ColliderLayer('door'),
-                                background_objects = ColliderLayer('background_objects'),
-                                terrain = ColliderLayer('terrain')} 
-
-        self.collideObjects.player:registerRule('box', function(player, box, delta) player.deltaVector = player.deltaVector + delta end)  
-        -- self.collideObjects.player:registerRule('button', function(player, delta) player.deltaVector = player.deltaVector + delta end)  
-        self.collideObjects.player:registerRule('door', function(player, door, delta) if not door.isOpen then player.deltaVector = player.deltaVector + delta end end)  
-        self.collideObjects.player:registerRule('terrain', function(player, terrain, delta) player.deltaVector = player.deltaVector + delta end)  
-
-        self.collideObjects.box:registerRule('player', function(box, player, delta) box.deltaVector = box.deltaVector + delta end) 
-        self.collideObjects.box:registerRule('terrain', function(box, terrain, delta) box.deltaVector = box.deltaVector + delta end)  
-        self.collideObjects.box:registerRule('door', function(box, door, delta) box.deltaVector = box.deltaVector + delta end)  
-
-        self.collideObjects.button:registerRule('player', function(button, player, delta) button:handlePushDown() end)  
-
+        self:initColliders()
 
         self.ground = self.map.layers[layerName .. ".ground"]
 
@@ -94,6 +77,49 @@ Map = Class {
 
     end,
 }
+
+function Map:initColliders()
+        self.collideObjects = {
+            player  = ColliderLayer('player'),
+            box     = ColliderLayer('box'),
+            button  = ColliderLayer('button'),
+            door    = ColliderLayer('door'),
+            background_objects = ColliderLayer('background_objects'),
+            terrain = ColliderLayer('terrain')
+        } 
+
+        self.collideObjects.player:registerRule('box',
+            function(player, box, delta)
+                player.deltaVector = player.deltaVector + delta
+            end)  
+        -- self.collideObjects.player:registerRule('button', function(player, delta) player.deltaVector = player.deltaVector + delta end)  
+        self.collideObjects.player:registerRule('door',
+            function(player, door, delta)
+                if not door.isOpen then player.deltaVector = player.deltaVector + delta end
+            end)  
+        self.collideObjects.player:registerRule('terrain',
+            function(player, terrain, delta)
+                player.deltaVector = player.deltaVector + delta
+            end)  
+
+        self.collideObjects.box:registerRule('player',
+            function(box, player, delta)
+                box.deltaVector = box.deltaVector + delta
+            end) 
+        self.collideObjects.box:registerRule('terrain',
+            function(box, terrain, delta)
+                box.deltaVector = box.deltaVector + delta
+            end)  
+        self.collideObjects.box:registerRule('door',
+            function(box, door, delta)
+                box.deltaVector = box.deltaVector + delta
+            end)  
+
+        self.collideObjects.button:registerRule('player',
+            function(button, player, delta)
+                button:handlePushDown()
+            end)
+end
 
 function Map:changeFocus(isInFocus)
     if isInFocus then
