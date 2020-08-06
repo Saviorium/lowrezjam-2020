@@ -51,6 +51,14 @@ function Level:switchToNextLayer()
     if self.focusLayer > #self.layers then
         self.focusLayer = 1
     end
+
+    for layerIndex, layer in pairs(self.layers) do
+        if layerIndex == self.focusLayer then
+            layer.map:changeFocus(true)
+        else
+            layer.map:changeFocus(false)
+        end
+    end
 end
 
 function Level:finalizeLinks()

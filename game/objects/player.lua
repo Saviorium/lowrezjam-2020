@@ -28,6 +28,11 @@ Player =
                     self
                 )
 
+        self.arrowActive = true
+        self.arrowTimeout = 0
+        self.arrowTimeoutLength = 1 -- seconds
+        self.arrowImage = Images["ui_player_arrow"].img
+
         self.hc = hc
 
         self.buttons = {
@@ -119,6 +124,8 @@ function Player:updateAnimation(dt)
     end
     self.prevDirection = self.direction
     self.sprite:update(dt)
+
+    self:updateArrow(dt)
 end
 
 function Player:checkIfExited(mapPos, dt)
@@ -129,6 +136,7 @@ end
 
 function Player:draw()
     self.sprite:draw(self.position.x, self.position.y, 0, self.direction.x, 1, self.direction.x < 0 and self.width or 0, 0)
+    self:drawArrow()
     if Debug.DrawDebugForPlayer and Debug.DrawDebugForPlayer == 1 then
         self:drawDebug()
     end
@@ -144,6 +152,30 @@ function Player:additionalCollide()
         self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
         self:move(self.deltaVector/2)
         self.isGrounded = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
+    end
+end
+
+function Player:showArrow()
+    self.arrowActive = true
+    self.arrowTimeout = self.arrowTimeoutLength
+end
+
+function Player:hideArrow()
+    self.arrowActive = false
+end
+
+function Player:drawArrow()
+    if self.arrowActive then
+        love.graphics.draw(self.arrowImage, self.position.x, self.position.y + self.height + 2)
+    end
+end
+
+function Player:updateArrow(dt)
+    if self.arrowActive then
+        self.arrowTimeout = self.arrowTimeout - dt
+        if self.arrowTimeout < 0 then
+            self.arrowActive = false
+        end
     end
 end
 

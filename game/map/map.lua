@@ -95,6 +95,14 @@ Map = Class {
     end,
 }
 
+function Map:changeFocus(isInFocus)
+    if isInFocus then
+        self.player:showArrow()
+    else
+        self.player:hideArrow()
+    end
+end
+
 function Map:update( dt )
     if self.dialog then
         if self.dialog:update(dt) then
