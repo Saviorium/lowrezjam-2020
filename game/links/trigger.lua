@@ -8,7 +8,9 @@ Trigger = Class {
         self.level = level
         if type == 'exit' then
             self.triggerFunction = function(level)
-                StateManager.switch(states.game, target)
+                if self:isPlayerInSync() then
+                    StateManager.switch(states.game, target)
+                end
             end
         elseif type == 'dialog' then
             self.triggerFunction = function(level)
@@ -27,6 +29,9 @@ end
 function Trigger:draw()
 end
 
+function Trigger:isPlayerInSync()
+    return self.level.isPlayerInSync
+end
 
 function Trigger:tryToStartAction()
     if self.conditionFunction(self) and self.enabled then

@@ -249,6 +249,10 @@ function Map:update( dt )
     -- self.dialog = DialogWindow(self.curentRoomPos, 1)
 end
 
+function Map:getPlayerPosition()
+    return self.player.position
+end
+
 function Map:draw()
     love.graphics.push()
     love.graphics.translate(self.curentRoomPos.x, self.curentRoomPos.y)

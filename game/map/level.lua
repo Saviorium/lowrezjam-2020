@@ -18,6 +18,7 @@ Level = Class {
         self.buttonGroups = {}
         self.links = {}
         self.triggers = {}
+        self.isPlayerInSync = false
         for layerName, layerColor in pairs(level) do
             table.insert( self.layers, Layer(
                 Map(self.map, layerName, HC.new(), self),
@@ -33,7 +34,8 @@ Level = Class {
 
         self.backgroundTileMap = self.map.layers.background
         self.backgroundColor = {0, 0, 0}
-    end
+    end,
+    playerSyncMaxDistance = 0.5 -- if players farther than this, player is not in sync
 }
 
 function Level:addObject(id, obj)
@@ -138,9 +140,12 @@ function Level:update(dt)
             self.dialog = nil
         end
     else
+        local playerPositions = {}
         for layerName, layer in pairs(self.layers) do
             layer.map:update(dt)
+            playerPositions[layerName] = layer.map:getPlayerPosition()
         end
+        self.isPlayerInSync = self:checkPlayersSync(playerPositions)
     end
 end
 
@@ -150,6 +155,18 @@ local function generateLayerColors(n)
         layers[string.char(string.byte("a")+i)] = hslToRgb(i/n, 1, 0.5, 1)
     end
     return layers
+end
+
+function Level:checkPlayersSync(playerPositions)
+    local playersDistances = {}
+    local previousPosition = nil
+    for _, position in pairs(playerPositions) do
+        if not previousPosition then previousPosition = position end
+        if (position - previousPosition):len2() > Level.playerSyncMaxDistance then
+            return false
+        end
+    end
+    return true
 end
 
 LEVELS = {
