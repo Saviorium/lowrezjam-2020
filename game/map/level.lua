@@ -22,9 +22,14 @@ Level = Class {
         end
         self:finalizeLinks()
 
+        self.focusLayer = 1
+
         self.backgroundCanvas = love.graphics.newCanvas()
         self.foregroundCanvas = love.graphics.newCanvas()
-    end
+    end,
+    buttons = {
+        nextLayer = "q"
+    }
 }
 
 function Level:addObject(id, obj)
@@ -33,6 +38,19 @@ end
 
 function Level:linkObjects(idFrom, idTo, linkName)
     table.insert(self.links, Link(idFrom, idTo, linkName))
+end
+
+function Level:keypressed(key)
+    if key == Level.buttons.nextLayer then
+        self:switchToNextLayer()
+    end
+end
+
+function Level:switchToNextLayer()
+    self.focusLayer = self.focusLayer + 1
+    if self.focusLayer > #self.layers then
+        self.focusLayer = 1
+    end
 end
 
 function Level:finalizeLinks()
@@ -67,10 +85,13 @@ function Level:draw()
     love.graphics.setCanvas(self.foregroundCanvas)
     love.graphics.clear({0,0,0,0})
     love.graphics.setBlendMode("screen", "premultiplied") -- mix colors, not redraw
+    local activeRoomPos = self.layers[self.focusLayer].map.curentRoomPos -- room of player in focus
 
     for layerName, layer in pairs(self.layers) do
-        love.graphics.setColor(layer.color)
-        love.graphics.draw(layer.canvas)
+        if layer.map.curentRoomPos == activeRoomPos then -- draw only layers where player is in active room
+            love.graphics.setColor(layer.color)
+            love.graphics.draw(layer.canvas)
+        end
     end
 
     -- draw on main screen

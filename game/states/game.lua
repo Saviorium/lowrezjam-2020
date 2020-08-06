@@ -1,9 +1,9 @@
-Images 			= require "resource.images"
+Images          = require "resource.images"
 Fonts           = require "resource.fonts"
-HC 				= require 'lib/hardoncollider'
+HC              = require 'lib/hardoncollider'
 Level           = require "game.map.level"
-local sti 		= require "lib/sti"
-local Player 	= require "game.objects.player"
+local sti       = require "lib/sti"
+local Player    = require "game.objects.player"
 
 local game = {}
 gravity = Vector(0, 0.98)
@@ -18,7 +18,8 @@ end
 function game:mousereleased(x, y)
 end
 
-function game:keypressed( key )
+function game:keypressed(key)
+    self.level:keypressed(key)
 end
 
 function game:draw()
