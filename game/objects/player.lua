@@ -121,10 +121,26 @@ function Player:updateAnimation(dt)
     self.sprite:update(dt)
 end
 
-function Player:checkIfExited(mapPos, dt)
+function Player:lockWithinRoomBoundries(roomPos)
+    print("___")
+    print(self.position)
+    print(roomPos)
     local roomWidth, roomHeight = config.game.roomSize.x, config.game.roomSize.y
-    mapPos.x = -math.floor(self.position.x/roomWidth)*roomWidth
-    mapPos.y = -math.floor(self.position.y/roomHeight)*roomHeight
+    local offset = Vector(0, 0)
+    if self.position.x < roomPos.x then
+        offset.x = self.position.x - roomPos.x 
+    end
+    if self.position.x > roomPos.x + roomWidth - self.width then
+        offset.x = self.position.x - (roomPos.x + roomWidth - self.width)
+    end
+    if self.position.y < roomPos.y then
+        offset.y = self.position.y - roomPos.y 
+    end
+    if self.position.y > roomPos.y + roomHeight - self.height then
+        offset.y = self.position.y - (roomPos.y + roomHeight - self.height)
+    end
+    print(offset)
+    self:move(-offset)
 end
 
 function Player:draw()

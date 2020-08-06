@@ -13,7 +13,8 @@ Level = Class {
         end
         self.layers = {}
         self.objects = {} -- { id => object } dictionary
-        self.links = {} 
+        self.isPlayerInSync = false
+        self.links = {}
         for layerName, layerColor in pairs(level) do
             table.insert( self.layers, Layer(
                 Map("resource/maps/" .. name .. ".lua", layerName, HC.new(), self),
@@ -24,7 +25,8 @@ Level = Class {
 
         self.backgroundCanvas = love.graphics.newCanvas()
         self.foregroundCanvas = love.graphics.newCanvas()
-    end
+    end,
+    playerSyncMaxDistance = 0.5 -- if players farther than this, player is not in sync
 }
 
 function Level:addObject(id, obj)
@@ -85,9 +87,24 @@ function Level:draw()
 end
 
 function Level:update(dt)
+    local playerPositions = {}
     for layerName, layer in pairs(self.layers) do
         layer.map:update(dt)
+        playerPositions[layerName] = layer.map:getPlayerPosition()
     end
+    self.isPlayerInSync = self:checkPlayersSync(playerPositions)
+end
+
+function Level:checkPlayersSync(playerPositions)
+    local playersDistances = {}
+    local previousPosition = nil
+    for _, position in pairs(playerPositions) do
+        if not previousPosition then previousPosition = position end
+        if (position - previousPosition):len2() > Level.playerSyncMaxDistance then
+            return false
+        end
+    end
+    return true
 end
 
 LEVELS = {

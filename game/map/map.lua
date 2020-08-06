@@ -123,15 +123,28 @@ function Map:update( dt )
             object:update(dt)
 
         end
-        self.player:checkIfExited(self.curentRoomPos, dt)
-
+        if self.level.isPlayerInSync then
+            self:updateRoomPosistion()
+        else
+            self.player:lockWithinRoomBoundries(self.curentRoomPos)
+        end
 
         if love.keyboard.isDown('e') then
             self.dialog = DialogWindow(self.curentRoomPos, 1)
         end
 
-
     end
+end
+
+function Map:updateRoomPosistion()
+    local playerPosition = self:getPlayerPosition()
+    local roomWidth, roomHeight = config.game.roomSize.x, config.game.roomSize.y
+    self.curentRoomPos.x = math.floor(playerPosition.x/roomWidth)*roomWidth
+    self.curentRoomPos.y = math.floor(playerPosition.y/roomHeight)*roomHeight
+end
+
+function Map:getPlayerPosition()
+    return self.player.position
 end
 
 function Map:draw()
@@ -139,7 +152,7 @@ function Map:draw()
         self.dialog:draw()
     else
         love.graphics.push()
-        love.graphics.translate(self.curentRoomPos.x, self.curentRoomPos.y)
+        love.graphics.translate(-self.curentRoomPos.x, -self.curentRoomPos.y)
         love.graphics.translate(self.displayStartPos.x, self.displayStartPos.y)
 
         self.map:drawLayer(self.ground)
