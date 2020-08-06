@@ -1,5 +1,6 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
+local Timer = require "lib.hump.timer"
 PhysicsObject = require "game.physics.physics_object"
 Images = require "resource.images"
 
@@ -49,6 +50,7 @@ Player =
             self.position.y - 1, 
             self.hangCapWidth, 
             1)
+        self.timer = Timer
     end
 }
 
@@ -71,6 +73,19 @@ function Player:setVelocityForFrame(dt)
         moveDirection.x = -1
     else
         moveDirection.x = 0
+    end
+
+    if love.keyboard.isDown(self.buttons["use"]) and not self.grabbingUp then
+        -- self.tween[1] = 
+        self.grabbingUp = true
+        self.timer.tween(1, self, {position = Vector(self.position.x, self.position.y-20)}, 'linear')
+        -- print(serpent.block(self.collider.mainCollider))
+        local vertices = {}
+        for ind, obj in pairs(self.collider.mainCollider._polygon.vertices) do
+            table.insert(vertices, {x = obj.x, y = obj.y - (self.height + 1)})
+        end
+        -- print(self.collider.mainCollider)
+        self.timer.tween(2, self, {collider = {mainCollider = {_polygon = {vertices = vertices}}}}, 'linear')
     end
 
     self:addSpeedInDirection(Vector(self.acceleration, self.jumpSpeed), moveDirection, dt)
@@ -126,6 +141,7 @@ function Player:updateAnimation(dt)
     self.sprite:update(dt)
 
     self:updateArrow(dt)
+    self.timer.update(dt)
 end
 
 function Player:checkIfExited(mapPos, dt)
@@ -135,7 +151,7 @@ function Player:checkIfExited(mapPos, dt)
 end
 
 function Player:draw()
-    self.sprite:draw(self.position.x, self.position.y, 0, self.direction.x, 1, self.direction.x < 0 and self.width or 0, 0)
+    self.sprite:draw(self.position.x, self.position.y, 0, self.direction.x, 1, self.direction.x < 0 and self.width+1 or 1, 0)
     self:drawArrow()
     if Debug.DrawDebugForPlayer and Debug.DrawDebugForPlayer == 1 then
         self:drawDebug()
