@@ -11,7 +11,7 @@ Player =
         PhysicsObject.init(self, x, y, 11, 5, 80, 0.9, 20, hc)
 
         self.direction = Vector(1, 1)
-        self.prevDirection = 1
+        self.prevDirection = self.direction
         self.deltaVectorCap = Vector( 0, 0)
 
         self.sprite = Images:getNewPeachySprite("player")
@@ -24,6 +24,9 @@ Player =
                         end
                         if player.sprite.tagName == "brake" then
                             player.sprite:setTag("idle")
+                        end
+                        if player.sprite.tagName == "climb" then
+                            player.sprite:setTag("jumpup")
                         end
                     end,
                     self
@@ -59,6 +62,9 @@ function Player:setVelocityForFrame(dt)
     local moveDirection = Vector(self.direction.x, self.direction.y)
 
     if love.keyboard.isDown(self.buttons["up"]) and self.isGrounded then
+        if self.deltaVector.y == 0 then -- player was hanging on wall
+            self.sprite:setTag("climb")
+        end
         moveDirection.y = -1
         self.isGrounded = false
     elseif love.keyboard.isDown(self.buttons["down"]) and self.isGrounded and self.deltaVector.y == 0  then
@@ -112,11 +118,13 @@ function Player:turnCapCollider(direction)
 end
 
 function Player:disableCapCollider()
-    self.collider.capCollider:moveTo(self.position.x + 1 --[[ +1 as collider is not aligned with position (´д｀) ]], self.position.y - 1) -- 
+    self.collider.capCollider:moveTo(
+        self.position.x + 1, -- +1 because collider is not aligned with position (´д｀)
+        self.position.y - 1) -- -1 so it not collides with player
 end
 
 function Player:updateAnimation(dt)
-    if self.speed.y < 0 then
+    if self.speed.y < 0 and self.sprite.tagName ~= "climb" then
         if (self.sprite.tagName ~= "jumpup") then
             self.sprite:setTag("jumpup")
         end
@@ -126,10 +134,14 @@ function Player:updateAnimation(dt)
         end
     elseif self.deltaVector.y == 0 and self.isGrounded then
         self.sprite:setTag("hang")
-    elseif self.direction ~= self.prevDirection and self.sprite.tagName == "run" then
-        self.sprite:setTag("turn")
+    elseif self.direction.x ~= self.prevDirection.x then
+        if self.sprite.tagName == "run" then
+            self.sprite:setTag("turn")
+        elseif self.sprite.tagName == "climb" then
+            self.sprite:setTag("jumpup")
+        end
     elseif math.abs(self.speed.x) > 0  then
-        if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn") then
+        if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb") then
             self.sprite:setTag("run")
         end
     elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "jumpdown" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
