@@ -1,7 +1,7 @@
 Debug = {
-    DrawDebugForPlayer = 1,
+    DrawDebugForPlayer = 0,
     DrawDebugForMapPiece = 0,
-    DrawDebugColliders = 1
+    DrawDebugColliders = 0
 }
 
 -- usage: vardump(x1, test, myVar) or vardump({ship = self, dt = dt})
