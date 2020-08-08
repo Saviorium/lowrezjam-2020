@@ -1,7 +1,7 @@
 return {
-  version = "1.4",
+  version = "1.2",
   luaversion = "5.1",
-  tiledversion = "2020.07.21",
+  tiledversion = "1.3.4",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 24,
@@ -24,7 +24,6 @@ return {
       image = "../graphics/placeholder_tileset.png",
       imagewidth = 48,
       imageheight = 24,
-      objectalignment = "unspecified",
       tileoffset = {
         x = 0,
         y = 0
@@ -37,7 +36,421 @@ return {
       properties = {},
       terrains = {},
       tilecount = 18,
-      tiles = {}
+      tiles = {
+        {
+          id = 0,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 7.00177,
+                y = 0,
+                width = 0.993495,
+                height = 0.96984,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 1,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 0.0236546,
+                y = 0.0236546,
+                width = 7.94796,
+                height = 0.96984,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 2,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polygon",
+                x = 0,
+                y = 0.96984,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polygon = {
+                  { x = 0, y = 0 },
+                  { x = 0, y = -0.96984 },
+                  { x = 7.94796, y = -0.96984 },
+                  { x = 7.99527, y = 6.97812 },
+                  { x = 7.00177, y = 6.97812 },
+                  { x = 6.97812, y = 0.0236546 }
+                },
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 3,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 0.0236546,
+                y = -0.0473093,
+                width = 7.99527,
+                height = 8.06623,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 8,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 6.95446,
+                y = 0.0236546,
+                width = 1.01715,
+                height = 7.97161,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 9,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 6.97812,
+                y = -0.0473093,
+                width = 0.993495,
+                height = 1.0408,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              },
+              {
+                id = 2,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 7.00177,
+                y = 6.97812,
+                width = 1.01715,
+                height = 1.0408,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 10,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 0.0236546,
+                y = 0,
+                width = 7.92431,
+                height = 1.01715,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              },
+              {
+                id = 2,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = -0.0236546,
+                y = 6.95446,
+                width = 7.97161,
+                height = 0.993495,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 11,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polygon",
+                x = 0,
+                y = 1.0408,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polygon = {
+                  { x = 0, y = 0 },
+                  { x = 0, y = -1.0408 },
+                  { x = 7.97161, y = -1.0408 },
+                  { x = 7.94796, y = 6.93081 },
+                  { x = 0.0236546, y = 6.93081 },
+                  { x = 0.0236546, y = 5.93732 },
+                  { x = 7.00177, y = 5.96097 },
+                  { x = 7.00177, y = -0.0473093 }
+                },
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 12,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 6.97812,
+                y = 6.95446,
+                width = 1.0408,
+                height = 1.0408,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 13,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 0,
+                y = 6.93081,
+                width = 7.97161,
+                height = 1.01715,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 14,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "polygon",
+                x = 0.0236546,
+                y = 6.95446,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polygon = {
+                  { x = 0, y = 0 },
+                  { x = 0, y = 1.01715 },
+                  { x = 7.97161, y = 0.993495 },
+                  { x = 7.90065, y = -7.02543 },
+                  { x = 7.00177, y = -7.00177 },
+                  { x = 6.95446, y = 0.0236546 }
+                },
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 15,
+          objectGroup = {
+            type = "objectgroup",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 0,
+                y = 7.00177,
+                width = 8.01892,
+                height = 0.96984,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              },
+              {
+                id = 2,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 6.97812,
+                y = 0,
+                width = 1.01715,
+                height = 0.946186,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        }
+      }
     }
   },
   layers = {
@@ -53,12 +466,12 @@ return {
       layers = {
         {
           type = "tilelayer",
+          id = 23,
+          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
-          id = 23,
-          name = "ground",
           visible = true,
           opacity = 1,
           offsetx = 0,
@@ -78,13 +491,13 @@ return {
         },
         {
           type = "objectgroup",
-          draworder = "topdown",
           id = 24,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
+          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -360,13 +773,13 @@ return {
         },
         {
           type = "objectgroup",
-          draworder = "topdown",
           id = 25,
           name = "objects",
           visible = false,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
+          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -407,7 +820,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["link"] = { id = 91 }
+                ["link"] = "91"
               }
             },
             {
@@ -439,12 +852,12 @@ return {
       layers = {
         {
           type = "tilelayer",
+          id = 19,
+          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
-          id = 19,
-          name = "ground",
           visible = true,
           opacity = 1,
           offsetx = 0,
@@ -464,13 +877,13 @@ return {
         },
         {
           type = "objectgroup",
-          draworder = "topdown",
           id = 20,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
+          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -746,13 +1159,13 @@ return {
         },
         {
           type = "objectgroup",
-          draworder = "topdown",
           id = 21,
           name = "objects",
           visible = false,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
+          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -793,7 +1206,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["link"] = { id = 92 }
+                ["link"] = "92"
               }
             },
             {
@@ -825,13 +1238,13 @@ return {
       layers = {
         {
           type = "tilelayer",
+          id = 9,
+          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
-          id = 9,
-          name = "ground",
-          visible = true,
+          visible = false,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
@@ -850,13 +1263,13 @@ return {
         },
         {
           type = "objectgroup",
-          draworder = "topdown",
           id = 7,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
+          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -1036,7 +1449,7 @@ return {
             {
               id = 45,
               name = "",
-              type = "",
+              type = "jumpable",
               shape = "polygon",
               x = 72,
               y = 23,
@@ -1055,10 +1468,10 @@ return {
             {
               id = 46,
               name = "",
-              type = "",
+              type = "jumpable",
               shape = "polygon",
               x = 80,
-              y = 31,
+              y = 31.875,
               width = 0,
               height = 0,
               rotation = 0,
@@ -1074,7 +1487,7 @@ return {
             {
               id = 47,
               name = "",
-              type = "",
+              type = "jumpable",
               shape = "polygon",
               x = 80,
               y = 23,
@@ -1132,13 +1545,13 @@ return {
         },
         {
           type = "objectgroup",
-          draworder = "topdown",
           id = 3,
           name = "objects",
           visible = false,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
+          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -1192,7 +1605,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["link1"] = { id = 90 }
+                ["link1"] = "90"
               }
             },
             {

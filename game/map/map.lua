@@ -64,13 +64,14 @@ Map = Class {
 
         for _, object in ipairs(self.map.layers[layerName .. ".solid"].objects) do
             if object.polygon then
+
                 local polygon = {}
                 for _, vertex in ipairs(object.polygon) do
                     table.insert(polygon, vertex.x)
                     table.insert(polygon, vertex.y)
                 end
                 local poligonCollider = self.HC:polygon(unpack(polygon))
-                poligonCollider.layer = 'terrain'
+                poligonCollider.layer = object.type == 'jumpable' and object.type or 'terrain'
             end
         end
 
@@ -85,7 +86,8 @@ function Map:initColliders()
             button  = ColliderLayer('button'),
             door    = ColliderLayer('door'),
             background_objects = ColliderLayer('background_objects'),
-            terrain = ColliderLayer('terrain')
+            terrain = ColliderLayer('terrain'),
+            jumpable = ColliderLayer('jumpable')
         } 
 
         self.collideObjects.player:registerRule('box',
@@ -101,6 +103,10 @@ function Map:initColliders()
             function(player, terrain, delta)
                 player.deltaVector = player.deltaVector + delta
             end)  
+        self.collideObjects.player:registerRule('jumpable',
+            function(player, jumpable, delta)
+                player.deltaVector = player.deltaVector + ((delta.y < 0) and delta or Vector(0,0))
+            end)  
 
         self.collideObjects.box:registerRule('player',
             function(box, player, delta)
@@ -109,6 +115,10 @@ function Map:initColliders()
         self.collideObjects.box:registerRule('terrain',
             function(box, terrain, delta)
                 box.deltaVector = box.deltaVector + delta
+            end)  
+        self.collideObjects.box:registerRule('jumpable',
+            function(box, jumpable, delta)
+                box.deltaVector = box.deltaVector + ((delta.y < 0) and delta or Vector(0,0))
             end)  
         self.collideObjects.box:registerRule('door',
             function(box, door, delta)
@@ -141,7 +151,7 @@ function Map:update( dt )
             local collisions = self.HC:collisions(object.collider.mainCollider)
             for shape, delta in pairs(collisions) do
                 local collideObject
-                if shape.layer == 'terrain' then
+                if shape.layer == 'terrain' or shape.layer == 'jumpable' then
                    collideObject = shape.layer 
                 else
                     for ind, secondObject in pairs(self.objects) do

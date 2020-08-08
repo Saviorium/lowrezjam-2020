@@ -1,6 +1,5 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
-local Timer = require "lib.hump.timer"
 PhysicsObject = require "game.physics.physics_object"
 Images = require "resource.images"
 
@@ -81,19 +80,6 @@ function Player:setVelocityForFrame(dt)
         moveDirection.x = 0
     end
 
-    if love.keyboard.isDown(self.buttons["use"]) and not self.grabbingUp then
-        -- self.tween[1] = 
-        self.grabbingUp = true
-        self.timer.tween(1, self, {position = Vector(self.position.x, self.position.y-20)}, 'linear')
-        -- print(serpent.block(self.collider.mainCollider))
-        local vertices = {}
-        for ind, obj in pairs(self.collider.mainCollider._polygon.vertices) do
-            table.insert(vertices, {x = obj.x, y = obj.y - (self.height + 1)})
-        end
-        -- print(self.collider.mainCollider)
-        self.timer.tween(2, self, {collider = {mainCollider = {_polygon = {vertices = vertices}}}}, 'linear')
-    end
-
     self:addSpeedInDirection(Vector(self.acceleration, self.jumpSpeed), moveDirection, dt)
 
     if math.abs(self.speed.x) > 0 and moveDirection.x == 0 then
@@ -153,7 +139,6 @@ function Player:updateAnimation(dt)
     self.sprite:update(dt)
 
     self:updateArrow(dt)
-    self.timer.update(dt)
 end
 
 function Player:checkIfExited(mapPos, dt)
