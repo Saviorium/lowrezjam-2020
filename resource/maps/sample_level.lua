@@ -1,7 +1,7 @@
 return {
-  version = "1.2",
+  version = "1.4",
   luaversion = "5.1",
-  tiledversion = "1.3.4",
+  tiledversion = "1.4.2",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 24,
@@ -24,6 +24,7 @@ return {
       image = "../graphics/placeholder_tileset.png",
       imagewidth = 48,
       imageheight = 24,
+      objectalignment = "unspecified",
       tileoffset = {
         x = 0,
         y = 0
@@ -41,13 +42,13 @@ return {
           id = 0,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -70,13 +71,13 @@ return {
           id = 1,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -99,13 +100,13 @@ return {
           id = 2,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -136,13 +137,13 @@ return {
           id = 3,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -165,13 +166,13 @@ return {
           id = 8,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -194,13 +195,13 @@ return {
           id = 9,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -236,13 +237,13 @@ return {
           id = 10,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -278,13 +279,13 @@ return {
           id = 11,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -317,13 +318,13 @@ return {
           id = 12,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -346,13 +347,13 @@ return {
           id = 13,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -375,13 +376,13 @@ return {
           id = 14,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -412,13 +413,13 @@ return {
           id = 15,
           objectGroup = {
             type = "objectgroup",
+            draworder = "index",
             id = 2,
             name = "",
             visible = true,
             opacity = 1,
             offsetx = 0,
             offsety = 0,
-            draworder = "index",
             properties = {},
             objects = {
               {
@@ -466,12 +467,12 @@ return {
       layers = {
         {
           type = "tilelayer",
-          id = 23,
-          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
+          id = 23,
+          name = "ground",
           visible = true,
           opacity = 1,
           offsetx = 0,
@@ -491,13 +492,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 24,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -773,13 +774,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 25,
           name = "objects",
-          visible = false,
+          visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -820,7 +821,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["link"] = "91"
+                ["link_b"] = { id = 91 }
               }
             },
             {
@@ -852,12 +853,12 @@ return {
       layers = {
         {
           type = "tilelayer",
-          id = 19,
-          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
+          id = 19,
+          name = "ground",
           visible = true,
           opacity = 1,
           offsetx = 0,
@@ -877,13 +878,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 20,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -1159,13 +1160,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 21,
           name = "objects",
-          visible = false,
+          visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -1206,7 +1207,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["link"] = "92"
+                ["link_g"] = { id = 92 }
               }
             },
             {
@@ -1238,13 +1239,13 @@ return {
       layers = {
         {
           type = "tilelayer",
-          id = 9,
-          name = "ground",
           x = 0,
           y = 0,
           width = 24,
           height = 8,
-          visible = false,
+          id = 9,
+          name = "ground",
+          visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
@@ -1263,13 +1264,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 7,
           name = "solid",
           visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -1545,13 +1546,13 @@ return {
         },
         {
           type = "objectgroup",
+          draworder = "topdown",
           id = 3,
           name = "objects",
-          visible = false,
+          visible = true,
           opacity = 1,
           offsetx = 0,
           offsety = 0,
-          draworder = "topdown",
           properties = {},
           objects = {
             {
@@ -1605,7 +1606,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["link1"] = "90"
+                ["link_r"] = { id = 90 }
               }
             },
             {
