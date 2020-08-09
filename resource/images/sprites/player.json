@@ -367,6 +367,15 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
     "sourceSize": { "w": 10, "h": 16 },
     "duration": 99
+   },
+   {
+    "filename": "player_41.aseprite",
+    "frame": { "x": 429, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 166
    }
  ],
  "meta": {
@@ -374,7 +383,7 @@
   "version": "1.2.21",
   "image": "player.png",
   "format": "RGBA8888",
-  "size": { "w": 428, "h": 16 },
+  "size": { "w": 439, "h": 16 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
@@ -390,7 +399,8 @@
    { "name": "pickup", "from": 28, "to": 33, "direction": "forward" },
    { "name": "carry", "from": 34, "to": 37, "direction": "forward" },
    { "name": "hold", "from": 34, "to": 34, "direction": "forward" },
-   { "name": "putdown", "from": 38, "to": 40, "direction": "forward" }
+   { "name": "putdown", "from": 38, "to": 40, "direction": "forward" },
+   { "name": "use", "from": 41, "to": 41, "direction": "forward" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }

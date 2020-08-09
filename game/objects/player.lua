@@ -46,7 +46,7 @@ Player =
             use = "f"
         }
 
-        self.hangCapWidth = 2
+        self.hangCapWidth = 1
         self.collider.capCollider = self.HC:rectangle(
             self.position.x - self.hangCapWidth, 
             self.position.y - 1, 
