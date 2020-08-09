@@ -9,7 +9,7 @@ local game = {}
 gravity = Vector(0, 0.98)
 
 function game:enter()
-    self.level = Level("sample_level")
+    self.level = Level("first_level")
 end
 
 function game:mousepressed(x, y)

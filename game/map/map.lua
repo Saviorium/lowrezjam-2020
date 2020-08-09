@@ -26,8 +26,16 @@ Map = Class {
         love.graphics.setBackgroundColor({.3,.3,.3,1})
 
         self:initColliders()
-
-        self.ground = self.map.layers[layerName .. ".ground"]
+        self.ground = {}
+        if self.map.layers[layerName .. ".ground"] then
+            self.ground['ground'] = self.map.layers[layerName .. ".ground"]
+        end
+        if self.map.layers[layerName .. ".background"] then
+            self.ground['background'] = self.map.layers[layerName .. ".background"]
+        end
+        if self.map.layers[layerName .. ".front layer"] then
+            self.ground['front layer'] = self.map.layers[layerName .. ".front layer"]
+        end
 
         self.objects = {}
         for _, object in ipairs(self.map.layers[layerName .. ".objects"].objects) do
@@ -63,10 +71,9 @@ Map = Class {
         end
 
         for _, object in ipairs(self.map.layers[layerName .. ".solid"].objects) do
-            if object.polygon then
-
+            if object.polygon or object.rectangle then
                 local polygon = {}
-                for _, vertex in ipairs(object.polygon) do
+                for _, vertex in ipairs(object.polygon and object.polygon or object.rectangle) do
                     table.insert(polygon, vertex.x)
                     table.insert(polygon, vertex.y)
                 end
@@ -102,6 +109,7 @@ function Map:initColliders()
         self.collideObjects.player:registerRule('terrain',
             function(player, terrain, delta)
                 player.deltaVector = player.deltaVector + delta
+                print('Kek', delta.x, delta.y)
             end)  
         self.collideObjects.player:registerRule('jumpable',
             function(player, jumpable, delta)
@@ -186,7 +194,9 @@ function Map:draw()
         love.graphics.translate(self.curentRoomPos.x, self.curentRoomPos.y)
         love.graphics.translate(self.displayStartPos.x, self.displayStartPos.y)
 
-        self.map:drawLayer(self.ground)
+        for ind, layer in pairs(self.ground) do
+            self.map:drawLayer(layer)
+        end
 
         if Debug.DrawDebugColliders and Debug.DrawDebugColliders == 1 then
             love.graphics.setColor(0, 0, 1)
