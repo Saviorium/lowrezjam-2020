@@ -101,7 +101,6 @@ function Map:initColliders()
             function(player, box, delta)
                 player.deltaVector = player.deltaVector + delta
             end)  
-        -- self.collideObjects.player:registerRule('button', function(player, delta) player.deltaVector = player.deltaVector + delta end)  
         self.collideObjects.player:registerRule('door',
             function(player, door, delta)
                 if not door.isOpen then player.deltaVector = player.deltaVector + delta end
@@ -109,7 +108,6 @@ function Map:initColliders()
         self.collideObjects.player:registerRule('terrain',
             function(player, terrain, delta)
                 player.deltaVector = player.deltaVector + delta
-                print('Kek', delta.x, delta.y)
             end)  
         self.collideObjects.player:registerRule('jumpable',
             function(player, jumpable, delta)
@@ -130,7 +128,7 @@ function Map:initColliders()
             end)  
         self.collideObjects.box:registerRule('door',
             function(box, door, delta)
-                box.deltaVector = box.deltaVector + delta
+                if not door.isOpen then box.deltaVector = box.deltaVector + delta end
             end)  
 
         self.collideObjects.button:registerRule('player',
