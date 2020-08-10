@@ -22,6 +22,7 @@ PhysicsObject = Class {
         
         self.collider = { mainCollider = self.HC:rectangle(self.position.x, self.position.y, self.width, self.height)}
     end,
+    maxJumpable = 0.3,
     maxGroundNormal = 0.05,
     minGroundNormal = 0.005,
     minMove		    = 0.01
@@ -84,7 +85,7 @@ function PhysicsObject:calcAllCollisionsResult()
         
         self.speed.y = (self.speed.y < 0 or self.deltaVector.y < 0) and 0 or self.speed.y
         self:move(self.deltaVector/2)
-        self.isGrounded = self.deltaVector.y < 0
+        self.isGrounded = self.deltaVector.y < -self.minGroundNormal
     end
     
     if math.abs(self.deltaVector.y) < self.minGroundNormal and self.isGrounded then

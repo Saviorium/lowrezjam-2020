@@ -36,6 +36,8 @@ Player =
         self.arrowTimeoutLength = 1 -- seconds
         self.arrowImage = Images["ui_player_arrow"].img
 
+        self.isHanging = false
+
         self.hc = hc
 
         self.buttons = {
@@ -45,13 +47,8 @@ Player =
             right = "d",
             use = "f"
         }
-
         self.hangCapWidth = 1
-        self.collider.capCollider = self.HC:rectangle(
-            self.position.x - self.hangCapWidth, 
-            self.position.y - 1, 
-            self.hangCapWidth, 
-            1)
+        self:registerCap()
         self.timer = Timer
     end
 }
@@ -60,39 +57,38 @@ function Player:setVelocityForFrame(dt)
 
     local moveDirection = Vector(self.direction.x, self.direction.y)
 
-    if love.keyboard.isDown(self.buttons["up"]) and self.isGrounded then
+    if love.keyboard.isDown(self.buttons["up"]) and (self.isGrounded or self.isHanging) then
         if self.deltaVector.y == 0 then -- player was hanging on wall
             self.sprite:setTag("climb")
         end
         moveDirection.y = -1
         self.isGrounded = false
-    elseif love.keyboard.isDown(self.buttons["down"]) and self.isGrounded and self.deltaVector.y == 0  then
-        self.isGrounded = false
+    elseif love.keyboard.isDown(self.buttons["down"]) and (self.canJumpDown or self.isHanging) then
+        self:disableCapCollider()
+        self.isHanging = false
+        self.canJumpDown = false
+        moveDirection.y = 1
     else
+        self:registerCap()
+        self:turnCapCollider(self.direction)
         moveDirection.y = 0
     end
 
-    if love.keyboard.isDown(self.buttons["right"]) then
+    if love.keyboard.isDown(self.buttons["right"]) and not self.isHanging then
         moveDirection.x = 1
-    elseif love.keyboard.isDown(self.buttons["left"]) then
+    elseif love.keyboard.isDown(self.buttons["left"])  and not self.isHanging then
         moveDirection.x = -1
     else
         moveDirection.x = 0
     end
 
-    self:addSpeedInDirection(Vector(self.acceleration, self.jumpSpeed), moveDirection, dt)
+    self.direction = Vector(moveDirection.x == 0 and self.direction.x or moveDirection.x, moveDirection.y)
+    self:addSpeedInDirection(Vector(self.acceleration, moveDirection.y == 1 and self.jumpSpeed/1.2 or self.jumpSpeed), moveDirection, dt)
 
     if math.abs(self.speed.x) > 0 and moveDirection.x == 0 then
         self.sprite:setTag("brake")
     end
     -- Это дерьмо появилось из-за того что перса надо поворачивать ручками в коде
-    self.direction = Vector(moveDirection.x == 0 and self.direction.x or moveDirection.x, moveDirection.y)
-    
-    if love.keyboard.isDown(self.buttons["down"]) then
-        self:disableCapCollider()
-    else
-        self:turnCapCollider(self.direction)
-    end
 end
 
 function Player:turnCapCollider(direction)
@@ -104,10 +100,22 @@ function Player:turnCapCollider(direction)
 end
 
 function Player:disableCapCollider()
-    self.collider.capCollider:moveTo(
-        self.position.x + 1, -- +1 because collider is not aligned with position (´д｀)
-        self.position.y - 1) -- -1 so it not collides with player
+    if self.collider.capCollider then
+        self.HC:remove(self.collider.capCollider)
+        self.collider.capCollider = nil
+    end
 end
+
+function Player:registerCap()
+    if not self.collider.capCollider then
+        self.collider.capCollider = self.HC:rectangle(
+            self.position.x - self.hangCapWidth, 
+            self.position.y - 1, 
+            self.hangCapWidth, 
+            1)
+    end
+end
+
 
 function Player:updateAnimation(dt)
     if self.speed.y < 0 and self.sprite.tagName ~= "climb" then
@@ -156,15 +164,18 @@ function Player:draw()
 end
 
 function Player:additionalCollide()
-    local collisions = self.HC:collisions(self.collider.capCollider)
-    self.deltaVectorCap = Vector( 0, 0)
-    for shape, delta in pairs(collisions) do
-        self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
-    end
-    if not self.isGrounded and self.deltaVectorCap.y < -self.minGroundNormal and self.deltaVectorCap.x == 0 then
-        self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
-        self:move(self.deltaVector/2)
-        self.isGrounded = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
+    if self.collider.capCollider then
+        local collisions = self.HC:collisions(self.collider.capCollider)
+        self.deltaVectorCap = Vector( 0, 0)
+        for shape, delta in pairs(collisions) do
+            self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
+        end
+        self.isHanging = false
+        if not self.isGrounded and self.deltaVectorCap.y < -self.minGroundNormal and self.deltaVectorCap.x == 0 then
+            self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
+            self:move(self.deltaVector/2)
+            self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
+        end
     end
 end
 
@@ -231,6 +242,7 @@ function Player:drawDebug()
     love.graphics.print("S.x " .. self.speed.x, math.floor(x), math.floor(y + 7), 0)
     love.graphics.print("S.y " .. self.speed.y, math.floor(x), math.floor(y), 0)
     love.graphics.print("Gr " .. (self.isGrounded and 1 or 0), math.floor(x), math.floor(y - 7), 0)
+    love.graphics.print("Ha " .. (self.isHanging and 1 or 0), math.floor(x), math.floor(y - 14), 0)
 end
 
 return Player
