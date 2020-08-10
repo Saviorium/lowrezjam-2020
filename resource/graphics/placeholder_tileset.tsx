@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.4" name="placeholder_tileset" tilewidth="8" tileheight="8" tilecount="18" columns="6">
+<tileset version="1.4" tiledversion="1.4.2" name="placeholder_tileset" tilewidth="8" tileheight="8" tilecount="18" columns="6">
+ <grid orientation="orthogonal" width="4" height="4"/>
  <image source="placeholder_tileset.png" width="48" height="24"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">
