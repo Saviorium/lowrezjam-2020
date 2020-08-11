@@ -7,7 +7,7 @@ Player =
     Class {
     __includes = PhysicsObject,
     init = function(self, x, y, hc)
-        PhysicsObject.init(self, x, y, 11, 5, 80, 0.9, 20, hc)
+        PhysicsObject.init(self, x, y, 11, 5, 30, 5, 48, 0.5, hc)
 
         self.direction = Vector(1, 1)
         self.prevDirection = self.direction
@@ -37,6 +37,7 @@ Player =
         self.arrowImage = Images["ui_player_arrow"].img
 
         self.isHanging = false
+        self.pushingBox = false
 
         self.hc = hc
 
@@ -50,7 +51,8 @@ Player =
         self.hangCapWidth = 1
         self:registerCap()
         self.timer = Timer
-    end
+    end,
+    maxJumpable = 0.4,
 }
 
 function Player:setVelocityForFrame(dt)
@@ -63,6 +65,7 @@ function Player:setVelocityForFrame(dt)
         end
         moveDirection.y = -1
         self.isGrounded = false
+        self:turnCapCollider(self.direction)
     elseif love.keyboard.isDown(self.buttons["down"]) and (self.canJumpDown or self.isHanging) then
         self:disableCapCollider()
         self.isHanging = false
@@ -74,9 +77,9 @@ function Player:setVelocityForFrame(dt)
         moveDirection.y = 0
     end
 
-    if love.keyboard.isDown(self.buttons["right"]) and not self.isHanging then
+    if love.keyboard.isDown(self.buttons["right"]) and not self.isHanging and self.deltaVector.x >= 0 then
         moveDirection.x = 1
-    elseif love.keyboard.isDown(self.buttons["left"])  and not self.isHanging then
+    elseif love.keyboard.isDown(self.buttons["left"])  and not self.isHanging and self.deltaVector.x <= 0 then
         moveDirection.x = -1
     else
         moveDirection.x = 0
@@ -122,11 +125,13 @@ function Player:updateAnimation(dt)
         if (self.sprite.tagName ~= "jumpup") then
             self.sprite:setTag("jumpup")
         end
+    elseif self.pushingBox then
+
     elseif self.speed.y > 0 then
         if (self.sprite.tagName ~= "jumpdown") then
             self.sprite:setTag("jumpdown")
         end
-    elseif self.deltaVector.y == 0 and self.isGrounded then
+    elseif self.isHanging then
         self.sprite:setTag("hang")
     elseif self.direction.x ~= self.prevDirection.x then
         if self.sprite.tagName == "run" then
@@ -134,7 +139,7 @@ function Player:updateAnimation(dt)
         elseif self.sprite.tagName == "climb" then
             self.sprite:setTag("jumpup")
         end
-    elseif math.abs(self.speed.x) > 0  then
+    elseif math.abs(self.speed.x) > 0 then
         if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb") then
             self.sprite:setTag("run")
         end
@@ -146,6 +151,7 @@ function Player:updateAnimation(dt)
     self.prevDirection = self.direction
     self.sprite:update(dt)
 
+    self.pushingBox = not (self.deltaVector.x == 0 and self.pushingBox)
     self:updateArrow(dt)
 end
 

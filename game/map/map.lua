@@ -100,6 +100,7 @@ function Map:initColliders()
         self.collideObjects.player:registerRule('box',
             function(player, box, delta)
                 player.deltaVector = player.deltaVector + delta
+                player.pushingBox = true
             end)  
         self.collideObjects.player:registerRule('door',
             function(player, door, delta)
@@ -118,12 +119,24 @@ function Map:initColliders()
                     player.isGrounded = player.deltaVector.y < -player.minGroundNormal
                     player.canJumpDown = true
                 end
-                -- player.deltaVector = player.deltaVector + ((delta.y > -player.maxJumpable and delta.y < 0) and delta or Vector(0,0))
             end)  
 
         self.collideObjects.box:registerRule('player',
             function(box, player, delta)
-                box.deltaVector = box.deltaVector + delta
+                if delta.x ~= 0 then
+                    box.acceleration.x = box.acceleration.x + player.acceleration
+                    box.direction.x = player.direction.x
+                end
+            end) 
+        self.collideObjects.box:registerRule('box',
+            function(box1, box2, delta)
+                -- print(delta.x, delta.y )
+                -- if delta.x ~= 0 then
+                --     print('In da collision ',box1.speed.x)
+                --     box2.acceleration.x = box2.acceleration.x + box1.speed.x
+                --     box2.direction.x = box1.direction.x
+                -- end
+                box1.deltaVector = box1.deltaVector + delta
             end) 
         self.collideObjects.box:registerRule('terrain',
             function(box, terrain, delta)

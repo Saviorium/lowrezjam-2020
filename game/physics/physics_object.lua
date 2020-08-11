@@ -2,27 +2,26 @@ Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 
 PhysicsObject = Class {
-    init = function(self, x, y, height, width, acceleration, maxSpeed, slowDownSpeed, hc)
+    init = function(self, x, y, height, width, acceleration, slowDownSpeed, jumpSpeed, maxSpeed , hc)
     	self.position = Vector( x, y )
         self.speed    = Vector( 0, 0)
         self.width  = width 
         self.height = height 
         self.HC = hc
 
-        self.gravity = Vector(0, 1)
+        self.gravity = Vector(0, 1.5)
 
         self.isGrounded = false
 
         self.acceleration  = acceleration
-        self.jumpSpeed     = 40
-        self.maxSpeed      = maxSpeed
         self.slowDownSpeed = slowDownSpeed
+        self.jumpSpeed     = jumpSpeed
+        self.maxSpeed      = maxSpeed
 
         self.deltaVector = Vector( 0, 0)
         
         self.collider = { mainCollider = self.HC:rectangle(self.position.x, self.position.y, self.width, self.height)}
     end,
-    maxJumpable = 0.3,
     maxGroundNormal = 0.05,
     minGroundNormal = 0.005,
     minMove		    = 0.01
@@ -53,7 +52,6 @@ function PhysicsObject:addSpeedInDirection(acceleration, direction, dt)
     else
         self.speed.x = direction.x * self.maxSpeed
     end
-
     self.speed.y = self.speed.y + changeSpeedVector.y
 
     -- Блок снижения скорости (гравитация и трение о поверхность воздух, вся фигня)
@@ -78,7 +76,7 @@ end
 
 function PhysicsObject:calcAllCollisionsResult()
     if math.abs(self.deltaVector.x) > self.maxGroundNormal then
-        self:move(self.deltaVector)
+        self:move(self.deltaVector/2)
     end
 
     if math.abs(self.deltaVector.y) > self.maxGroundNormal then
