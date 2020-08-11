@@ -49,7 +49,7 @@ end
 function PhysicsObject:addSpeedInDirection(acceleration, direction, dt)
 
     -- Блок накидывания скорости объекту
-    local changeSpeedVector = Vector(direction.x * acceleration.x*dt, direction.y * acceleration.y*dt)
+    local changeSpeedVector = Vector(direction.x * acceleration.x*dt, direction.y * acceleration.y)
     if direction.x * (self.speed.x + changeSpeedVector.x) <= self.maxSpeed then
         self.speed.x = self.speed.x + changeSpeedVector.x
     else

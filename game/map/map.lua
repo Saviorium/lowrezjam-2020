@@ -61,6 +61,21 @@ Map = Class {
                 newObject.collider.mainCollider.layer = 'door'
             end
 
+            if object.type == "trigger" then
+                local triggerType, triggerTarget
+                for propertyName, property in pairs(object.properties) do
+                    if propertyName == 'type' then
+                       triggerType = property
+                    elseif propertyName == 'target' then
+                       triggerTarget = property
+                    end
+                end
+                newObject = Trigger(TriggersList[triggerName].conditionFunction, 
+                                    TriggersList[triggerName].triggerFunction, 
+                                    triggerName)
+                newObject.collider.mainCollider.layer = 'trigger'
+            end
+
             if newObject then
                 table.insert(self.objects, newObject)
                 self.level:addObject(object.id, newObject)
@@ -70,8 +85,6 @@ Map = Class {
             for propertyName, property in pairs(object.properties) do
                 if string.find(propertyName, "^link_") then
                     self.level:linkObjects(object.id, property.id, propertyName)
-                else 
-                    print("Property is ignored: "..propertyName)
                 end
             end
         end
@@ -120,7 +133,6 @@ function Map:initColliders()
             function(player, jumpable, delta)
                 if delta.y > -player.maxJumpable and delta.y < 0 and player.direction.y <= 0 then
                     player.speed.y = 0
-                    player:move(Vector(delta.x,delta.y)/2)
                     player.deltaVector.y = player.deltaVector.y > -player.minGroundNormal and -player.minGroundNormal*1.1 or player.deltaVector.y
                     player.isGrounded = player.deltaVector.y < -player.minGroundNormal
                     player.canJumpDown = true
@@ -172,42 +184,31 @@ function Map:changeFocus(isInFocus)
 end
 
 function Map:update( dt )
-    if self.dialog then
-        if self.dialog:update(dt) then
-            self.dialog = nil
-        end
-    else
-        self.map:update(dt)
-        for ind, object in pairs(self.objects) do
+    self.map:update(dt)
+    for ind, object in pairs(self.objects) do
 
-            local collisions = self.HC:collisions(object.collider.mainCollider)
-            for shape, delta in pairs(collisions) do
-                local collideObject
-                if shape.layer == 'terrain' or shape.layer == 'jumpable' then
-                   collideObject = shape.layer 
-                else
-                    for ind, secondObject in pairs(self.objects) do
-                        collideObject = secondObject.collider.mainCollider == shape and secondObject or collideObject
-                    end
-                end
-
-                if collideObject then    
-                    self.collideObjects[object.collider.mainCollider.layer]:regiterCollision(object, collideObject, delta)
+        local collisions = self.HC:collisions(object.collider.mainCollider)
+        for shape, delta in pairs(collisions) do
+            local collideObject
+            if shape.layer == 'terrain' or shape.layer == 'jumpable' then
+               collideObject = shape.layer 
+            else
+                for ind, secondObject in pairs(self.objects) do
+                    collideObject = secondObject.collider.mainCollider == shape and secondObject or collideObject
                 end
             end
 
-            object:update(dt)
-
-        end
-        self.player:checkIfExited(self.curentRoomPos, dt)
-
-
-        if love.keyboard.isDown('e') then
-            self.dialog = DialogWindow(self.curentRoomPos, 1)
+            if collideObject then    
+                self.collideObjects[object.collider.mainCollider.layer]:regiterCollision(object, collideObject, delta)
+            end
         end
 
+        object:update(dt)
 
     end
+    self.player:checkIfExited(self.curentRoomPos, dt)
+
+    -- self.dialog = DialogWindow(self.curentRoomPos, 1)
 end
 
 function Map:draw()

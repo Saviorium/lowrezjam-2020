@@ -14,6 +14,7 @@ Level = Class {
         self.layers = {}
         self.objects = {} -- { id => object } dictionary
         self.links = {} 
+        self.triggers = {} 
         for layerName, layerColor in pairs(level) do
             table.insert( self.layers, Layer(
                 Map("resource/maps/" .. name .. ".lua", layerName, HC.new(), self),
@@ -74,48 +75,58 @@ function Level:finalizeLinks()
 end
 
 function Level:draw()
-    love.graphics.push()
-    local mainCanvas = love.graphics.getCanvas() -- save for later, as this may be not the main screen
+    if self.dialog then
+        self.dialog:draw()
+    else
+        love.graphics.push()
+        local mainCanvas = love.graphics.getCanvas() -- save for later, as this may be not the main screen
 
-    -- draw layers on virtual canvases
-    love.graphics.setColor(1, 1, 1)
-    for layerName, layer in pairs(self.layers) do
-        love.graphics.setCanvas(layer.canvas)
-        love.graphics.clear({0,0,0,0})
-        layer.map:draw()
-    end
-
-    -- draw common background for level
-    love.graphics.setCanvas(self.backgroundCanvas)
-    love.graphics.draw(Images['city_background'].img)
-
-    -- merge layers of foreground objects
-    love.graphics.setCanvas(self.foregroundCanvas)
-    love.graphics.clear({0,0,0,0})
-    love.graphics.setBlendMode("screen", "premultiplied") -- mix colors, not redraw
-    local activeRoomPos = self.layers[self.focusLayer].map.curentRoomPos -- room of player in focus
-
-    for layerName, layer in pairs(self.layers) do
-        if layer.map.curentRoomPos == activeRoomPos then -- draw only layers where player is in active room
-            love.graphics.setColor(layer.color)
-            love.graphics.draw(layer.canvas)
+        -- draw layers on virtual canvases
+        love.graphics.setColor(1, 1, 1)
+        for layerName, layer in pairs(self.layers) do
+            love.graphics.setCanvas(layer.canvas)
+            love.graphics.clear({0,0,0,0})
+            layer.map:draw()
         end
+
+        -- draw common background for level
+        love.graphics.setCanvas(self.backgroundCanvas)
+        love.graphics.draw(Images['city_background'].img)
+
+        -- merge layers of foreground objects
+        love.graphics.setCanvas(self.foregroundCanvas)
+        love.graphics.clear({0,0,0,0})
+        love.graphics.setBlendMode("screen", "premultiplied") -- mix colors, not redraw
+        local activeRoomPos = self.layers[self.focusLayer].map.curentRoomPos -- room of player in focus
+
+        for layerName, layer in pairs(self.layers) do
+            if layer.map.curentRoomPos == activeRoomPos then -- draw only layers where player is in active room
+                love.graphics.setColor(layer.color)
+                love.graphics.draw(layer.canvas)
+            end
+        end
+
+        -- draw on main screen
+        love.graphics.setCanvas(mainCanvas)
+        love.graphics.setBlendMode("alpha")
+        love.graphics.setColor(1, 1, 1)
+
+        love.graphics.draw(self.backgroundCanvas)
+        love.graphics.draw(self.foregroundCanvas)
+
+        love.graphics.pop()
     end
-
-    -- draw on main screen
-    love.graphics.setCanvas(mainCanvas)
-    love.graphics.setBlendMode("alpha")
-    love.graphics.setColor(1, 1, 1)
-
-    love.graphics.draw(self.backgroundCanvas)
-    love.graphics.draw(self.foregroundCanvas)
-
-    love.graphics.pop()
 end
 
 function Level:update(dt)
-    for layerName, layer in pairs(self.layers) do
-        layer.map:update(dt)
+    if self.dialog then
+        if self.dialog:update(dt) then
+            self.dialog = nil
+        end
+    else
+        for layerName, layer in pairs(self.layers) do
+            layer.map:update(dt)
+        end
     end
 end
 

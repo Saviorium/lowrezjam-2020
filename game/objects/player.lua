@@ -7,7 +7,7 @@ Player =
     Class {
     __includes = PhysicsObject,
     init = function(self, x, y, hc)
-        PhysicsObject.init(self, x, y, 11, 5, 30, 5, 48, 0.5, hc)
+        PhysicsObject.init(self, x, y, 11, 5, 30, 5, 0.8, 0.5, hc)
 
         self.direction = Vector(1, 1)
         self.prevDirection = self.direction
@@ -48,7 +48,7 @@ Player =
             right = "d",
             use = "f"
         }
-        self.hangCapWidth = 1
+        self.hangCapWidth = 2
         self:registerCap()
 
         self.collider.interactionCollider = self.HC:rectangle(
@@ -77,13 +77,13 @@ function Player:setVelocityForFrame(dt)
     elseif love.keyboard.isDown(self.buttons["down"]) and (self.canJumpDown or self.isHanging) then
         self:disableCapCollider()
         self.isHanging = false
-        self.canJumpDown = false
         moveDirection.y = 1
     else
         self:registerCap()
         self:turnCapCollider(self.direction)
         moveDirection.y = 0
     end
+    self.canJumpDown = false
 
     if love.keyboard.isDown(self.buttons["right"]) and not self.isHanging and self.deltaVector.x >= 0 then
         moveDirection.x = 1
@@ -134,8 +134,6 @@ function Player:updateAnimation(dt)
         if (self.sprite.tagName ~= "jumpup") then
             self.sprite:setTag("jumpup")
         end
-    elseif self.pushingBox then
-
     elseif self.speed.y > 0 then
         if (self.sprite.tagName ~= "jumpdown") then
             self.sprite:setTag("jumpdown")
@@ -186,8 +184,8 @@ function Player:additionalCollide()
             self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
         end
         self.isHanging = false
-        if not self.isGrounded and self.deltaVectorCap.y < -self.minGroundNormal and self.deltaVectorCap.x == 0 then
-            self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
+        if not self.isGrounded and self.deltaVectorCap.y < -self.maxGroundNormal and self.deltaVectorCap.x == 0 then
+            self.speed.y = self.speed.y >= 0 and 0 or self.speed.y
             self:move(self.deltaVector/2)
             self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
         end

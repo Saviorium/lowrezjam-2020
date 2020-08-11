@@ -6,7 +6,6 @@ local sti       = require "lib/sti"
 local Player    = require "game.objects.player"
 
 local game = {}
-gravity = Vector(0, 0.98)
 
 function game:enter()
     self.level = Level("first_level")
