@@ -37,6 +37,8 @@ Map = Class {
             self.ground['front layer'] = self.map.layers[layerName .. ".front layer"]
         end
 
+        self.colliderToObject = {}
+
         self.objects = {}
         for _, object in ipairs(self.map.layers[layerName .. ".objects"].objects) do
             local newObject = nil
@@ -127,7 +129,7 @@ function Map:initColliders()
                     box.acceleration.x = box.acceleration.x + player.acceleration
                     box.direction.x = player.direction.x
                 end
-            end) 
+            end)
         self.collideObjects.box:registerRule('box',
             function(box1, box2, delta)
                 -- print(delta.x, delta.y )

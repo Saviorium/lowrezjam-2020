@@ -2,7 +2,7 @@ Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 
 PhysicsObject = Class {
-    init = function(self, x, y, height, width, acceleration, slowDownSpeed, jumpSpeed, maxSpeed , hc)
+    init = function(self, x, y, height, width, acceleration, slowDownSpeed, jumpSpeed, maxSpeed, hc, interactable)
     	self.position = Vector( x, y )
         self.speed    = Vector( 0, 0)
         self.width  = width 
@@ -12,6 +12,7 @@ PhysicsObject = Class {
         self.gravity = Vector(0, 1.5)
 
         self.isGrounded = false
+        self.isInteractable = interactable or false
 
         self.acceleration  = acceleration
         self.slowDownSpeed = slowDownSpeed
@@ -21,11 +22,13 @@ PhysicsObject = Class {
         self.deltaVector = Vector( 0, 0)
         
         self.collider = { mainCollider = self.HC:rectangle(self.position.x, self.position.y, self.width, self.height)}
+        self.collider.mainCollider.objectPointer = self
     end,
     maxGroundNormal = 0.05,
     minGroundNormal = 0.005,
     minMove		    = 0.01
 }
+
 
 function PhysicsObject:update( dt )
     self:setVelocityForFrame(dt)

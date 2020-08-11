@@ -50,6 +50,14 @@ Player =
         }
         self.hangCapWidth = 1
         self:registerCap()
+
+        self.collider.interactionCollider = self.HC:rectangle(
+                self.position.x-2,
+                self.position.y,
+                9, 11)
+        self.collider.interactionCollider.objectPointer = self
+        self.isHandsFree = true
+
         self.timer = Timer
     end,
     maxJumpable = 0.4,
@@ -116,6 +124,7 @@ function Player:registerCap()
             self.position.y - 1, 
             self.hangCapWidth, 
             1)
+        self.collider.capCollider.objectPointer = self
     end
 end
 
@@ -181,6 +190,15 @@ function Player:additionalCollide()
             self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
             self:move(self.deltaVector/2)
             self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
+        end
+    end
+    if self.collider.interactionCollider then
+        local interactionCollisions = self.HC:collisions(self.collider.interactionCollider)
+        for shape, delta in pairs(interactionCollisions) do
+            local object = shape.objectPointer
+            if object ~= nil and object.isInteractable then
+                print("bang")
+            end
         end
     end
 end
