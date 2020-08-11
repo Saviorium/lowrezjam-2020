@@ -66,6 +66,9 @@
    <object id="88" type="button" x="32" y="24" width="8" height="8">
     <properties>
      <property name="link_b" type="object" value="91"/>
+     <property name="number_link_link" type="int" value="1"/>
+     <property name="string" type="object" value="19"/>
+     <property name="test" value="test"/>
     </properties>
    </object>
    <object id="92" type="door" x="49" y="40" width="8" height="16"/>

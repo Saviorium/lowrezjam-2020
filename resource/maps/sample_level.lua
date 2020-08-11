@@ -31,8 +31,8 @@ return {
       },
       grid = {
         orientation = "orthogonal",
-        width = 8,
-        height = 8
+        width = 4,
+        height = 4
       },
       properties = {},
       terrains = {},
@@ -821,7 +821,10 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["link_b"] = { id = 91 }
+                ["link_b"] = { id = 91 },
+                ["number_link_link"] = 1,
+                ["string"] = { id = 19 },
+                ["test"] = "test"
               }
             },
             {

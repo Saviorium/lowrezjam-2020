@@ -87,7 +87,7 @@ function Level:draw()
 
     -- draw common background for level
     love.graphics.setCanvas(self.backgroundCanvas)
-    love.graphics.clear({0.3,0.3,0.3,1})
+    love.graphics.draw(Images['city_background'].img)
 
     -- merge layers of foreground objects
     love.graphics.setCanvas(self.foregroundCanvas)

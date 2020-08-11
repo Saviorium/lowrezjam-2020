@@ -68,7 +68,11 @@ Map = Class {
 
             -- save links to level
             for propertyName, property in pairs(object.properties) do
-                self.level:linkObjects(object.id, property.id, propertyName)
+                if string.find(propertyName, "^link_") then
+                    self.level:linkObjects(object.id, property.id, propertyName)
+                else 
+                    print("Property is ignored: "..propertyName)
+                end
             end
         end
 
