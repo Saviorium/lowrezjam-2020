@@ -26,6 +26,9 @@ function Box:draw()
 end
 
 function Box:setVelocityForFrame(dt)
+    if self.collider.mainCollider.layer == 'inUse' then
+        self.isGrounded = true
+    end 
     self:addSpeedInDirection(self.additionalSpeed, self.direction, dt)
     self.additionalSpeed = Vector(0, 0)
     self.direction = Vector(0, 0)
