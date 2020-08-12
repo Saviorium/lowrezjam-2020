@@ -13,6 +13,7 @@ PhysicsObject = Class {
 
         self.isGrounded = false
         self.isInteractable = interactable or false
+        self.interaction = false
 
         self.acceleration  = acceleration
         self.slowDownSpeed = slowDownSpeed
@@ -74,7 +75,7 @@ function PhysicsObject:move( moveVector )
     self.position = self.position + moveVector
     for ind, collider in pairs(self.collider) do
         collider:move(moveVector)
-    end    
+    end
 end
 
 function PhysicsObject:calcAllCollisionsResult()

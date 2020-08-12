@@ -56,7 +56,7 @@ Player =
                 self.position.y,
                 9, 11)
         self.collider.interactionCollider.objectPointer = self
-        self.isHandsFree = true
+        self.inHands = nil
 
         self.timer = Timer
     end,
@@ -177,28 +177,34 @@ function Player:draw()
 end
 
 function Player:additionalCollide()
-    if self.collider.capCollider then
-        local collisions = self.HC:collisions(self.collider.capCollider)
-        self.deltaVectorCap = Vector( 0, 0)
-        for shape, delta in pairs(collisions) do
-            self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
-        end
-        self.isHanging = false
-        if not self.isGrounded and self.deltaVectorCap.y < -self.maxGroundNormal and self.deltaVectorCap.x == 0 then
-            self.speed.y = self.speed.y >= 0 and 0 or self.speed.y
-            self:move(self.deltaVector/2)
-            self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
-        end
-    end
-    print(self.deltaVector)
-    if self.collider.interactionCollider then
-        local interactionCollisions = self.HC:collisions(self.collider.interactionCollider)
-        for shape, delta in pairs(interactionCollisions) do
-            local object = shape.objectPointer
-            if object ~= nil and object.isInteractable then
-                print("bang")
+    if self.inHands == nil then
+        if self.collider.capCollider then
+            local collisions = self.HC:collisions(self.collider.capCollider)
+            self.deltaVectorCap = Vector( 0, 0)
+            for shape, delta in pairs(collisions) do
+                self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
+            end
+            self.isHanging = false
+            if not self.isGrounded and self.deltaVectorCap.y < -self.maxGroundNormal and self.deltaVectorCap.x == 0 then
+                self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
+                self:move(self.deltaVector/2)
+                self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
             end
         end
+        print(self.deltaVector)
+        if self.collider.interactionCollider then
+            local interactionCollisions = self.HC:collisions(self.collider.interactionCollider)
+            for shape, delta in pairs(interactionCollisions) do
+                local object = shape.objectPointer
+                if object ~= nil and object.isInteractable and love.keyboard.isDown(self.buttons["use"]) then
+                    self.inHands = object
+                    object:setInteract()
+                end
+            end
+        end
+    elseif love.keyboard.isDown(self.buttons["use"]) then
+        self.inHands:unsetInteract()
+        self.inHands = nil
     end
 end
 

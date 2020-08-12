@@ -13,6 +13,14 @@ Box = Class {
     end
 }
 
+function Box:setInteract()
+    self.collider.mainCollider.layer = 'player'
+end
+
+function Box:unsetInteract()
+    self.collider.mainCollider.layer = 'box'
+end
+
 function Box:draw()
     love.graphics.draw(self.sprite, self.position.x, self.position.y)
 end
