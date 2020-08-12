@@ -52,13 +52,13 @@
    <object id="24" type="box" x="84.75" y="40.125" width="7.875" height="7.875"/>
    <object id="25" x="68.75" y="70.625" width="0.125" height="0.125"/>
    <object id="26" type="box" x="105.25" y="22.375" width="8" height="7.875"/>
-   <object id="28" type="trigger" x="76" y="36" width="2" height="19">
+   <object id="28" type="trigger" x="172" y="18" width="2" height="19">
     <properties>
      <property name="target" value="1"/>
      <property name="type" value="dialog"/>
     </properties>
    </object>
-   <object id="29" type="trigger" x="99.125" y="36" width="2" height="19">
+   <object id="29" type="trigger" x="182" y="-8" width="2" height="19">
     <properties>
      <property name="target" value="sample_level"/>
      <property name="type" value="exit"/>

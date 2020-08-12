@@ -376,6 +376,42 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
     "sourceSize": { "w": 10, "h": 16 },
     "duration": 166
+   },
+   {
+    "filename": "player_42.aseprite",
+    "frame": { "x": 440, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 133
+   },
+   {
+    "filename": "player_43.aseprite",
+    "frame": { "x": 451, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 133
+   },
+   {
+    "filename": "player_44.aseprite",
+    "frame": { "x": 462, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 133
+   },
+   {
+    "filename": "player_45.aseprite",
+    "frame": { "x": 473, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 133
    }
  ],
  "meta": {
@@ -383,7 +419,7 @@
   "version": "1.2.21",
   "image": "player.png",
   "format": "RGBA8888",
-  "size": { "w": 439, "h": 16 },
+  "size": { "w": 483, "h": 16 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
@@ -400,7 +436,8 @@
    { "name": "carry", "from": 34, "to": 37, "direction": "forward" },
    { "name": "hold", "from": 34, "to": 34, "direction": "forward" },
    { "name": "putdown", "from": 38, "to": 40, "direction": "forward" },
-   { "name": "use", "from": 41, "to": 41, "direction": "forward" }
+   { "name": "use", "from": 41, "to": 41, "direction": "forward" },
+   { "name": "push", "from": 42, "to": 45, "direction": "forward" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
