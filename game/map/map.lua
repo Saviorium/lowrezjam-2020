@@ -149,7 +149,7 @@ function Map:initColliders()
         self.collideObjects.box:registerRule('player',
             function(box, player, delta)
                 if delta.x ~= 0 then
-                    box.acceleration.x = box.acceleration.x + player.acceleration
+                    box.additionalSpeed.x = box.additionalSpeed.x + player.acceleration
                     box.direction.x = player.direction.x
                 end
             end)

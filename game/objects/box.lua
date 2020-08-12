@@ -8,7 +8,7 @@ Box = Class {
     init = function(self, x, y, hc)
         self.sprite = Images["box"].img
         PhysicsObject.init(self, x, y, 7, 7, 0, 20, 20, 0.5, hc, true)
-		self.acceleration = Vector(0, 0)
+		self.additionalSpeed = Vector(0, 0)
 		self.direction = Vector(0, 0)
     end
 }
@@ -26,8 +26,8 @@ function Box:draw()
 end
 
 function Box:setVelocityForFrame(dt)
-    self:addSpeedInDirection(self.acceleration, self.direction, dt)
-    self.acceleration = Vector(0, 0)
+    self:addSpeedInDirection(self.additionalSpeed, self.direction, dt)
+    self.additionalSpeed = Vector(0, 0)
     self.direction = Vector(0, 0)
 end
 

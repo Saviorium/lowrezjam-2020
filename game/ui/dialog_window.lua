@@ -15,8 +15,16 @@ DialogWindow =
         self.changedSlide = 0
 
         self.textHeight = 32
+
+        self.startSlideIndex = 0
         self.index = 0
+
         self.textSpeed = 5
+
+        self.fontForText = Fonts.thin
+        self.rows = math.floor(self.textHeight/self.fontForText.height)
+        self.symbolsInRow = math.ceil(64/self.fontForText.width)
+
     end
 }
 
@@ -28,7 +36,11 @@ function DialogWindow:update(dt)
         self.changedSlide = 0
         self.index = 0
     end
-    self.index = self.index + self.textSpeed * dt
+
+    if self.index <= self.symbolsInRow * self.rows then
+        self.index = self.index + self.textSpeed * dt
+    end
+
     return not self.scenario[self.currentSlide]
 end
 
@@ -42,12 +54,12 @@ function DialogWindow:draw()
     love.graphics.rectangle( 'fill', 0, 32,  64, self.textHeight )
     love.graphics.setColor(1, 1, 1)
     love.graphics.printf(self.scenario[self.currentSlide].whoTalks, 
-                         Fonts.small, 
+                         Fonts.small.font, 
                          16 + (32 - self.scenario[self.currentSlide].whoTalks:len()*4)/2, 
                          64 - self.textHeight - 4, 
-                         16)
-    love.graphics.printf(self.scenario[self.currentSlide].text:sub(0, math.floor(self.index)), 
-                         Fonts.thin, 
+                         32)
+    love.graphics.printf(self.scenario[self.currentSlide].text:sub(self.startSlideIndex, math.floor(self.startSlideIndex + self.index)), 
+                         Fonts.thin.font, 
                          0, 
                          64 - self.textHeight, 
                          64)
@@ -55,7 +67,13 @@ function DialogWindow:draw()
 end
 
 function DialogWindow:nextSlide()
-    self.currentSlide = self.currentSlide + 1
+    if self.scenario[self.currentSlide].text:len() <= self.startSlideIndex + self.symbolsInRow * self.rows then
+        self.currentSlide = self.currentSlide + 1
+        self.startSlideIndex = 0
+    else
+        self.startSlideIndex = self.startSlideIndex + self.symbolsInRow * self.rows + 1
+        self.index = 0
+    end
 end
 
 return DialogWindow

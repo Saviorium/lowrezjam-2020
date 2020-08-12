@@ -266,7 +266,7 @@ function Player:drawDebug()
     x = self.position.x - 16
     y = self.position.y - 8
 
-    love.graphics.setFont(Fonts.thin)
+    love.graphics.setFont(Fonts.thin.font)
     love.graphics.print("P.x " .. self.position.x, math.floor(x), math.floor(y + 21), 0)
     love.graphics.print("P.y " .. self.position.y, math.floor(x), math.floor(y + 14), 0)
     love.graphics.print("S.x " .. self.speed.x, math.floor(x), math.floor(y + 7), 0)
