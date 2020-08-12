@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 13,
-  nextobjectid = 27,
+  nextobjectid = 29,
   properties = {},
   tilesets = {
     {
@@ -172,13 +172,29 @@ return {
               name = "",
               type = "box",
               shape = "rectangle",
-              x = 84.125,
-              y = 27.875,
+              x = 105.25,
+              y = 22.375,
               width = 8,
               height = 7.875,
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 28,
+              name = "",
+              type = "trigger",
+              shape = "rectangle",
+              x = 71.625,
+              y = 35.875,
+              width = 2.875,
+              height = 19.125,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["target"] = "1",
+                ["type"] = "dialog"
+              }
             }
           }
         },

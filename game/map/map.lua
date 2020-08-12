@@ -6,6 +6,7 @@ Button        = require "game.objects.button"
 Door          = require "game.objects.door"
 Images        = require "resource.images"
 DialogWindow  = require "game.ui.dialog_window"
+Trigger  = require "game.links.trigger"
 ColliderLayer  = require "game.physics.collider_layer"
 local sti     = require "lib/sti"
 
@@ -70,9 +71,12 @@ Map = Class {
                        triggerTarget = property
                     end
                 end
-                newObject = Trigger(TriggersList[triggerName].conditionFunction, 
-                                    TriggersList[triggerName].triggerFunction, 
-                                    triggerName)
+                newObject = Trigger(triggerType, 
+                                    triggerTarget, 
+                                    self.level,
+                                    self.HC,
+                                    object.x,
+                                    object.y)
                 newObject.collider.mainCollider.layer = 'trigger'
             end
 
@@ -107,10 +111,11 @@ Map = Class {
 
 function Map:initColliders()
         self.collideObjects = {
-            player  = ColliderLayer('player'),
-            box     = ColliderLayer('box'),
-            button  = ColliderLayer('button'),
-            door    = ColliderLayer('door'),
+            player     = ColliderLayer('player'),
+            box        = ColliderLayer('box'),
+            button     = ColliderLayer('button'),
+            door       = ColliderLayer('door'),
+            trigger    = ColliderLayer('trigger'),
             background_objects = ColliderLayer('background_objects'),
             terrain = ColliderLayer('terrain'),
             jumpable = ColliderLayer('jumpable')
@@ -172,6 +177,11 @@ function Map:initColliders()
         self.collideObjects.button:registerRule('player',
             function(button, player, delta)
                 button:handlePushDown()
+            end)
+
+        self.collideObjects.trigger:registerRule('player',
+            function(trigger, player, delta)
+                trigger:tryToStartAction()
             end)
 end
 
