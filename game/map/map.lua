@@ -76,7 +76,9 @@ Map = Class {
                                     self.level,
                                     self.HC,
                                     object.x,
-                                    object.y)
+                                    object.y,
+                                    object.width,
+                                    object.height)
                 newObject.collider.mainCollider.layer = 'trigger'
             end
 
@@ -136,7 +138,7 @@ function Map:initColliders()
             end)  
         self.collideObjects.player:registerRule('jumpable',
             function(player, jumpable, delta)
-                if delta.y > -player.maxJumpable and delta.y < 0 and player.direction.y <= 0 then
+                if delta.y > -player.maxJumpable - (player.speed.y > 0 and player.speed.y or 0)  and delta.y < 0 and player.direction.y <= 0 then
                     player.speed.y = 0
                     player.deltaVector.y = player.deltaVector.y > -player.minGroundNormal and -player.minGroundNormal*1.1 or player.deltaVector.y
                     player.isGrounded = player.deltaVector.y < -player.minGroundNormal

@@ -182,7 +182,9 @@ function Player:additionalCollide()
             local collisions = self.HC:collisions(self.collider.capCollider)
             self.deltaVectorCap = Vector( 0, 0)
             for shape, delta in pairs(collisions) do
-                self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
+                if shape.layer == 'terrain' or shape.layer == 'jumpable' then
+                    self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
+                end
             end
             self.isHanging = false
             if not self.isGrounded and self.deltaVectorCap.y < -self.maxGroundNormal and self.deltaVectorCap.x == 0 then
@@ -191,7 +193,6 @@ function Player:additionalCollide()
                 self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
             end
         end
-        print(self.deltaVector)
         if self.collider.interactionCollider then
             local interactionCollisions = self.HC:collisions(self.collider.interactionCollider)
             for shape, delta in pairs(interactionCollisions) do
@@ -262,7 +263,7 @@ function Player:drawDebug()
 
     love.graphics.setColor(255, 255, 255)
 
-    x = self.position.x + 8
+    x = self.position.x - 16
     y = self.position.y - 8
 
     love.graphics.setFont(Fonts.thin)

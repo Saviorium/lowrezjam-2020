@@ -7,8 +7,8 @@ local Player    = require "game.objects.player"
 
 local game = {}
 
-function game:enter()
-    self.level = Level("first_level")
+function game:enter(prev_state, level)
+    self.level = Level(level)
 end
 
 function game:mousepressed(x, y)

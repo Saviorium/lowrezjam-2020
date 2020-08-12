@@ -4,11 +4,14 @@ Images = require "resource.images"
 
 DialogWindow =
     Class {
-    init = function(self, displayPos, scenarioNumber)
+    init = function(self, scenarioNumber)
         self.buttonToContinue = "space"
         self.scenario = require ("resource.scenario."..scenarioNumber)
         self.currentSlide = 1
-        self.displayPos = displayPos
+        self.displayStartPos = Vector(
+            (config.graphics.resolution.x - config.game.roomSize.x) / 2,
+            (config.graphics.resolution.y - config.game.roomSize.y) / 2
+        )
         self.changedSlide = 0
 
         self.textHeight = 32
@@ -32,21 +35,21 @@ end
 function DialogWindow:draw()
 
     love.graphics.setColor(255, 255, 0)
-    love.graphics.rectangle( 'fill', self.displayPos.x,      self.displayPos.y,       16, 64 - self.textHeight )
+    love.graphics.rectangle( 'fill', 0,  0,  16, 64 - self.textHeight )
     love.graphics.setColor(0, 0, 255)
-    love.graphics.rectangle( 'fill', self.displayPos.x + 48, self.displayPos.y,       16, 64 - self.textHeight )
+    love.graphics.rectangle( 'fill', 48, 0,  16, 64 - self.textHeight )
     love.graphics.setColor(0, 0, 0)
-    love.graphics.rectangle( 'fill', self.displayPos.x,      self.displayPos.y + 32,  64, self.textHeight )
+    love.graphics.rectangle( 'fill', 0, 32,  64, self.textHeight )
     love.graphics.setColor(1, 1, 1)
     love.graphics.printf(self.scenario[self.currentSlide].whoTalks, 
                          Fonts.small, 
-                         self.displayPos.x + 16 + (32 - self.scenario[self.currentSlide].whoTalks:len()*4)/2, 
-                         self.displayPos.y + (64 - self.textHeight - 4), 
+                         16 + (32 - self.scenario[self.currentSlide].whoTalks:len()*4)/2, 
+                         64 - self.textHeight - 4, 
                          16)
     love.graphics.printf(self.scenario[self.currentSlide].text:sub(0, math.floor(self.index)), 
                          Fonts.thin, 
-                         self.displayPos.x, 
-                         self.displayPos.y + (64 - self.textHeight), 
+                         0, 
+                         64 - self.textHeight, 
                          64)
 
 end
