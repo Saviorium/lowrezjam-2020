@@ -19,7 +19,7 @@ DialogWindow =
         self.startSlideIndex = 0
         self.index = 0
 
-        self.textSpeed = 5
+        self.textSpeed = 20
 
         self.fontForText = Fonts.thin
         self.rows = math.floor(self.textHeight/self.fontForText.height)
