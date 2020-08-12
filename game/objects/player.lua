@@ -57,6 +57,7 @@ Player =
                 9, 11)
         self.collider.interactionCollider.objectPointer = self
         self.inHands = nil
+        self.fPressed = false
 
         self.timer = Timer
     end,
@@ -177,35 +178,54 @@ function Player:draw()
 end
 
 function Player:additionalCollide()
-    if self.inHands == nil then
-        if self.collider.capCollider then
-            local collisions = self.HC:collisions(self.collider.capCollider)
-            self.deltaVectorCap = Vector( 0, 0)
-            for shape, delta in pairs(collisions) do
-                if shape.layer == 'terrain' or shape.layer == 'jumpable' then
-                    self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
-                end
-            end
-            self.isHanging = false
-            if not self.isGrounded and self.deltaVectorCap.y < -self.maxGroundNormal and self.deltaVectorCap.x == 0 then
-                self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
-                self:move(self.deltaVector/2)
-                self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
+    -- Персонаж может висеть, только если руки свободны
+    if self.collider.capCollider  and self.inHands == nil then
+        local collisions = self.HC:collisions(self.collider.capCollider)
+        self.deltaVectorCap = Vector( 0, 0)
+        for shape, delta in pairs(collisions) do
+            if shape.layer == 'terrain' or shape.layer == 'jumpable' then
+                self.deltaVectorCap = self.deltaVectorCap + Vector( delta.x, delta.y)
             end
         end
-        if self.collider.interactionCollider then
-            local interactionCollisions = self.HC:collisions(self.collider.interactionCollider)
-            for shape, delta in pairs(interactionCollisions) do
-                local object = shape.objectPointer
-                if object ~= nil and object.isInteractable and love.keyboard.isDown(self.buttons["use"]) then
-                    self.inHands = object
-                    object:setInteract()
+        self.isHanging = false
+        if not self.isGrounded and self.deltaVectorCap.y < -self.maxGroundNormal and self.deltaVectorCap.x == 0 then
+            self.speed.y =  self.speed.y >= 0 and 0 or self.speed.y
+            self:move(self.deltaVector/2)
+            self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
+        end
+    end--print(self.deltaVector)
+    --Персонаж может взять что-то в руки, если он не висит
+    if self.collider.interactionCollider then
+        if love.keyboard.isDown(self.buttons["use"]) and self.fPressed == false and self.isHanging == false then
+            self.fPressed = true
+            print("pressF")
+            if self.inHands == nil then
+                local interactionCollisions = self.HC:collisions(self.collider.interactionCollider)
+                for shape, delta in pairs(interactionCollisions) do
+                    local object = shape.objectPointer
+                    if object ~= nil and object.isInteractable then
+                        object:setInteract()
+                        if object.isDraggable then
+                            self.inHands = object
+                            print(self.position - self.inHands.position)
+                            self.inHands:move(self.position - self.inHands.position)
+                        end
+                        break
+                    end
                 end
+            else
+                self.inHands:unsetInteract()
+                self.inHands = nil
             end
         end
-    elseif love.keyboard.isDown(self.buttons["use"]) then
-        self.inHands:unsetInteract()
-        self.inHands = nil
+    end
+    if self.inHands ~= nil then
+        self.inHands:move(self.position - self.inHands.position)
+    end
+    --Костыль отпускания кнопки F
+    if not love.keyboard.isDown(self.buttons["use"]) and self.fPressed then
+        self.fPressed = false
+        print("unpressF")
     end
 end
 

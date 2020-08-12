@@ -7,7 +7,7 @@ Box = Class {
     __includes = PhysicsObject,
     init = function(self, x, y, hc)
         self.sprite = Images["box"].img
-        PhysicsObject.init(self, x, y, 7, 7, 0, 20, 20, 0.5, hc, true)
+        PhysicsObject.init(self, x, y, 7, 7, 0, 20, 20, 0.5, hc, true, true)
 		self.additionalSpeed = Vector(0, 0)
 		self.direction = Vector(0, 0)
     end

@@ -2,7 +2,7 @@ Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 
 PhysicsObject = Class {
-    init = function(self, x, y, height, width, acceleration, slowDownSpeed, jumpSpeed, maxSpeed, hc, interactable)
+    init = function(self, x, y, height, width, acceleration, slowDownSpeed, jumpSpeed, maxSpeed, hc, interactable, draggable)
     	self.position = Vector( x, y )
         self.speed    = Vector( 0, 0)
         self.width  = width 
@@ -13,7 +13,7 @@ PhysicsObject = Class {
 
         self.isGrounded = false
         self.isInteractable = interactable or false
-        self.interaction = false
+        self.isDraggable = draggable or false
 
         self.acceleration  = acceleration
         self.slowDownSpeed = slowDownSpeed
