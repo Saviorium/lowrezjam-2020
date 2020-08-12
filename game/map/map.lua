@@ -120,7 +120,8 @@ function Map:initColliders()
             trigger    = ColliderLayer('trigger'),
             background_objects = ColliderLayer('background_objects'),
             terrain = ColliderLayer('terrain'),
-            jumpable = ColliderLayer('jumpable')
+            jumpable = ColliderLayer('jumpable'),
+            inUse = ColliderLayer('inUse')
         } 
 
         self.collideObjects.player:registerRule('box',

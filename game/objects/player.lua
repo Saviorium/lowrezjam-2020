@@ -131,37 +131,48 @@ end
 
 
 function Player:updateAnimation(dt)
-    if self.speed.y < 0 and self.sprite.tagName ~= "climb" then
-        if (self.sprite.tagName ~= "jumpup") then
-            self.sprite:setTag("jumpup")
+    if self.inHands ~= nil then
+        if math.abs(self.speed.x) > 0 then
+            if (self.sprite.tagName ~= "carry") then
+                self.sprite:setTag("carry")
+            end
+        elseif (self.sprite.tagName ~= "hold") and self.speed.x == 0 then
+            self.sprite:setTag("hold")
         end
-    elseif self.speed.y > 0 then
-        if (self.sprite.tagName ~= "jumpdown") then
-            self.sprite:setTag("jumpdown")
+    else
+        if self.speed.y < 0 and self.sprite.tagName ~= "climb" then
+            if (self.sprite.tagName ~= "jumpup") then
+                self.sprite:setTag("jumpup")
+            end
+        elseif self.speed.y > 0 then
+            if (self.sprite.tagName ~= "jumpdown") then
+                self.sprite:setTag("jumpdown")
+            end
+        elseif self.isHanging then
+            self.sprite:setTag("hang")
+        elseif self.direction.x ~= self.prevDirection.x then
+            if self.sprite.tagName == "run" then
+                self.sprite:setTag("turn")
+            elseif self.sprite.tagName == "climb" then
+                self.sprite:setTag("jumpup")
+            end
+        elseif math.abs(self.speed.x) > 0 then
+            if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb") then
+                self.sprite:setTag("run")
+            end
+        elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "jumpdown" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
+            self.sprite:setTag("brake")
+        elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
+            self.sprite:setTag("idle")
         end
-    elseif self.isHanging then
-        self.sprite:setTag("hang")
-    elseif self.direction.x ~= self.prevDirection.x then
-        if self.sprite.tagName == "run" then
-            self.sprite:setTag("turn")
-        elseif self.sprite.tagName == "climb" then
-            self.sprite:setTag("jumpup")
-        end
-    elseif math.abs(self.speed.x) > 0 then
-        if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb") then
-            self.sprite:setTag("run")
-        end
-    elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "jumpdown" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
-        self.sprite:setTag("brake")
-    elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
-        self.sprite:setTag("idle")
     end
+
     self.prevDirection = self.direction
     self.sprite:update(dt)
 
-    self.pushingBox = not (self.deltaVector.x == 0 and self.pushingBox)
-    self:updateArrow(dt)
-end
+        self.pushingBox = not (self.deltaVector.x == 0 and self.pushingBox)
+            self:updateArrow(dt)
+    end
 
 function Player:checkIfExited(mapPos, dt)
     local roomWidth, roomHeight = config.game.roomSize.x, config.game.roomSize.y
@@ -179,7 +190,7 @@ end
 
 function Player:additionalCollide()
     -- Персонаж может висеть, только если руки свободны
-    if self.collider.capCollider  and self.inHands == nil then
+    if self.collider.capCollider and self.inHands == nil then
         local collisions = self.HC:collisions(self.collider.capCollider)
         self.deltaVectorCap = Vector( 0, 0)
         for shape, delta in pairs(collisions) do
@@ -193,12 +204,12 @@ function Player:additionalCollide()
             self:move(self.deltaVector/2)
             self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
         end
-    end--print(self.deltaVector)
+    end
+    --print(self.deltaVector)
     --Персонаж может взять что-то в руки, если он не висит
     if self.collider.interactionCollider then
         if love.keyboard.isDown(self.buttons["use"]) and self.fPressed == false and self.isHanging == false then
             self.fPressed = true
-            print("pressF")
             if self.inHands == nil then
                 local interactionCollisions = self.HC:collisions(self.collider.interactionCollider)
                 for shape, delta in pairs(interactionCollisions) do
@@ -207,8 +218,6 @@ function Player:additionalCollide()
                         object:setInteract()
                         if object.isDraggable then
                             self.inHands = object
-                            print(self.position - self.inHands.position)
-                            self.inHands:move(self.position - self.inHands.position)
                         end
                         break
                     end
@@ -220,12 +229,17 @@ function Player:additionalCollide()
         end
     end
     if self.inHands ~= nil then
-        self.inHands:move(self.position - self.inHands.position)
+        local vector
+        if self.direction.x == -1 then
+            vector = self.position - self.inHands.position + Vector(-1*self.width-1,0)
+        else
+            vector = self.position - self.inHands.position + Vector(self.width-2,0)
+        end
+        self.inHands:move(vector)
     end
     --Костыль отпускания кнопки F
     if not love.keyboard.isDown(self.buttons["use"]) and self.fPressed then
         self.fPressed = false
-        print("unpressF")
     end
 end
 

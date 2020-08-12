@@ -14,7 +14,7 @@ Box = Class {
 }
 
 function Box:setInteract()
-    self.collider.mainCollider.layer = 'player'
+    self.collider.mainCollider.layer = 'inUse'
 end
 
 function Box:unsetInteract()
