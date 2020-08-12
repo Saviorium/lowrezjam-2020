@@ -52,9 +52,9 @@
    <object id="24" type="box" x="2.75" y="17.13" width="7.875" height="7.875"/>
    <object id="25" x="68.75" y="70.625" width="0.125" height="0.125"/>
    <object id="26" type="box" x="105.25" y="22.375" width="8" height="7.875"/>
-   <object id="28" type="trigger" x="167.875" y="-7.375" width="2" height="19">
+   <object id="28" type="trigger" x="132.5" y="19.375" width="2" height="19">
     <properties>
-     <property name="target" value="second_level"/>
+     <property name="target" value="1"/>
      <property name="type" value="dialog"/>
     </properties>
    </object>
