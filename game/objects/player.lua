@@ -190,6 +190,7 @@ function Player:additionalCollide()
             self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
         end
     end
+    print(self.deltaVector)
     if self.collider.interactionCollider then
         local interactionCollisions = self.HC:collisions(self.collider.interactionCollider)
         for shape, delta in pairs(interactionCollisions) do

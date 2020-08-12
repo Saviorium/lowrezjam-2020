@@ -79,13 +79,13 @@ end
 
 function PhysicsObject:calcAllCollisionsResult()
     if math.abs(self.deltaVector.x) > self.maxGroundNormal then
-        self:move(self.deltaVector/2)
+        self:move(Vector(self.deltaVector.x/2,0))
     end
 
     if math.abs(self.deltaVector.y) > self.maxGroundNormal then
         
         self.speed.y = (self.speed.y < 0 or self.deltaVector.y < 0) and 0 or self.speed.y
-        self:move(self.deltaVector/2)
+        self:move(Vector(0,self.deltaVector.y/2))
         self.isGrounded = self.deltaVector.y < -self.minGroundNormal
     end
     

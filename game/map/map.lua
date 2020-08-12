@@ -222,36 +222,31 @@ function Map:update( dt )
 end
 
 function Map:draw()
-    if self.dialog then
-        self.dialog:draw()
-    else
-        love.graphics.push()
-        love.graphics.translate(self.curentRoomPos.x, self.curentRoomPos.y)
-        love.graphics.translate(self.displayStartPos.x, self.displayStartPos.y)
+    love.graphics.push()
+    love.graphics.translate(self.curentRoomPos.x, self.curentRoomPos.y)
+    love.graphics.translate(self.displayStartPos.x, self.displayStartPos.y)
 
-        for ind, layer in pairs(self.ground) do
-            self.map:drawLayer(layer)
-        end
-
-        if Debug.DrawDebugColliders and Debug.DrawDebugColliders == 1 then
-            love.graphics.setColor(0, 0, 1)
-            local shapes = self.HC:hash():shapes()
-            for _, shape in pairs(shapes) do
-                shape:draw()
-            end
-            love.graphics.setColor(1, 1, 1)
-        end
-
-        for ind, object in pairs(self.objects) do
-            object:draw()
-        end
-
-        if Debug.DrawDebugForMapPiece == 1 then
-            -- Draw some debug
-        end
-        love.graphics.pop()
+    for ind, layer in pairs(self.ground) do
+        self.map:drawLayer(layer)
     end
-    
+
+    if Debug.DrawDebugColliders and Debug.DrawDebugColliders == 1 then
+        love.graphics.setColor(0, 0, 1)
+        local shapes = self.HC:hash():shapes()
+        for _, shape in pairs(shapes) do
+            shape:draw()
+        end
+        love.graphics.setColor(1, 1, 1)
+    end
+
+    for ind, object in pairs(self.objects) do
+        object:draw()
+    end
+
+    if Debug.DrawDebugForMapPiece == 1 then
+        -- Draw some debug
+    end
+    love.graphics.pop()
 end
 
 return Map
