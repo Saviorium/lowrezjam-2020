@@ -127,21 +127,21 @@ function Map:initColliders()
             terrain = ColliderLayer('terrain'),
             jumpable = ColliderLayer('jumpable'),
             inUse = ColliderLayer('inUse')
-        } 
+        }
 
         self.collideObjects.player:registerRule('box',
             function(player, box, delta)
                 player.deltaVector = player.deltaVector + delta
                 player.pushingBox = true
-            end)  
+            end)
         self.collideObjects.player:registerRule('door',
             function(player, door, delta)
                 if not door.isOpen then player.deltaVector = player.deltaVector + delta end
-            end)  
+            end)
         self.collideObjects.player:registerRule('terrain',
             function(player, terrain, delta)
                 player.deltaVector = player.deltaVector + delta
-            end)  
+            end)
         self.collideObjects.player:registerRule('jumpable',
             function(player, jumpable, delta)
                 if delta.y > -player.maxJumpable - math.max(player.speed.y, 0) and delta.y < 0 and player.direction.y <= 0 then
@@ -150,7 +150,7 @@ function Map:initColliders()
                     player.isGrounded = player.deltaVector.y < -player.minGroundNormal
                     player.canJumpDown = true
                 end
-            end)  
+            end)
 
         self.collideObjects.box:registerRule('player',
             function(box, player, delta)
@@ -168,19 +168,19 @@ function Map:initColliders()
                 --     box2.direction.x = box1.direction.x
                 -- end
                 box1.deltaVector = box1.deltaVector + delta
-            end) 
+            end)
         self.collideObjects.box:registerRule('terrain',
             function(box, terrain, delta)
                 box.deltaVector = box.deltaVector + delta
-            end)  
+            end)
         self.collideObjects.box:registerRule('jumpable',
             function(box, jumpable, delta)
                 box.deltaVector = box.deltaVector + ((delta.y < 0) and delta or Vector(0,0))
-            end)  
+            end)
         self.collideObjects.box:registerRule('door',
             function(box, door, delta)
                 if not door.isOpen then box.deltaVector = box.deltaVector + delta end
-            end)  
+            end)
 
         self.collideObjects.button:registerRule('player',
             function(button, player, delta)

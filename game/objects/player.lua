@@ -229,9 +229,8 @@ function Player:additionalCollide()
                     end
                 end
             else
-                self.inHands:move(self.position - self.inHands.position + self.direction.x*Vector(self.width+3,0))
+                self.inHands:move(self.position - self.inHands.position + Vector( self.direction.x == -1 and (-1*(self.width+3)) or (self.width), 0))
                 self.inHands:unsetInteract()
-
                 self.inHands = nil
             end
         end
@@ -239,13 +238,9 @@ function Player:additionalCollide()
     if self.inHands ~= nil then
         local vector = Vector(0,0)
         if  self.sprite.tagName == "pickup" then
-            vector = vector + self.inHands.pickUpVector[self.sprite.frameIndex]
+            vector = vector + Vector(self.inHands.pickUpVector[self.sprite.frameIndex].x* self.direction.x, self.inHands.pickUpVector[self.sprite.frameIndex].y)
         end
-        if self.direction.x == -1 then
-            vector = vector + self.position - self.inHands.position + Vector(-1*(self.width+1),0)
-        else
-            vector = vector + self.position - self.inHands.position + Vector(self.width-2,0)
-        end
+        vector = vector + self.position - self.inHands.position + Vector( self.direction.x == -1 and (-1*(self.width+1)) or (self.width-2), 0)
         self.inHands:move(vector)
     end
     --Костыль отпускания кнопки F

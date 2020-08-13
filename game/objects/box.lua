@@ -11,12 +11,12 @@ Box = Class {
 		self.additionalSpeed = Vector(0, 0)
 		self.direction = Vector(0, 0)
         self.pickUpVector = {
-            Vector(0,5),
-            Vector(0,5),
-            Vector(0,5),
-            Vector(0,4),
-            Vector(0,2),
-            Vector(0,0)
+            Vector(3,4),
+            Vector(3,4),
+            Vector(3,4),
+            Vector(3,3),
+            Vector(2,2),
+            Vector(0,1)
         }
     end
 }
