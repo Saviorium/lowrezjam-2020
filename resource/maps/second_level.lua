@@ -198,7 +198,7 @@ return {
               type = "player",
               shape = "point",
               x = 32,
-              y = 190,
+              y = 171,
               width = 0,
               height = 0,
               rotation = 0,

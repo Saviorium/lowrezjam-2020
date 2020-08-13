@@ -20,7 +20,7 @@ function love.load()
     maxScale = getMaxScale()
     mainCanvas = PixelCanvas(config.graphics.resolution.x, config.graphics.resolution.y, config.graphics.scale)
     setScale(config.graphics.scale)
-    StateManager.switch(states.game, 'second_level')
+    StateManager.switch(states.game, 'fourth_level')
 end
 
 function love.draw()

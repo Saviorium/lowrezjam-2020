@@ -110,7 +110,7 @@
 </data>
   </layer>
   <objectgroup id="3" name="objects">
-   <object id="32" type="player" x="32" y="190">
+   <object id="32" type="player" x="32" y="171">
     <point/>
    </object>
    <object id="34" type="trigger" x="255" y="100" width="1.09091" height="19.6364">

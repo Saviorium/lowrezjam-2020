@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="112" height="48" tilewidth="4" tileheight="4" infinite="0" nextlayerid="17" nextobjectid="641">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="112" height="48" tilewidth="4" tileheight="4" infinite="0" nextlayerid="17" nextobjectid="645">
  <editorsettings>
   <export target="fourth_level.lua" format="lua"/>
  </editorsettings>
@@ -162,7 +162,7 @@
 </data>
   </layer>
   <objectgroup id="3" name="objects">
-   <object id="213" type="player" x="430.642" y="55.375">
+   <object id="213" type="player" x="430" y="71">
     <point/>
    </object>
    <object id="216" type="trigger" x="0" y="172" width="0.909091" height="16">
@@ -174,51 +174,51 @@
   </objectgroup>
   <objectgroup id="4" name="solid">
    <object id="587" x="-0.0454545" y="0" width="1" height="120"/>
-   <object id="588" x="-0.0454545" y="120" width="8" height="8"/>
-   <object id="589" x="-0.0454545" y="144" width="8" height="8"/>
-   <object id="590" x="-0.0454545" y="168" width="8" height="4"/>
-   <object id="591" x="-0.0454545" y="188" width="448" height="4"/>
-   <object id="592" x="7.95455" y="116" width="8" height="56"/>
+   <object id="588" x="0" y="120" width="8" height="8"/>
+   <object id="589" x="0" y="144" width="8" height="8"/>
+   <object id="590" x="0" y="168" width="8" height="4"/>
+   <object id="591" x="0" y="188" width="448" height="4"/>
+   <object id="592" x="8" y="116" width="8" height="56"/>
    <object id="593" x="15.9545" y="120" width="24" height="4"/>
    <object id="594" x="39.9545" y="120" width="16" height="3"/>
-   <object id="595" x="55.9545" y="120" width="32" height="4"/>
-   <object id="597" x="59.9545" y="164" width="16" height="3"/>
-   <object id="599" x="99.9545" y="120" width="8" height="3"/>
-   <object id="600" x="119.955" y="120" width="8" height="3"/>
-   <object id="601" x="135.955" y="180" width="8" height="8"/>
+   <object id="595" x="56" y="120" width="32" height="4"/>
+   <object id="597" x="60" y="164" width="16" height="3"/>
+   <object id="599" x="100" y="120" width="8" height="3"/>
+   <object id="600" x="120" y="120" width="8" height="3"/>
+   <object id="601" x="136" y="180" width="8" height="8"/>
    <object id="602" x="136" y="160" width="8" height="12"/>
-   <object id="603" x="135.955" y="120" width="8" height="12"/>
-   <object id="604" x="143.955" y="120" width="48" height="8"/>
-   <object id="605" x="191.955" y="120" width="8" height="12"/>
+   <object id="603" x="136" y="120" width="8" height="8"/>
+   <object id="604" x="144" y="120" width="48" height="8"/>
+   <object id="605" x="192" y="120" width="8" height="12"/>
    <object id="606" x="140" y="152" width="1" height="8"/>
    <object id="607" x="192" y="180" width="8" height="8"/>
    <object id="608" x="196" y="172" width="1" height="8"/>
    <object id="609" x="192" y="164" width="8" height="8"/>
    <object id="610" x="144" y="144" width="16" height="4"/>
    <object id="611" x="144" y="164" width="48" height="4"/>
-   <object id="612" x="159.955" y="104" width="32" height="3"/>
-   <object id="613" x="151.955" y="84" width="60" height="3"/>
-   <object id="614" x="255.955" y="152" width="4" height="36"/>
-   <object id="615" x="255.955" y="120" width="4" height="16"/>
-   <object id="616" x="259.955" y="156" width="8" height="3"/>
-   <object id="617" x="259.955" y="120" width="28" height="4"/>
-   <object id="618" x="287.955" y="120" width="16" height="3"/>
-   <object id="619" x="303.955" y="120" width="116" height="4"/>
-   <object id="620" x="415.955" y="84" width="4" height="36"/>
-   <object id="621" x="419.955" y="84" width="28" height="4"/>
+   <object id="612" x="160" y="104" width="32" height="3"/>
+   <object id="613" x="152" y="84" width="60" height="3"/>
+   <object id="614" x="256" y="152" width="4" height="36"/>
+   <object id="615" x="256" y="120" width="4" height="16"/>
+   <object id="616" type="jumpable" x="260" y="156" width="8" height="3"/>
+   <object id="617" x="260" y="120" width="28" height="4"/>
+   <object id="618" type="jumpable" x="288" y="120" width="16" height="3"/>
+   <object id="619" x="304" y="120" width="116" height="4"/>
+   <object id="620" x="416" y="84" width="4" height="36"/>
+   <object id="621" x="420" y="84" width="28" height="4"/>
    <object id="622" x="415.955" y="64" width="32" height="4"/>
-   <object id="623" x="391.955" y="160" width="56" height="4"/>
-   <object id="624" x="395.955" y="156" width="51" height="4"/>
-   <object id="625" x="387.955" y="164" width="4" height="8"/>
+   <object id="623" x="392" y="160" width="56" height="4"/>
+   <object id="624" x="396" y="156" width="52" height="4"/>
+   <object id="625" x="388" y="164" width="4" height="8"/>
    <object id="626" x="136" y="144" width="8" height="8"/>
    <object id="627" x="172" y="144" width="20" height="4"/>
-   <object id="628" x="447.955" y="0" width="1" height="192"/>
-   <object id="629" x="255.955" y="0" width="1" height="120"/>
+   <object id="628" x="448" y="0" width="1" height="192"/>
+   <object id="629" x="256" y="0" width="1" height="120"/>
    <object id="630" x="140" y="172" width="1" height="8"/>
    <object id="631" x="196" y="132" width="1" height="8"/>
    <object id="632" x="192" y="140" width="8" height="8"/>
-   <object id="633" x="288" y="132" width="16" height="3"/>
-   <object id="634" x="288" y="144" width="16" height="3"/>
+   <object id="633" type="jumpable" x="288" y="132" width="16" height="3"/>
+   <object id="634" type="jumpable" x="288" y="144" width="16" height="3"/>
    <object id="635" x="288" y="168" width="16" height="4"/>
   </objectgroup>
  </group>
@@ -334,7 +334,7 @@
      <property name="type" value="exit"/>
     </properties>
    </object>
-   <object id="212" type="player" x="434.625" y="74.3125">
+   <object id="212" type="player" x="430" y="71">
     <point/>
    </object>
   </objectgroup>
@@ -367,9 +367,9 @@
    <object id="568" x="152" y="84" width="60" height="3"/>
    <object id="569" x="256" y="152" width="4" height="36"/>
    <object id="570" x="256" y="120" width="4" height="16"/>
-   <object id="571" x="260" y="156" width="8" height="3"/>
+   <object id="571" type="jumpable" x="260" y="156" width="8" height="3"/>
    <object id="572" x="260" y="120" width="28" height="4"/>
-   <object id="573" x="288" y="120" width="16" height="3"/>
+   <object id="573" type="jumpable" x="288" y="120" width="16" height="3"/>
    <object id="574" x="304" y="120" width="116" height="4"/>
    <object id="575" x="416" y="84" width="4" height="36"/>
    <object id="576" x="420" y="84" width="28" height="4"/>
@@ -381,9 +381,9 @@
    <object id="582" x="172" y="164" width="20" height="4"/>
    <object id="585" x="448" y="0" width="1" height="192"/>
    <object id="586" x="256" y="0" width="1" height="120"/>
-   <object id="636" x="288" y="156" width="8" height="3"/>
-   <object id="637" x="296" y="144" width="8" height="3"/>
-   <object id="639" x="288" y="132" width="16" height="3"/>
+   <object id="636" type="jumpable" x="288" y="156" width="8" height="3"/>
+   <object id="637" type="jumpable" x="296" y="144" width="8" height="3"/>
+   <object id="639" type="jumpable" x="288" y="132" width="16" height="3"/>
    <object id="640" x="288" y="168" width="16" height="4"/>
   </objectgroup>
  </group>
@@ -493,7 +493,7 @@
 </data>
   </layer>
   <objectgroup id="9" name="objects">
-   <object id="214" type="player" x="434.625" y="74.375">
+   <object id="214" type="player" x="430" y="71">
     <point/>
    </object>
    <object id="215" type="trigger" x="0.107954" y="171.938" width="0.909091" height="16">
@@ -532,9 +532,9 @@
    <object id="526" x="152" y="84" width="60" height="3"/>
    <object id="527" x="256" y="152" width="4" height="36"/>
    <object id="528" x="256" y="120" width="4" height="16"/>
-   <object id="529" x="260" y="156" width="8" height="3"/>
+   <object id="529" type="jumpable" x="260" y="156" width="8" height="3"/>
    <object id="530" x="260" y="120" width="28" height="4"/>
-   <object id="531" x="288" y="120" width="16" height="3"/>
+   <object id="531" type="jumpable" x="288" y="120" width="16" height="3"/>
    <object id="532" x="304" y="120" width="116" height="4"/>
    <object id="533" x="416" y="84" width="4" height="36"/>
    <object id="535" x="420" y="84" width="28" height="4"/>
@@ -545,6 +545,10 @@
    <object id="540" x="136" y="140" width="8" height="12"/>
    <object id="583" x="140" y="132" width="1" height="8"/>
    <object id="584" x="140" y="152" width="1" height="8"/>
+   <object id="641" x="256" y="0" width="1" height="120"/>
+   <object id="642" type="jumpable" x="288" y="132" width="16" height="3"/>
+   <object id="643" type="jumpable" x="288" y="156" width="16" height="3"/>
+   <object id="644" x="288" y="168" width="16" height="4"/>
   </objectgroup>
  </group>
 </map>
