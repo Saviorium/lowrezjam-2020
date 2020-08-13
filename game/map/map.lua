@@ -191,6 +191,10 @@ function Map:initColliders()
             function(trigger, player, delta)
                 trigger:tryToStartAction()
             end)
+        self.collideObjects.inUse:registerRule('terrain',
+            function(inUse, terrain, delta)
+                inUse.deltaVector = inUse.deltaVector + delta
+            end)
 end
 
 function Map:changeFocus(isInFocus)
