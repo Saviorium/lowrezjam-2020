@@ -186,7 +186,7 @@ function Player:checkIfExited(mapPos, dt)
 end
 
 function Player:draw()
-    self.sprite:draw(self.position.x, self.position.y, 0, self.direction.x, 1, self.direction.x < 0 and self.width+1 or 1, 0)
+    self.sprite:draw(math.floor(self.position.x), math.floor(self.position.y), 0, self.direction.x, 1, self.direction.x < 0 and self.width+1 or 1, 0)
     self:drawArrow()
     if Debug.DrawDebugForPlayer and Debug.DrawDebugForPlayer == 1 then
         self:drawDebug()

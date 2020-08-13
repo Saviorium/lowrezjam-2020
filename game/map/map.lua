@@ -22,7 +22,7 @@ Map = Class {
         )
 
         love.physics.setMeter(16)
-        self.map = sti(scheme) -- "resource/maps/physics-test.lua"
+        self.map = sti(scheme)
         self.world = love.physics.newWorld(0, 0)
         love.graphics.setBackgroundColor({.3,.3,.3,1})
 
@@ -31,11 +31,11 @@ Map = Class {
         if self.map.layers[layerName .. ".ground"] then
             self.ground['ground'] = self.map.layers[layerName .. ".ground"]
         end
-        if self.map.layers[layerName .. ".background"] then
-            self.ground['background'] = self.map.layers[layerName .. ".background"]
-        end
         if self.map.layers[layerName .. ".front layer"] then
             self.ground['front layer'] = self.map.layers[layerName .. ".front layer"]
+        end
+        if self.map.layers[layerName .. ".background"] then
+            self.ground['background'] = self.map.layers[layerName .. ".background"]
         end
 
         self.colliderToObject = {}
