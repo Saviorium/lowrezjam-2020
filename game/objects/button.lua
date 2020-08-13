@@ -38,8 +38,11 @@ function Button:setDelay(delay)
     self.delayToSwitchOff = delay
 end
 
+function Button:setGroup(group)
+    self.group = group
+end
+
 function Button:update(dt)
-    print(self.timerSwitchOff)
     if self.isPushed and self.autoOff then
         if self.timerSwitchOff < 0 then
             self:handlePushUp()
@@ -55,7 +58,11 @@ function Button:handlePushDown()
     if not self.isPushed then
         self.isPushed = true
         self.sprite:setTag("down")
-        self:sendEvent("Activate")
+        if self.group then
+            self:handleGroupDown()
+        else
+            self:sendEvent("Activate")
+        end
     end
 end
 
@@ -63,7 +70,34 @@ function Button:handlePushUp()
     if self.isPushed then
         self.isPushed = false
         self.sprite:setTag("up")
-        self:sendEvent("Deactivate")
+        if self.group then
+            self:handleGroupUp()
+        else
+            self:sendEvent("Deactivate")
+        end
+    end
+end
+
+function Button:handleGroupDown()
+    for _, button in pairs(self.group) do
+        if not button.isPushed then
+            return
+        end
+    end
+    self:groupSend("Activate", true) -- Send singal only if all pushed in group
+end
+
+function Button:handleGroupUp()
+    self:groupSend("Deactivate", true) -- Send singal if any unpushed in group
+end
+
+function Button:groupSend(signal, initialSignal)
+    if initialSignal then
+        for _, button in pairs(self.group) do
+            button:groupSend(signal) 
+        end
+    else
+        self:sendEvent(signal)
     end
 end
 

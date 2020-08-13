@@ -821,6 +821,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
+                ["group"] = "group1",
                 ["link_b"] = { id = 91 },
                 ["number_link_link"] = 1,
                 ["string"] = { id = 19 },
@@ -1211,6 +1212,7 @@ return {
               visible = true,
               properties = {
                 ["autooff"] = true,
+                ["group"] = "group1",
                 ["link_g"] = { id = 92 }
               }
             },
@@ -1611,6 +1613,7 @@ return {
               visible = true,
               properties = {
                 ["autooff"] = false,
+                ["group"] = "group1",
                 ["link_r"] = { id = 90 }
               }
             },

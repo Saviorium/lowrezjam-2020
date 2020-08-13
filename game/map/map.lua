@@ -61,6 +61,13 @@ Map = Class {
                 if object.properties.delay and type(object.properties.delay) == "number" then
                     newObject:setDelay(object.properties.delay)
                 end
+                if object.properties.group then
+                    if not self.level.buttonGroups[object.properties.group] then
+                        self.level.buttonGroups[object.properties.group] = {}
+                    end
+                    table.insert(self.level.buttonGroups[object.properties.group], newObject)
+                    newObject:setGroup(self.level.buttonGroups[object.properties.group])
+                end
             end
 
             if object.type == "door" then

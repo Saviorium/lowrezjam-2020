@@ -13,8 +13,9 @@ Level = Class {
         end
         self.layers = {}
         self.objects = {} -- { id => object } dictionary
-        self.links = {} 
-        self.triggers = {} 
+        self.buttonGroups = {}
+        self.links = {}
+        self.triggers = {}
         for layerName, layerColor in pairs(level) do
             table.insert( self.layers, Layer(
                 Map("resource/maps/" .. name .. ".lua", layerName, HC.new(), self),
