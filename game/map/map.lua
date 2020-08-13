@@ -8,10 +8,9 @@ Images        = require "resource.images"
 DialogWindow  = require "game.ui.dialog_window"
 Trigger  = require "game.links.trigger"
 ColliderLayer  = require "game.physics.collider_layer"
-local sti     = require "lib/sti"
 
 Map = Class {
-    init = function(self, scheme, layerName, HC, level)
+    init = function(self, map, layerName, HC, level)
         self.HC = HC
         self.level = level
         
@@ -22,7 +21,7 @@ Map = Class {
         )
 
         love.physics.setMeter(16)
-        self.map = sti(scheme)
+        self.map = map
         self.world = love.physics.newWorld(0, 0)
         love.graphics.setBackgroundColor({.3,.3,.3,1})
 

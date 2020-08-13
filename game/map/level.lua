@@ -3,6 +3,7 @@ HC      = require "lib.hardoncollider"
 Layer   = require "game.map.level_layer"
 Map     = require "game.map.map"
 Link    = require "game.links.link"
+local sti     = require "lib/sti"
 
 Level = Class {
     init = function(self, name)
@@ -11,6 +12,7 @@ Level = Class {
             print("No such level: " .. name)
             return
         end
+        self.map = sti("resource/maps/" .. name .. ".lua")
         self.layers = {}
         self.objects = {} -- { id => object } dictionary
         self.buttonGroups = {}
@@ -18,7 +20,7 @@ Level = Class {
         self.triggers = {}
         for layerName, layerColor in pairs(level) do
             table.insert( self.layers, Layer(
-                Map("resource/maps/" .. name .. ".lua", layerName, HC.new(), self),
+                Map(self.map, layerName, HC.new(), self),
                 layerColor
             ))
         end
@@ -28,6 +30,8 @@ Level = Class {
 
         self.backgroundCanvas = love.graphics.newCanvas()
         self.foregroundCanvas = love.graphics.newCanvas()
+
+        self.backgroundTileMap = self.map.layers.background
     end,
     buttons = {
         nextLayer = "q"
@@ -90,15 +94,22 @@ function Level:draw()
             layer.map:draw()
         end
 
+        
+        local activeRoomPos = self.layers[self.focusLayer].map.curentRoomPos -- room of player in focus
         -- draw common background for level
         love.graphics.setCanvas(self.backgroundCanvas)
         love.graphics.draw(Images['city_background'].img)
+        if self.backgroundTileMap then
+            love.graphics.push()
+                love.graphics.translate(activeRoomPos.x, activeRoomPos.y)
+                self.map:drawLayer(self.backgroundTileMap)
+            love.graphics.pop()
+        end
 
         -- merge layers of foreground objects
         love.graphics.setCanvas(self.foregroundCanvas)
         love.graphics.clear({0,0,0,0})
         love.graphics.setBlendMode("screen", "premultiplied") -- mix colors, not redraw
-        local activeRoomPos = self.layers[self.focusLayer].map.curentRoomPos -- room of player in focus
 
         for layerName, layer in pairs(self.layers) do
             if layer.map.curentRoomPos == activeRoomPos then -- draw only layers where player is in active room
