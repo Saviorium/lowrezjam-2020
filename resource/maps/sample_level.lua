@@ -1210,6 +1210,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
+                ["autooff"] = true,
                 ["link_g"] = { id = 92 }
               }
             },
@@ -1609,6 +1610,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
+                ["autooff"] = false,
                 ["link_r"] = { id = 90 }
               }
             },

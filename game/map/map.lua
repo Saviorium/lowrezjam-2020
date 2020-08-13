@@ -55,6 +55,12 @@ Map = Class {
             if object.type == "button" then
                 newObject = Button(object.x, object.y, self.HC)
                 newObject.collider.mainCollider.layer = 'button'
+                if object.properties.autooff then
+                    newObject:setAutoOff(true)
+                end
+                if object.properties.delay and type(object.properties.delay) == "number" then
+                    newObject:setDelay(object.properties.delay)
+                end
             end
 
             if object.type == "door" then

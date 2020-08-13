@@ -1,5 +1,5 @@
 Debug = {
-    DrawDebugForPlayer = 1,
+    DrawDebugForPlayer = 0,
     DrawDebugForMapPiece = 0,
     DrawDebugColliders = 0
 }

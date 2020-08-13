@@ -8,33 +8,50 @@ Button = Class {
     init = function(self, x, y, hc)
         self.position = Vector( x, y )
 
-        self.sprite = Images:getNewPeachySprite("button")
-        self.sprite:setTag("up")
-        self.sprite:play()
+        self:setAutoOff(false)
 
         self.isPushed = false
+
+        self.delayToSwitchOff = 0.1 -- seconds
+        self.timerSwitchOff = self.delayToSwitchOff
+
         self.width = 4
-        self.height = 4
-        self.collider = { mainCollider = hc:rectangle(self.position.x, self.position.y, self.width, self.height)}
+        self.height = 2
+        self.collider = { mainCollider = hc:rectangle(self.position.x+2, self.position.y+6, self.width, self.height)}
 
         EventSender.init(self)
     end
 }
 
+function Button:setAutoOff(autoOff)
+    if autoOff == true then
+        self.sprite = Images:getNewPeachySprite("button_hollow")
+    else
+        self.sprite = Images:getNewPeachySprite("button")
+    end
+    self.sprite:setTag("up")
+    self.sprite:play()
+    self.autoOff = autoOff
+end
+
+function Button:setDelay(delay)
+    self.delayToSwitchOff = delay
+end
+
 function Button:update(dt)
-    if love.keyboard.isDown("b") then -- TODO: it should activate when touching with player
-        if not self.isPushed then
-            self:handlePushDown()
+    print(self.timerSwitchOff)
+    if self.isPushed and self.autoOff then
+        if self.timerSwitchOff < 0 then
+            self:handlePushUp()
+        else
+            self.timerSwitchOff = self.timerSwitchOff - dt
         end
-    -- else
-    --     if self.isPushed then
-    --         self:handlePushUp()
-    --     end
     end
     self.sprite:update(dt)
 end
 
 function Button:handlePushDown()
+    self.timerSwitchOff = self.delayToSwitchOff
     if not self.isPushed then
         self.isPushed = true
         self.sprite:setTag("down")
