@@ -10,6 +10,8 @@ Box = Class {
         PhysicsObject.init(self, x, y, 7, 7, 0, 20, 20, 0.5, hc, true, true)
 		self.additionalSpeed = Vector(0, 0)
 		self.direction = Vector(0, 0)
+        self.pushBack = 0
+        self.dropout = false
         self.pickUpVector = {
             Vector(3,4),
             Vector(3,4),
@@ -27,6 +29,7 @@ end
 
 function Box:unsetInteract()
     self.collider.mainCollider.layer = 'box'
+    self.dropout = false
 end
 
 function Box:draw()
@@ -40,6 +43,8 @@ function Box:setVelocityForFrame(dt)
     self:addSpeedInDirection(self.additionalSpeed, self.direction, dt)
     self.additionalSpeed = Vector(0, 0)
     self.direction = Vector(0, 0)
+    self.pushBack = self.deltaVector.x
+    self.dropout = math.abs(self.deltaVector.y) > 1
 end
 
 return Box

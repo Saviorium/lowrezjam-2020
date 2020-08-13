@@ -242,6 +242,11 @@ function Player:additionalCollide()
         end
         vector = vector + self.position - self.inHands.position + Vector( self.direction.x == -1 and (-1*(self.width+1)) or (self.width-2), 0)
         self.inHands:move(vector)
+        self:move(Vector(self.inHands.pushBack/2, 0))
+        if self.inHands.dropout then
+                self.inHands:unsetInteract()
+                self.inHands = nil
+        end
     end
     --Костыль отпускания кнопки F
     if (not love.keyboard.isDown(self.buttons["use"])) and self.fPressed then
