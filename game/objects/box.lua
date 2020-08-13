@@ -10,6 +10,14 @@ Box = Class {
         PhysicsObject.init(self, x, y, 7, 7, 0, 20, 20, 0.5, hc, true, true)
 		self.additionalSpeed = Vector(0, 0)
 		self.direction = Vector(0, 0)
+        self.pickUpVector = {
+            Vector(0,5),
+            Vector(0,5),
+            Vector(0,5),
+            Vector(0,4),
+            Vector(0,2),
+            Vector(0,0)
+        }
     end
 }
 

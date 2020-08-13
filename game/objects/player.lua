@@ -27,6 +27,9 @@ Player =
                         if player.sprite.tagName == "climb" then
                             player.sprite:setTag("jumpup")
                         end
+                        if player.sprite.tagName == "pickup" then
+                            player.sprite:setTag("hold")
+                        end
                     end,
                     self
                 )
@@ -132,11 +135,13 @@ end
 
 function Player:updateAnimation(dt)
     if self.inHands ~= nil then
-        if math.abs(self.speed.x) > 0 then
+        if self.sprite.tagName == "pickup" then
+
+        elseif math.abs(self.speed.x) > 0  and (self.sprite.tagName ~= "pickup") then
             if (self.sprite.tagName ~= "carry") then
                 self.sprite:setTag("carry")
             end
-        elseif (self.sprite.tagName ~= "hold") and self.speed.x == 0 then
+        elseif (self.sprite.tagName ~= "hold") and (self.sprite.tagName ~= "pickup") and self.speed.x == 0 then
             self.sprite:setTag("hold")
         end
     else
@@ -170,9 +175,9 @@ function Player:updateAnimation(dt)
     self.prevDirection = self.direction
     self.sprite:update(dt)
 
-        self.pushingBox = not (self.deltaVector.x == 0 and self.pushingBox)
-            self:updateArrow(dt)
-    end
+    self.pushingBox = not (self.deltaVector.x == 0 and self.pushingBox)
+    self:updateArrow(dt)
+end
 
 function Player:checkIfExited(mapPos, dt)
     local roomWidth, roomHeight = config.game.roomSize.x, config.game.roomSize.y
@@ -217,28 +222,33 @@ function Player:additionalCollide()
                     if object ~= nil and object.isInteractable then
                         object:setInteract()
                         if object.isDraggable then
+                            self.sprite:setTag("pickup")
                             self.inHands = object
                         end
                         break
                     end
                 end
             else
+                self.inHands:move(self.position - self.inHands.position + self.direction.x*Vector(self.width+3,0))
                 self.inHands:unsetInteract()
                 self.inHands = nil
             end
         end
     end
     if self.inHands ~= nil then
-        local vector
+        local vector = Vector(0,0)
+        if  self.sprite.tagName == "pickup" then
+            vector = vector + self.inHands.pickUpVector[self.sprite.frameIndex]
+        end
         if self.direction.x == -1 then
-            vector = self.position - self.inHands.position + Vector(-1*self.width-1,0)
+            vector = vector + self.position - self.inHands.position + Vector(-1*(self.width+1),0)
         else
-            vector = self.position - self.inHands.position + Vector(self.width-2,0)
+            vector = vector + self.position - self.inHands.position + Vector(self.width-2,0)
         end
         self.inHands:move(vector)
     end
     --Костыль отпускания кнопки F
-    if not love.keyboard.isDown(self.buttons["use"]) and self.fPressed then
+    if (not love.keyboard.isDown(self.buttons["use"])) and self.fPressed then
         self.fPressed = false
     end
 end
