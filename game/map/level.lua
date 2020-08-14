@@ -32,6 +32,7 @@ Level = Class {
         self.foregroundCanvas = love.graphics.newCanvas()
 
         self.backgroundTileMap = self.map.layers.background
+        self.backgroundColor = {0, 0, 0}
     end,
     buttons = {
         nextLayer = "q"
@@ -94,33 +95,37 @@ function Level:draw()
             layer.map:draw()
         end
 
-        
+        -- merge layers of foreground objects
         local activeRoomPos = self.layers[self.focusLayer].map.curentRoomPos -- room of player in focus
+        love.graphics.setCanvas(self.foregroundCanvas)
+        love.graphics.clear({0,0,0,0})
+        love.graphics.setBlendMode("screen", "premultiplied") -- mix colors, not redraw
+
+        self.backgroundColor[1], self.backgroundColor[2], self.backgroundColor[3] = 0, 0, 0
+        for layerName, layer in pairs(self.layers) do
+            if layer.map.curentRoomPos == activeRoomPos then -- draw only layers where player is in active room
+                love.graphics.setColor(layer.color)
+                love.graphics.draw(layer.canvas)
+                addColorsInPlace(self.backgroundColor, layer.color)
+            end
+        end
+
+        love.graphics.setBlendMode("alpha")
+        love.graphics.setColor(1, 1, 1)
+
         -- draw common background for level
         love.graphics.setCanvas(self.backgroundCanvas)
         love.graphics.draw(Images['city_background'].img)
         if self.backgroundTileMap then
-            love.graphics.push()
+                love.graphics.push()
+                love.graphics.setColor(self.backgroundColor)
                 love.graphics.translate(activeRoomPos.x, activeRoomPos.y)
                 self.map:drawLayer(self.backgroundTileMap)
             love.graphics.pop()
         end
 
-        -- merge layers of foreground objects
-        love.graphics.setCanvas(self.foregroundCanvas)
-        love.graphics.clear({0,0,0,0})
-        love.graphics.setBlendMode("screen", "premultiplied") -- mix colors, not redraw
-
-        for layerName, layer in pairs(self.layers) do
-            if layer.map.curentRoomPos == activeRoomPos then -- draw only layers where player is in active room
-                love.graphics.setColor(layer.color)
-                love.graphics.draw(layer.canvas)
-            end
-        end
-
         -- draw on main screen
         love.graphics.setCanvas(mainCanvas)
-        love.graphics.setBlendMode("alpha")
         love.graphics.setColor(1, 1, 1)
 
         love.graphics.draw(self.backgroundCanvas)
