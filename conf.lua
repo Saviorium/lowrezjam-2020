@@ -5,6 +5,14 @@ config = {
     },
     game = {
         roomSize = { x=64, y=64 }
+    },
+    controls = {
+        up = "w",
+        down = "s",
+        left = "a",
+        right = "d",
+        use = "f",
+        nextLayer = "q"
     }
 }
 function love.conf(t)

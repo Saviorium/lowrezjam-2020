@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "button_wall_0.aseprite",
+    "filename": "button_wall_hollow_0.aseprite",
     "frame": { "x": 0, "y": 0, "w": 6, "h": 8 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 100
    },
    {
-    "filename": "button_wall_1.aseprite",
+    "filename": "button_wall_hollow_1.aseprite",
     "frame": { "x": 7, "y": 0, "w": 6, "h": 8 },
     "rotated": false,
     "trimmed": false,
@@ -21,7 +21,7 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.21",
-  "image": "button_wall.png",
+  "image": "button_wall_hollow.png",
   "format": "I8",
   "size": { "w": 13, "h": 8 },
   "scale": "1",

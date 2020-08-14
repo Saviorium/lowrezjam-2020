@@ -23,15 +23,15 @@ Button = Class {
     end
 }
 
-function Button:setAutoOff(autoOff)
-    if autoOff == true then
-        self.sprite = Images:getNewPeachySprite("button_hollow")
-    else
-        self.sprite = Images:getNewPeachySprite("button")
-    end
+function Button:setSprite(spriteName)
+    self.sprite = Images:getNewPeachySprite(spriteName)
     self.sprite:setTag("up")
     self.sprite:play()
+end
+
+function Button:setAutoOff(autoOff)
     self.autoOff = autoOff
+    self:setSprite("button".. (autoOff and "_hollow" or ""))
 end
 
 function Button:setDelay(delay)

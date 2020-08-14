@@ -44,13 +44,7 @@ Player =
 
         self.hc = hc
 
-        self.buttons = {
-            up = "w",
-            down = "s",
-            left = "a",
-            right = "d",
-            use = "f"
-        }
+        self.buttons = config.controls
         self.hangCapWidth = 2
         self:registerCap()
 

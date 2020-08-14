@@ -3,6 +3,7 @@ Vector        = require "lib.hump.vector"
 PhysicsObject = require "game.physics.physics_object"
 Box           = require "game.objects.box"
 Button        = require "game.objects.button"
+Switch        = require "game.objects.switch"
 Door          = require "game.objects.door"
 Images        = require "resource.images"
 DialogWindow  = require "game.ui.dialog_window"
@@ -51,12 +52,16 @@ Map = Class {
                 newObject = Box(object.x, object.y, self.HC)
                 newObject.collider.mainCollider.layer = 'box'
             end
-            if object.type == "button" then
-                newObject = Button(object.x, object.y, self.HC)
-                newObject.collider.mainCollider.layer = 'button'
-                if object.properties.autooff then
-                    newObject:setAutoOff(true)
+            if object.type == "button" or object.type == "switch" then
+                if (object.type == "button") then
+                    newObject = Button(object.x, object.y, self.HC)
+                else
+                    newObject = Switch(object.x, object.y, self.HC)
                 end
+                newObject.collider.mainCollider.layer = 'button'
+
+                newObject:setAutoOff(object.properties.autooff == true)
+
                 if object.properties.delay and type(object.properties.delay) == "number" then
                     newObject:setDelay(object.properties.delay)
                 end

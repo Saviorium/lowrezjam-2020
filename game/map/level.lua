@@ -33,10 +33,7 @@ Level = Class {
 
         self.backgroundTileMap = self.map.layers.background
         self.backgroundColor = {0, 0, 0}
-    end,
-    buttons = {
-        nextLayer = "q"
-    }
+    end
 }
 
 function Level:addObject(id, obj)
@@ -48,7 +45,7 @@ function Level:linkObjects(idFrom, idTo, linkName)
 end
 
 function Level:keypressed(key)
-    if key == Level.buttons.nextLayer then
+    if key == config.controls.nextLayer then
         self:switchToNextLayer()
     end
 end
@@ -152,7 +149,6 @@ local function generateLayerColors(n)
     for i = 0, n-1, 1 do
         layers[string.char(string.byte("a")+i)] = hslToRgb(i/n, 1, 0.5, 1)
     end
-    vardump(layers)
     return layers
 end
 
