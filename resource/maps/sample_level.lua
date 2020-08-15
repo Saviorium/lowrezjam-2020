@@ -9,7 +9,7 @@ return {
   tilewidth = 8,
   tileheight = 8,
   nextlayerid = 26,
-  nextobjectid = 107,
+  nextobjectid = 108,
   properties = {},
   tilesets = {
     {
@@ -1400,7 +1400,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["autooff"] = true,
+                ["autooff"] = false,
                 ["group"] = "group1",
                 ["link_g"] = { id = 92 }
               }
@@ -1430,6 +1430,21 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 107,
+              name = "",
+              type = "button",
+              shape = "rectangle",
+              x = 64,
+              y = 48,
+              width = 8,
+              height = 8,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["autooff"] = true
+              }
             }
           }
         }

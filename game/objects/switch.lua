@@ -23,7 +23,7 @@ function Switch:update(dt)
     Button.update(self, dt)
 end
 
-function Switch:handlePushDown()
+function Switch:handleInteract()
     if not love.keyboard.isDown(self.useKey) or self.useKeyIsHeld then
         return
     end

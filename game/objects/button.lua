@@ -53,6 +53,10 @@ function Button:update(dt)
     self.sprite:update(dt)
 end
 
+function Button:handleInteract()
+    self:handlePushDown()
+end
+
 function Button:handlePushDown()
     self.timerSwitchOff = self.delayToSwitchOff
     if not self.isPushed then

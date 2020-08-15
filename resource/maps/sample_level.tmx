@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="16" tilewidth="8" tileheight="8" infinite="0" nextlayerid="26" nextobjectid="107">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="16" tilewidth="8" tileheight="8" infinite="0" nextlayerid="26" nextobjectid="108">
  <editorsettings>
   <export target="sample_level.lua" format="lua"/>
  </editorsettings>
@@ -197,13 +197,18 @@
    <object id="84" type="box" x="80" y="48" width="8" height="8"/>
    <object id="87" type="button" x="40" y="24" width="8" height="8">
     <properties>
-     <property name="autooff" type="bool" value="true"/>
+     <property name="autooff" type="bool" value="false"/>
      <property name="group" value="group1"/>
      <property name="link_g" type="object" value="92"/>
     </properties>
    </object>
    <object id="91" type="door" x="49" y="40" width="8" height="16"/>
    <object id="104" type="door" x="56" y="104" width="8" height="16"/>
+   <object id="107" type="button" x="64" y="48" width="8" height="8">
+    <properties>
+     <property name="autooff" type="bool" value="true"/>
+    </properties>
+   </object>
   </objectgroup>
  </group>
  <group id="17" name="r">

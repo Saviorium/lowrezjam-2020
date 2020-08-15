@@ -55,10 +55,11 @@ Map = Class {
             if object.type == "button" or object.type == "switch" then
                 if (object.type == "button") then
                     newObject = Button(object.x, object.y, self.HC)
+                    newObject.collider.mainCollider.layer = "button"
                 else
                     newObject = Switch(object.x, object.y, self.HC)
+                    newObject.collider.mainCollider.layer = "interactable"
                 end
-                newObject.collider.mainCollider.layer = 'button'
 
                 newObject:setAutoOff(object.properties.autooff == true)
 
@@ -132,6 +133,7 @@ function Map:initColliders()
             player     = ColliderLayer('player'),
             box        = ColliderLayer('box'),
             button     = ColliderLayer('button'),
+            interactable = ColliderLayer('interactable'),
             door       = ColliderLayer('door'),
             trigger    = ColliderLayer('trigger'),
             background_objects = ColliderLayer('background_objects'),
@@ -193,10 +195,13 @@ function Map:initColliders()
                 if not door.isOpen then box.deltaVector = box.deltaVector + delta end
             end)
 
-        self.collideObjects.button:registerRule('player',
-            function(button, player, delta)
-                button:handlePushDown()
-            end)
+        local interactCallback = function(interactable, player, delta)
+            interactable:handleInteract()
+        end
+
+        self.collideObjects.button:registerRule('box', interactCallback)
+        self.collideObjects.button:registerRule('player', interactCallback)
+        self.collideObjects.interactable:registerRule('player', interactCallback)
 
         self.collideObjects.trigger:registerRule('player',
             function(trigger, player, delta)
