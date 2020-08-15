@@ -38,6 +38,8 @@ function WindowManager:draw()
 			 			object.heigth)
 		elseif object.position == 'fixed' then
 			object:draw()
+		else 
+			object:draw()
 		end
 	end
 end
@@ -45,9 +47,7 @@ end
 -- Обработчик нажатия кнопки мыши на объекты
 function WindowManager:mousepressed(x, y)
 	for ind, object in pairs(self.objects) do
-        print(ind, object.x, object.width, object.y, object.height, object.tag, x, y)
 		if object:getCollision(x/config.graphics.scale, y/config.graphics.scale) then
-			print(object.tag)
 			if object.clickInteraction then 
 				object.clickInteraction(object)
 			end

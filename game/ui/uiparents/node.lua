@@ -7,11 +7,11 @@ UIobject = require "game.ui.uiparents.uiobject"
 
 Node = Class {
     __includes = UIobject,
-    init = function(self, x, y, tag)
+    init = function(self, x, y, tag, callback)
         UIobject.init(self, x, y, 0, 0, tag)
-        self.imageOfObject = love.graphics.newImage("assets/ship.png")
         self.printTag = true
         self.displayed = false
+        self.clickInteraction = callback
     end
 }
 -- Функция пересборки, смысл которой заключается в изменении Ноды под новые требования, например просто сжатие или убирание не влезающих объектов
@@ -29,27 +29,12 @@ function Node:render()
         local scaleX = 100/self.width
         local scaleY = 100/self.height
         love.graphics.rectangle("line", self.x, self.y, self.width, self.height )
-        if self.printTag then love.graphics.print(self.tag, self.x+10 * scaleX, self.y+(self.height*0.9),0, scaleX, scaleY) end
-        if self.drawImage then love.graphics.draw(self.imageOfObject, self.x+10*scaleX, self.y+5*scaleY, 0, scaleX, scaleY) end
+        if self.printTag then love.graphics.print(self.tag, self.x+1 * scaleX, self.y+(self.height*0.9),0, scaleX, scaleY) end
     end
 end
 
 function Node:hide()
     self.displayed = false
-end
-
-function Node:onDrag() -- Функция начала перетаскивания
-    self.state = "dragged"
-    self.dragCursorX = self.x - love.mouse.getX()
-    self.dragCursorY = self.y - love.mouse.getY()
-    self.startX = self.x
-    self.startY = self.y
-end
-
-function Node:onDrop()-- Функция конца перетаскивания
-    self.state = "dropped"
-    self.x = self.startX
-    self.y = self.startY
 end
 
 return Node

@@ -13,7 +13,7 @@ local Button = Class {
 
 function Button:render()
     love.graphics.rectangle("line", self.x, self.y, self.width, self.height )
-    love.graphics.print(self.tag,self.x+self.width/2, self.y+self.height/2)
+    love.graphics.print(self.tag,self.x+1, self.y+1)
 end
 
 function Button.defaultCallback(self)

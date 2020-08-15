@@ -4,18 +4,36 @@ Button_ui = require "game.ui.button"
 
 UIcontainer = Class {
     init = function(self, x, y, width, height, columns, rows, margin)
-        self.x = x and x or 100
-        self.y = y and y or 100
+        self.x = x 
+        self.y = y 
         self.width = (width and width or love.graphics.getWidth( ))
-        self.height = (height and height or love.graphics.getHeight( )) - 100
+        print(self.width)
+        self.height = (height and height or love.graphics.getHeight( ))
+        print(self.height)
         self.nodes = {}
         self.columns = columns and columns or 2
         self.rows = rows and rows or 5
         self.margin = margin and margin or 10
         self.currPage = 1
 
-        self.toolBar = { buttonLeft =  Button_ui(self.x, self.y + self.height + self.margin, function(container) container:changePage(-1) print('left') end , 'Left'),
-                         buttonRight = Button_ui(self.x + self.width-100, self.y + self.height + self.margin, function(container) container:changePage(1) print('right')end, 'Right')    
+        self.toolBar = { buttonLeft =  Button_ui(self.x, 
+                                                self.y + self.height + self.margin, 
+                                                16,
+                                                10,
+                                                 function(container) 
+                                                    container:changePage(-1) 
+                                                    print('left')
+                                                end , 
+                                                'Left'),
+                         buttonRight = Button_ui(self.x + self.width-100, 
+                                                self.y + self.height + self.margin, 
+                                                16,
+                                                10,
+                                                function(container) 
+                                                    container:changePage(1) 
+                                                    print('right')
+                                                end, 
+                                                'Right')    
                        }
     end
 }
