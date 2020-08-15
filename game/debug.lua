@@ -2,7 +2,8 @@ Debug = {
     DrawDebugForPlayer = 0,
     DrawDebugForMapPiece = 0,
     DrawDebugColliders = 0,
-    LogEvents = 0
+    LogEvents = 0,
+    LogLevelNames = 1
 }
 
 -- usage: vardump(x1, test, myVar) or vardump({ship = self, dt = dt})

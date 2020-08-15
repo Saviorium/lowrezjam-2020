@@ -7,6 +7,9 @@ local sti     = require "lib/sti"
 
 Level = Class {
     init = function(self, name)
+        if Debug and Debug.LogLevelNames == 1 then
+            print("Switched to level "..name)
+        end
         local level = LEVELS[name]
         if not level then
             print("No such level: " .. name)
