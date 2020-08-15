@@ -27,6 +27,10 @@ end
 
 function game:draw()
     self.level:draw()
+    if Debug and Debug.ShowFps == 1 then
+        love.graphics.setFont(Fonts.thin.font)
+        love.graphics.print(""..tostring(love.timer.getFPS( )), 1, config.graphics.resolution.y-7)
+    end
 end
 
 function game:update(dt)
