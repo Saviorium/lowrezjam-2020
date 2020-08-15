@@ -9,6 +9,7 @@ local game = {}
 
 function game:enter(prev_state, level)
     self.level = Level(level)
+    self.levelName = level
 end
 
 function game:mousepressed(x, y)
@@ -18,6 +19,9 @@ function game:mousereleased(x, y)
 end
 
 function game:keypressed(key)
+    if key == "r" then
+        self.level = Level(self.levelName)
+    end
     self.level:keypressed(key)
 end
 

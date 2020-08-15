@@ -54,9 +54,6 @@ function love.mousereleased(x, y)
 end
 
 function love.keypressed(key)
-    if key == "r" then
-        StateManager.switch(states.game, 'fourth_level')
-    end
     if key == "1" or key == "2" or key == "3" or key == "4" or key == "5" then
         local scaleFactor = math.pow(2, tonumber(key) - 1)
         setScale(scaleFactor)

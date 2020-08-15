@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 8,
-  nextobjectid = 53,
+  nextobjectid = 54,
   properties = {},
   tilesets = {
     {
@@ -296,22 +296,6 @@ return {
                 ["target"] = "third_level",
                 ["type"] = "exit"
               }
-            },
-            {
-              id = 49,
-              name = "",
-              type = "trigger",
-              shape = "rectangle",
-              x = 255,
-              y = 168,
-              width = 1.09091,
-              height = 19.6364,
-              rotation = 0,
-              visible = true,
-              properties = {
-                ["target"] = "third_level",
-                ["type"] = "exit"
-              }
             }
           }
         },
@@ -566,9 +550,9 @@ return {
               type = "",
               shape = "rectangle",
               x = 240,
-              y = 120,
+              y = 152,
               width = 4,
-              height = 52,
+              height = 36,
               rotation = 0,
               visible = true,
               properties = {}
@@ -580,8 +564,8 @@ return {
               shape = "rectangle",
               x = 244,
               y = 152,
-              width = 8,
-              height = 3,
+              width = 12,
+              height = 4,
               rotation = 0,
               visible = true,
               properties = {}
@@ -751,6 +735,19 @@ return {
               y = 96,
               width = 1,
               height = 24,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 53,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 240,
+              y = 120,
+              width = 4,
+              height = 16,
               rotation = 0,
               visible = true,
               properties = {}
