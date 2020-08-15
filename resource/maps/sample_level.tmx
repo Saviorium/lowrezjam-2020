@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="16" tilewidth="8" tileheight="8" infinite="0" nextlayerid="26" nextobjectid="108">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="16" tilewidth="8" tileheight="8" infinite="0" nextlayerid="26" nextobjectid="112">
  <editorsettings>
   <export target="sample_level.lua" format="lua"/>
  </editorsettings>
@@ -121,7 +121,7 @@
      <property name="link_door" type="object" value="106"/>
     </properties>
    </object>
-   <object id="105" type="door" x="64" y="104" width="8" height="16"/>
+   <object id="105" type="door" x="56" y="104" width="8" height="16"/>
    <object id="106" type="door" x="56" y="80" width="8" height="16"/>
   </objectgroup>
  </group>
@@ -203,10 +203,21 @@
     </properties>
    </object>
    <object id="91" type="door" x="49" y="40" width="8" height="16"/>
-   <object id="104" type="door" x="56" y="104" width="8" height="16"/>
+   <object id="104" type="door" x="52" y="104" width="8" height="16"/>
    <object id="107" type="button" x="64" y="48" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>
+    </properties>
+   </object>
+   <object id="109" type="button" x="80" y="112" width="8" height="8">
+    <properties>
+     <property name="autooff" type="bool" value="false"/>
+     <property name="link_doortoggle" type="object" value="110"/>
+    </properties>
+   </object>
+   <object id="110" type="door" x="96" y="104" width="8" height="16">
+    <properties>
+     <property name="toggle" type="bool" value="true"/>
     </properties>
    </object>
   </objectgroup>
@@ -293,6 +304,12 @@
    </object>
    <object id="90" type="door" x="49" y="40" width="8" height="16"/>
    <object id="103" type="door" x="48" y="104" width="8" height="16"/>
+   <object id="108" type="button" x="72" y="112" width="8" height="8">
+    <properties>
+     <property name="autooff" type="bool" value="true"/>
+     <property name="link_doortoggle" type="object" value="110"/>
+    </properties>
+   </object>
   </objectgroup>
  </group>
 </map>

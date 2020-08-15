@@ -9,7 +9,7 @@ return {
   tilewidth = 8,
   tileheight = 8,
   nextlayerid = 26,
-  nextobjectid = 108,
+  nextobjectid = 112,
   properties = {},
   tilesets = {
     {
@@ -976,7 +976,7 @@ return {
               name = "",
               type = "door",
               shape = "rectangle",
-              x = 64,
+              x = 56,
               y = 104,
               width = 8,
               height = 16,
@@ -1423,7 +1423,7 @@ return {
               name = "",
               type = "door",
               shape = "rectangle",
-              x = 56,
+              x = 52,
               y = 104,
               width = 8,
               height = 16,
@@ -1444,6 +1444,37 @@ return {
               visible = true,
               properties = {
                 ["autooff"] = true
+              }
+            },
+            {
+              id = 109,
+              name = "",
+              type = "button",
+              shape = "rectangle",
+              x = 80,
+              y = 112,
+              width = 8,
+              height = 8,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["autooff"] = false,
+                ["link_doortoggle"] = { id = 110 }
+              }
+            },
+            {
+              id = 110,
+              name = "",
+              type = "door",
+              shape = "rectangle",
+              x = 96,
+              y = 104,
+              width = 8,
+              height = 16,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["toggle"] = true
               }
             }
           }
@@ -1892,6 +1923,22 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 108,
+              name = "",
+              type = "button",
+              shape = "rectangle",
+              x = 72,
+              y = 112,
+              width = 8,
+              height = 8,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["autooff"] = true,
+                ["link_doortoggle"] = { id = 110 }
+              }
             }
           }
         }

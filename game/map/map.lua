@@ -5,6 +5,7 @@ Box           = require "game.objects.box"
 Button        = require "game.objects.button"
 Switch        = require "game.objects.switch"
 Door          = require "game.objects.door"
+DoorToggle    = require "game.objects.door_toggle"
 Images        = require "resource.images"
 DialogWindow  = require "game.ui.dialog_window"
 Trigger  = require "game.links.trigger"
@@ -78,7 +79,11 @@ Map = Class {
             end
 
             if object.type == "door" then
-                newObject = Door(object.x, object.y, self.HC)
+                if object.properties.toggle then
+                    newObject = DoorToggle(object.x, object.y, self.HC)
+                else
+                    newObject = Door(object.x, object.y, self.HC)
+                end
                 newObject.collider.mainCollider.layer = 'door'
             end
 
