@@ -173,8 +173,8 @@ LEVELS = {
     first_level = {a = {1, 1, 1}},
     second_level = {a = {1, 1, 1}},
     third_level = {a = {1, 1, 1}},
-    fourth_level = {first = {1, 1, 0}, second = {0, 1, 1}},
-    fifth_level = {first = {1, 1, 0}, second = {0, 1, 1}},
+    fourth_level = {first = {1, 0.625, 0}, second = {0, 0.375, 1}},
+    fifth_level = {first = {1, 0.625, 0}, second = {0, 0.375, 1}},
     sample_level = {r = {1, 0, 0}, g = {0, 1, 0}, b = {0, 0, 1}},
     rainbow_test = generateLayerColors(8)
 }

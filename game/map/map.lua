@@ -80,7 +80,7 @@ Map = Class {
                 if object.properties.toggle then
                     newObject = DoorToggle(object.x, object.y, self.HC)
                 else
-                    newObject = Door(object.x, object.y, self.HC)
+                    newObject = Door(object.x, object.y, object.width, object.height, self.HC)
                 end
                 newObject.collider.mainCollider.layer = 'door'
             end
