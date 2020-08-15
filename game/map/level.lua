@@ -149,10 +149,19 @@ function Level:update(dt)
     end
 end
 
-local function generateLayerColors(n)
+local function generateLayerColors(n, initialShift, layerNames)
     local layers = {}
+    if not initialShift then
+        initialShift = 0
+    end
+    local color = nil
     for i = 0, n-1, 1 do
-        layers[string.char(string.byte("a")+i)] = hslToRgb(i/n, 1, 0.5, 1)
+        color = hslToRgb(math.fmod(initialShift+i/n, 1), 1, 0.5, 1)
+        if not layerNames then
+            layers[string.char(string.byte("a")+i)] = color
+        else
+            layers[layerNames[i+1]] = color
+        end
     end
     return layers
 end
@@ -173,10 +182,10 @@ LEVELS = {
     first_level = {a = {1, 1, 1}},
     second_level = {a = {1, 1, 1}},
     third_level = {a = {1, 1, 1}},
-    fourth_level = {first = {1, 0.625, 0}, second = {0, 0.375, 1}},
-    fifth_level = {first = {1, 0.625, 0}, second = {0, 0.375, 1}},
-    sample_level = {r = {1, 0, 0}, g = {0, 1, 0}, b = {0, 0, 1}},
-    rainbow_test = generateLayerColors(8)
+    fourth_level = generateLayerColors(2, 0.1666667, {"first", "second"}),
+    fifth_level = generateLayerColors(2, 0.1666667, {"first", "second"}),
+    sample_level = generateLayerColors(3, 0, {"r", "g", "b"}),
+    rainbow_test = generateLayerColors(2, 0.1666667)
 }
 
 return Level
