@@ -55,9 +55,7 @@ Map = Class {
             end
             if object.type == "button" or object.type == "switch" then
                 if (object.type == "button") then
-                    print('Help1')
                     newObject = Button(object.x, object.y, self.HC)
-                    print('Help2')
                     newObject.collider.mainCollider.layer = "button"
                 else
                     newObject = Switch(object.x, object.y, self.HC)

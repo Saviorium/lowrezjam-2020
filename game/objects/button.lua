@@ -18,7 +18,6 @@ local Button = Class {
         self.width = 4
         self.height = 2
         self.collider = { mainCollider = hc:rectangle(self.position.x, self.position.y, self.width, self.height)}
-        print(self.collider.mainCollider)
         EventSender.init(self)
     end
 }
