@@ -1,7 +1,6 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 EventSender = require "game.links.event_sender"
-Images = require "resource.images"
 
 Button = Class {
     __includes = EventSender,

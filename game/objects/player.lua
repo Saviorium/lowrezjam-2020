@@ -1,7 +1,6 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 PhysicsObject = require "game.physics.physics_object"
-Images = require "resource.images"
 
 Player =
     Class {
@@ -204,7 +203,6 @@ function Player:additionalCollide()
             self.isHanging = self.deltaVectorCap.y < -self.minGroundNormal and self.speed.y >= 0
         end
     end
-    --print(self.deltaVector)
     --Персонаж может взять что-то в руки, если он не висит
     if self.collider.interactionCollider then
         if love.keyboard.isDown(self.buttons["use"]) and self.fPressed == false and self.isHanging == false then

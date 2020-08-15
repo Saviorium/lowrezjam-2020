@@ -1,12 +1,16 @@
 StateManager = require "lib.hump.gamestate"
 PixelCanvas = require "game.pixel_canvas"
+Images = require "resource.images"
+
 require "conf"
 require "game.utils"
 
 Debug = require "game.debug"
 serpent = require "lib.debug.serpent"
 states = {
-    game = require "game.states.game"
+    titleScreen = require "game.states.title_screen",
+    menu = require "game.states.menu",
+    game = require "game.states.game",
 }
 
 strings = {""}
@@ -20,7 +24,8 @@ function love.load()
     maxScale = getMaxScale()
     mainCanvas = PixelCanvas(config.graphics.resolution.x, config.graphics.resolution.y, config.graphics.scale)
     setScale(config.graphics.scale)
-    StateManager.switch(states.game, 'fourth_level')
+    -- StateManager.switch(states.titleScreen)
+    StateManager.switch(states.game, 'first_level')
 end
 
 function love.draw()

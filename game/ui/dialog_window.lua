@@ -1,6 +1,5 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
-Images = require "resource.images"
 
 DialogWindow =
     Class {
