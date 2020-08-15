@@ -6,22 +6,22 @@ tracks.list_of_sounds = {
 	jump = { filepath = "resource/music/sounds/jump.wav",
 			   loopPoint = 0,
 			   bpm = 160,
-			   volume = 0.01
+			   volume = 0.1
 			 },
 	dropdown = { filepath = "resource/music/sounds/dropdown.wav",
 			   loopPoint = 0,
 			   bpm = 160,
-			   volume = 0.01
+			   volume = 0.1
 			 },
 	buttonSelect = { filepath = "resource/music/sounds/button_select.wav",
 			   loopPoint = 0,
 			   bpm = 160,
-			   volume = 0.01
+			   volume = 0.1
 			 },
 	boxDrag = { filepath = "resource/music/sounds/box_drag.wav",
 			   loopPoint = 0,
 			   bpm = 160,
-			   volume = 0.01
+			   volume = 0.1
 			 },
 }
 

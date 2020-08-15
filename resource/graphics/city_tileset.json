@@ -1,11 +1,11 @@
 { "frames": [
    {
     "filename": "city_tileset_0.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 64, "h": 64 },
+    "frame": { "x": 0, "y": 0, "w": 64, "h": 88 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 64 },
-    "sourceSize": { "w": 64, "h": 64 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 88 },
+    "sourceSize": { "w": 64, "h": 88 },
     "duration": 100
    }
  ],
@@ -14,7 +14,7 @@
   "version": "1.2.21",
   "image": "city_tileset.png",
   "format": "I8",
-  "size": { "w": 64, "h": 64 },
+  "size": { "w": 64, "h": 88 },
   "scale": "1",
   "frameTags": [
   ],

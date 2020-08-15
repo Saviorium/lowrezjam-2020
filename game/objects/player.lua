@@ -7,7 +7,7 @@ Player =
     Class {
     __includes = PhysicsObject,
     init = function(self, x, y, hc)
-        PhysicsObject.init(self, x, y, 11, 5, 30, 5, 0.8, 0.5, hc)
+        PhysicsObject.init(self, x, y, 12, 5, 30, 5, 0.85, 0.5, hc)
 
         self.direction = Vector(1, 1)
         self.prevDirection = self.direction

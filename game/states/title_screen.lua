@@ -20,7 +20,7 @@ function TitleScreen:update(dt)
 	if self.timer < 2 then
 		self.timer = self.timer + dt
 	else
-    	StateManager.switch(states.menu)
+    	StateManager.switch(states.game, 'first_level')
 	end
 end
 
