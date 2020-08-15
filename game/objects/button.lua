@@ -1,6 +1,7 @@
-Class = require "lib.hump.class"
-Vector = require "lib.hump.vector"
-EventSender = require "game.links.event_sender"
+Class           = require "lib.hump.class"
+Vector          = require "lib.hump.vector"
+EventSender     = require "game.links.event_sender"
+tracks          = require "resource/tracks"
 
 local Button = Class {
     __includes = EventSender,
@@ -61,6 +62,7 @@ function Button:handlePushDown()
     if not self.isPushed then
         self.isPushed = true
         self.sprite:setTag("down")
+        tracks.play_sound( tracks.list_of_sounds.buttonSelect )
         if self.group then
             self:handleGroupDown()
         else

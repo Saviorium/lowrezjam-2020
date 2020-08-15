@@ -1,5 +1,6 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
+tracks  = require "resource/tracks"
 
 PhysicsObject = Class {
     init = function(self, x, y, height, width, acceleration, slowDownSpeed, jumpSpeed, maxSpeed, hc, interactable, draggable)
@@ -88,6 +89,9 @@ function PhysicsObject:calcAllCollisionsResult()
         self.speed.y = (self.speed.y < 0 or self.deltaVector.y < 0) and 0 or self.speed.y
         self:move(Vector(0,self.deltaVector.y/2))
         self.isGrounded = self.deltaVector.y < -self.minGroundNormal
+        if self.isGrounded then
+            tracks.play_sound( tracks.list_of_sounds.dropdown )
+        end
     end
     
     if math.abs(self.deltaVector.y) < self.minGroundNormal and self.isGrounded then

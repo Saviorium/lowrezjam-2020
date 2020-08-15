@@ -1,5 +1,6 @@
-Class = require "lib.hump.class"
+Class    = require "lib.hump.class"
 UIobject = require "game.ui.uiparents.uiobject"
+tracks   = require "resource/tracks"
 
 -- Кнопка, умеет нажиматься и писать при этом в лог, все кнопки по хорошему должны наследоваться от этого класса и накидывать кастомные действия и картинки
 local Button = Class {

@@ -1,6 +1,7 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 PhysicsObject = require "game.physics.physics_object"
+tracks          = require "resource/tracks"
 
 Player =
     Class {
@@ -71,6 +72,7 @@ function Player:setVelocityForFrame(dt)
         moveDirection.y = -1
         self.isGrounded = false
         self:turnCapCollider(self.direction)
+        tracks.play_sound( tracks.list_of_sounds.jump )
     elseif love.keyboard.isDown(self.buttons["down"]) and (self.canJumpDown or self.isHanging) then
         self:disableCapCollider()
         self.isHanging = false
