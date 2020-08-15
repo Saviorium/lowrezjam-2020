@@ -174,6 +174,7 @@ LEVELS = {
     second_level = {a = {1, 1, 1}},
     third_level = {a = {1, 1, 1}},
     fourth_level = {r = {1, 0, 0}, g = {0, 1, 0}, b = {0, 0, 1}},
+    fifth_level = {r = {1, 0, 0}, g = {0, 1, 0}, b = {0, 0, 1}},
     sample_level = {r = {1, 0, 0}, g = {0, 1, 0}, b = {0, 0, 1}},
     rainbow_test = generateLayerColors(8)
 }

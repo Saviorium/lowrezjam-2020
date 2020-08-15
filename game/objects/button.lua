@@ -2,10 +2,11 @@ Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 EventSender = require "game.links.event_sender"
 
-Button = Class {
+local Button = Class {
     __includes = EventSender,
     init = function(self, x, y, hc)
         self.position = Vector( x, y )
+        print('Help')
 
         self:setAutoOff(false)
 
@@ -16,8 +17,8 @@ Button = Class {
 
         self.width = 4
         self.height = 2
-        self.collider = { mainCollider = hc:rectangle(self.position.x+2, self.position.y+6, self.width, self.height)}
-
+        self.collider = { mainCollider = hc:rectangle(self.position.x, self.position.y, self.width, self.height)}
+        print(self.collider.mainCollider)
         EventSender.init(self)
     end
 }

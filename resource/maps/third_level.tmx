@@ -159,7 +159,7 @@
    <object id="116" x="180" y="96" width="76" height="4"/>
    <object id="117" x="184" y="92" width="72" height="4"/>
    <object id="118" x="176" y="100" width="4" height="8"/>
-   <object id="119" x="48" y="32" width="1" height="24"/>
+   <object id="119" x="48" y="28" width="1" height="28"/>
    <object id="120" x="168" y="56" width="60" height="4"/>
    <object id="121" type="jumpable" x="152" y="56" width="16" height="3"/>
    <object id="122" type="jumpable" x="152" y="68" width="16" height="3"/>

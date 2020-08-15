@@ -5,7 +5,6 @@ Switch = Class {
     __includes = Button,
     init = function(self, x, y, hc)
         Button.init(self, x, y, hc)
-
         self.useKeyIsHeld = false
     end,
     useKey = config.controls.use

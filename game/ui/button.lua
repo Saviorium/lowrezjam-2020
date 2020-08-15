@@ -2,7 +2,7 @@ Class = require "lib.hump.class"
 UIobject = require "game.ui.uiparents.uiobject"
 
 -- Кнопка, умеет нажиматься и писать при этом в лог, все кнопки по хорошему должны наследоваться от этого класса и накидывать кастомные действия и картинки
-Button = Class {
+local Button = Class {
     __includes = UIobject,
     init = function(self, x, y, width, height, callback, tag)
         UIobject.init(self, x, y, width, height, tag)

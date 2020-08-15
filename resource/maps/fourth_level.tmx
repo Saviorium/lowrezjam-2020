@@ -512,7 +512,7 @@
    <object id="750" x="44" y="120" width="32" height="4"/>
    <object id="752" x="0" y="188" width="448" height="4"/>
    <object id="753" x="240" y="120" width="4" height="52"/>
-   <object id="754" x="240" y="96" width="1" height="24"/>
+   <object id="754" x="240" y="92" width="1" height="28"/>
    <object id="755" x="244" y="152" width="8" height="3"/>
    <object id="756" x="264" y="168" width="16" height="4"/>
    <object id="757" x="244" y="120" width="100" height="4"/>
