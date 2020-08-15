@@ -78,9 +78,9 @@ Map = Class {
 
             if object.type == "door" then
                 if object.properties.toggle then
-                    newObject = DoorToggle(object.x, object.y, self.HC)
+                    newObject = DoorToggle(self.HC, object.x, object.y, object.properties.left)
                 else
-                    newObject = Door(object.x, object.y, object.width, object.height, self.HC)
+                    newObject = Door(self.HC, object.x, object.y, object.properties.left)
                 end
                 newObject.collider.mainCollider.layer = 'door'
             end
@@ -106,7 +106,11 @@ Map = Class {
             end
 
             if newObject then
-                table.insert(self.objects, newObject)
+                if object.type == "player" then
+                    self.objects[999999] = newObject -- z draw index workaround ╮(￣ω￣;)╭
+                else
+                    table.insert(self.objects, newObject)
+                end
                 self.level:addObject(object.id, newObject)
             end
 

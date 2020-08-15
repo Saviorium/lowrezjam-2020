@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "door_city_0.aseprite",
+    "filename": "door_city_left_0.aseprite",
     "frame": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 100
    },
    {
-    "filename": "door_city_1.aseprite",
+    "filename": "door_city_left_1.aseprite",
     "frame": { "x": 17, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -21,7 +21,7 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.21",
-  "image": "door_city.png",
+  "image": "door_city_left.png",
   "format": "I8",
   "size": { "w": 33, "h": 16 },
   "scale": "1",

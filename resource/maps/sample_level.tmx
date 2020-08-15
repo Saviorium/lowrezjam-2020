@@ -83,7 +83,7 @@
      <property name="test" value="test"/>
     </properties>
    </object>
-   <object id="92" type="door" x="49" y="40" width="8" height="16"/>
+   <object id="92" type="door" x="49" y="40" width="4" height="16"/>
    <object id="97" type="switch" x="18" y="111" width="4" height="4">
     <properties>
      <property name="autooff" type="bool" value="true"/>
@@ -121,8 +121,8 @@
      <property name="link_door" type="object" value="106"/>
     </properties>
    </object>
-   <object id="105" type="door" x="56" y="104" width="8" height="16"/>
-   <object id="106" type="door" x="56" y="80" width="8" height="16"/>
+   <object id="105" type="door" x="56" y="104" width="4" height="16"/>
+   <object id="106" type="door" x="56" y="80" width="4" height="16"/>
   </objectgroup>
  </group>
  <group id="18" name="g">
@@ -202,8 +202,12 @@
      <property name="link_g" type="object" value="92"/>
     </properties>
    </object>
-   <object id="91" type="door" x="49" y="40" width="8" height="16"/>
-   <object id="104" type="door" x="52" y="104" width="8" height="16"/>
+   <object id="91" type="door" x="49" y="40" width="4" height="16"/>
+   <object id="104" type="door" x="52" y="104" width="4" height="16">
+    <properties>
+     <property name="left" type="bool" value="true"/>
+    </properties>
+   </object>
    <object id="107" type="button" x="64" y="48" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>
@@ -215,7 +219,7 @@
      <property name="link_doortoggle" type="object" value="110"/>
     </properties>
    </object>
-   <object id="110" type="door" x="96" y="104" width="8" height="16">
+   <object id="110" type="door" x="96" y="104" width="4" height="16">
     <properties>
      <property name="toggle" type="bool" value="true"/>
     </properties>
@@ -302,8 +306,8 @@
      <property name="link_r" type="object" value="90"/>
     </properties>
    </object>
-   <object id="90" type="door" x="49" y="40" width="8" height="16"/>
-   <object id="103" type="door" x="48" y="104" width="8" height="16"/>
+   <object id="90" type="door" x="49" y="40" width="4" height="16"/>
+   <object id="103" type="door" x="48" y="104" width="4" height="16"/>
    <object id="108" type="button" x="72" y="112" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>

@@ -3,8 +3,8 @@ Door = require "game.objects.door"
 
 DoorToggle = Class {
     __includes = Door,
-    init = function(self, x, y, hc)
-        Door.init(self, x, y, hc)
+    init = function(self, hc, x, y, leftSide)
+        Door.init(self, hc, x, y, leftSide)
     end
 }
 

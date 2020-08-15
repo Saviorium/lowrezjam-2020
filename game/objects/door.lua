@@ -5,10 +5,14 @@ Images = require "resource.images"
 
 Door = Class {
     __includes = EventReciever,
-    init = function(self, x, y, width, height, hc)
+    init = function(self, hc, x, y, leftSide)
         self.position = Vector( x, y )
 
-        self.sprite = Images:getNewPeachySprite("door")
+        if leftSide then
+            self.sprite = Images:getNewPeachySprite("door_city_left")
+        else
+            self.sprite = Images:getNewPeachySprite("door_city")
+        end
         self.sprite:setTag("closed")
         self.sprite:play()
 
@@ -16,9 +20,9 @@ Door = Class {
 
         self.isOpen = false
 
-        self.width = width
-        self.height = height
-        self.collider = { mainCollider = hc:rectangle(self.position.x, self.position.y + self.height - 8, self.width, self.height)}
+        self.width = 4
+        self.height = 16
+        self.collider = { mainCollider = hc:rectangle(self.position.x, self.position.y, self.width, self.height)}
 
         EventReciever.init(self)
     end
@@ -39,7 +43,7 @@ function Door:handleEventDeactivate()
 end
 
 function Door:draw()
-    self.sprite:draw(self.position.x, self.position.y)
+    self.sprite:draw(self.position.x-6, self.position.y)
 end
 
 return Door
