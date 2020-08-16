@@ -1,12 +1,12 @@
 local scenario = {}
 
-table.insert(scenario, { 	leftPerson = 'green', leftPersonSprite = "neutral",
-						 	rightPerson = 'red', rightPersonSprite = "neutral",
+table.insert(scenario, { 	leftPerson = 'green', leftPersonSprite = "ugh",
+						 	rightPerson = 'red', rightPersonSprite = "hmm",
 						 	whoTalks = 'left',
 						 	text = 'Oh nice! Now there are three of us!',
 						})
-table.insert(scenario, { 	leftPerson = 'green', leftPersonSprite = "neutral",
-						 	rightPerson = 'red', rightPersonSprite = "neutral",
+table.insert(scenario, { 	leftPerson = 'green', leftPersonSprite = "ugh",
+						 	rightPerson = 'red', rightPersonSprite = "hmm",
 						 	whoTalks = 'right',
 						 	text = 'Goddamn photo! It"s going worse and worse!',
 						})
