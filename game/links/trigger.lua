@@ -1,21 +1,32 @@
 Class = require "lib.hump.class"
 
 Trigger = Class {
-    init = function(self, type, target, level, hc, x, y, width, height) --conditionFunction, triggerFunction, name)
+    init = function(self, type, target, isSyncable, level, hc, x, y, width, height) --conditionFunction, triggerFunction, name)
         self.position = Vector( x, y )
         -- self.name = name
         self.conditionFunction = self.defaultCondition
         self.level = level
         self.type = type
+        self.isSyncable = isSyncable and isSyncable or true
         if type == 'exit' then
             self.triggerFunction = function(level)
-                if self:isPlayerInSync() then
+                if self.isSyncable then
+                    if self:isPlayerInSync() then
+                        StateManager.switch(states.game, target)
+                    end
+                else
                     StateManager.switch(states.game, target)
                 end
             end
         elseif type == 'dialog' then
             self.triggerFunction = function(level)
-                level.dialog = DialogWindow(target)
+                if self.isSyncable then
+                    if self:isPlayerInSync() then
+                        level.dialog = DialogWindow(target)
+                    end
+                else
+                    level.dialog = DialogWindow(target)
+                end
             end
         end
         self.enabled = true

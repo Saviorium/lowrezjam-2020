@@ -89,16 +89,19 @@ Map = Class {
             end
 
             if object.type == "trigger" then
-                local triggerType, triggerTarget
+                local triggerType, triggerTarget, triggerSync
                 for propertyName, property in pairs(object.properties) do
                     if propertyName == 'type' then
                        triggerType = property
                     elseif propertyName == 'target' then
                        triggerTarget = property
+                    elseif propertyName == 'need_sync' then
+                       triggerSync = property
                     end
                 end
                 newObject = Trigger(triggerType, 
                                     triggerTarget, 
+                                    triggerSync,
                                     self.level,
                                     self.HC,
                                     object.x,

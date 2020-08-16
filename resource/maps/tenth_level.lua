@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 58,
-  nextobjectid = 266,
+  nextobjectid = 270,
   properties = {},
   tilesets = {
     {
@@ -546,7 +546,7 @@ return {
       type = "group",
       id = 5,
       name = "r",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -1183,6 +1183,23 @@ return {
                 ["link_"] = { id = 226 },
                 ["link_1"] = { id = 224 }
               }
+            },
+            {
+              id = 267,
+              name = "",
+              type = "trigger",
+              shape = "rectangle",
+              x = 71,
+              y = 98,
+              width = 1,
+              height = 22,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["need_sync"] = true,
+                ["target"] = "dialog",
+                ["type"] = "8"
+              }
             }
           }
         },
@@ -1401,7 +1418,7 @@ return {
       type = "group",
       id = 48,
       name = "b",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,

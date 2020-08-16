@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="48" height="32" tilewidth="4" tileheight="4" infinite="0" nextlayerid="58" nextobjectid="266">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="48" height="32" tilewidth="4" tileheight="4" infinite="0" nextlayerid="58" nextobjectid="270">
  <editorsettings>
   <export target="tenth_level.lua" format="lua"/>
  </editorsettings>
@@ -44,7 +44,7 @@
 100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100
 </data>
  </layer>
- <group id="5" name="r" visible="0">
+ <group id="5" name="r">
   <layer id="1" name="background" width="48" height="32">
    <data encoding="csv">
 280,279,295,312,311,263,312,311,264,280,311,263,280,280,264,296,295,296,263,295,312,296,263,279,280,279,279,311,279,263,295,263,264,295,263,295,279,296,264,263,295,279,263,264,263,295,263,279,
@@ -269,6 +269,13 @@
      <property name="link_1" type="object" value="224"/>
     </properties>
    </object>
+   <object id="267" type="trigger" x="71" y="98" width="1" height="22">
+    <properties>
+     <property name="need_sync" type="bool" value="true"/>
+     <property name="target" value="8"/>
+     <property name="type" value="dialog"/>
+    </properties>
+   </object>
   </objectgroup>
   <objectgroup id="57" name="solid">
    <object id="228" x="8" y="40">
@@ -287,7 +294,7 @@
    <object id="265" type="jumpable" x="100" y="96" width="8" height="4"/>
   </objectgroup>
  </group>
- <group id="48" name="b" visible="0">
+ <group id="48" name="b">
   <layer id="49" name="background" width="48" height="32">
    <data encoding="csv">
 280,279,295,312,311,263,312,311,264,280,311,263,280,280,264,296,295,296,263,295,312,296,263,279,280,279,279,311,279,263,295,263,264,295,263,295,279,296,264,263,295,279,263,264,263,295,263,279,
