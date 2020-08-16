@@ -84,6 +84,7 @@ end
 
 function Level:draw()
     if self.dialog then
+        love.graphics.setColor(1, 1, 1)
         self.dialog:draw()
     else
         love.graphics.push()

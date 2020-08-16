@@ -1,18 +1,18 @@
 local scenario = {}
 
-table.insert(scenario, { 	leftPerson = 'green',
-						 	rightPerson = 'red',
-						 	whoTalks = 'Green',
+table.insert(scenario, { 	leftPerson = 'green', leftPersonSprite = "neutral",
+						 	rightPerson = 'red', rightPersonSprite = "neutral",
+						 	whoTalks = 'left',
 						 	text = 'Oh nice! Now there are three of us!',
 						})
-table.insert(scenario, { 	leftPerson = 'green',
-						 	rightPerson = 'red',
-						 	whoTalks = 'Red',
+table.insert(scenario, { 	leftPerson = 'green', leftPersonSprite = "neutral",
+						 	rightPerson = 'red', rightPersonSprite = "neutral",
+						 	whoTalks = 'right',
 						 	text = 'Goddamn photo! It"s going worse and worse!',
 						})
-table.insert(scenario, { 	leftPerson = 'Blue',
-						 	rightPerson = nil,
-						 	whoTalks = 'Blue',
+table.insert(scenario, { 	leftPerson = 'blue', leftPersonSprite = "neutral",
+						 	rightPerson = nil, rightPersonSprite = "neutral",
+						 	whoTalks = 'left',
 						 	text = 'So why do you stoped? Go on, we need to fix this.',
 						})
 

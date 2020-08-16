@@ -1,10 +1,19 @@
 Class = require "lib.hump.class"
 Vector = require "lib.hump.vector"
 
+local DialogColors = {
+    white = {1, 1, 1},
+    orange = {1, 0.75, 0},
+    blue = {0, 0.33, 1},
+    red = {1, 0.1, 0.1},
+    green = {0.1, 1, 0.1}
+}
+
 DialogWindow =
     Class {
     init = function(self, scenarioNumber)
         self.buttonToContinue = "space"
+        self.scenarioNumber = scenarioNumber
         self.scenario = require ("resource.scenario."..scenarioNumber)
         self.currentSlide = 1
         self.displayStartPos = Vector(
@@ -13,7 +22,15 @@ DialogWindow =
         )
         self.changedSlide = 0
 
-        self.textHeight = 32
+        self.portraits = {}
+        self.portraits.left = Images:getNewPeachySprite("player_portrait")
+        self.portraits.right = Images:getNewPeachySprite("player_portrait")
+        self.portraits.left:setTag("neutral")
+        self.portraits.left:play()
+        self.portraits.right:setTag("neutral")
+        self.portraits.right:play()
+
+        self.textHeight = 40
 
         self.startSlideIndex = 0
         self.index = 0
@@ -40,28 +57,48 @@ function DialogWindow:update(dt)
         self.index = self.index + self.textSpeed * dt
     end
 
+    self.portraits.left:update(dt)
+    self.portraits.right:update(dt)
+
     return not self.scenario[self.currentSlide]
 end
 
 function DialogWindow:draw()
-
-    love.graphics.setColor(255, 255, 0)
-    love.graphics.rectangle( 'fill', 0,  0,  16, 64 - self.textHeight )
-    love.graphics.setColor(0, 0, 255)
-    love.graphics.rectangle( 'fill', 48, 0,  16, 64 - self.textHeight )
+    local currentSlide = self.scenario[self.currentSlide]
+    local leftColor, rightColor, textColor
+    if currentSlide.leftPerson and DialogColors[currentSlide.leftPerson] then
+        leftColor = DialogColors[currentSlide.leftPerson]
+    else
+        print("No color for dialogue " .. self.scenarioNumber .. "-" .. self.currentSlide)
+        leftColor = DialogColors["white"]
+    end
+    leftColor = DialogColors[currentSlide.leftPerson] and DialogColors[currentSlide.leftPerson] or DialogColors.white
+    rightColor = DialogColors[currentSlide.rightPerson] and DialogColors[currentSlide.rightPerson] or DialogColors.white
+    if currentSlide.whoTalks == "right" then
+        textColor = rightColor
+    else
+        textColor = leftColor
+    end
+    if currentSlide.leftPersonSprite then
+        self.portraits.left:setTag(currentSlide.leftPersonSprite)
+    end
+    love.graphics.setColor(leftColor)
+    if currentSlide.leftPerson then
+        self.portraits.left:draw(0,  0)
+    end
+    love.graphics.setColor(rightColor)
+    if currentSlide.rightPerson then
+        self.portraits.right:draw(64, 0, 0, -1, 1)
+    end
     love.graphics.setColor(0, 0, 0)
-    love.graphics.rectangle( 'fill', 0, 32,  64, self.textHeight )
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.printf(self.scenario[self.currentSlide].whoTalks, 
-                         Fonts.small.font, 
-                         16 + (32 - self.scenario[self.currentSlide].whoTalks:len()*4)/2, 
-                         64 - self.textHeight - 4, 
-                         32)
-    love.graphics.printf(self.scenario[self.currentSlide].text:sub(self.startSlideIndex, math.floor(self.startSlideIndex + self.index)), 
-                         Fonts.thin.font, 
-                         0, 
-                         64 - self.textHeight, 
+    love.graphics.rectangle( 'fill', 0, 64 - self.textHeight,  64, self.textHeight )
+    love.graphics.setColor(textColor)
+    love.graphics.printf(currentSlide.text:sub(0, math.floor(self.startSlideIndex + self.index)), 
+                         Fonts.thin.font,
+                         2,
+                         64 - self.textHeight + 2,
                          64)
+                         love.graphics.setColor(1,1,1)
 
 end
 
