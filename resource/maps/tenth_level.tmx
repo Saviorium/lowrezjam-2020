@@ -120,7 +120,7 @@
   <objectgroup id="3" name="objects">
    <object id="41" type="trigger" x="0" y="104" width="1" height="16">
     <properties>
-     <property name="target" value="eleventh_level"/>
+     <property name="target" value="eleven_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -165,7 +165,7 @@
    <object id="271" x="191" y="34" width="1" height="27"/>
   </objectgroup>
  </group>
- <group id="53" name="g">
+ <group id="53" name="g" visible="0">
   <layer id="54" name="background" width="48" height="32">
    <data encoding="csv">
 280,279,295,312,311,263,312,311,264,280,311,263,280,280,264,296,295,296,263,295,312,296,263,279,280,279,279,311,279,263,295,263,264,295,263,295,279,296,264,263,295,279,263,264,263,295,263,279,
@@ -241,7 +241,7 @@
   <objectgroup id="56" name="objects">
    <object id="223" type="trigger" x="0" y="104" width="1" height="16">
     <properties>
-     <property name="target" value="eleventh_level"/>
+     <property name="target" value="eleven_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -296,7 +296,7 @@
    <object id="270" x="191" y="34" width="1" height="27"/>
   </objectgroup>
  </group>
- <group id="48" name="b">
+ <group id="48" name="b" visible="0">
   <layer id="49" name="background" width="48" height="32">
    <data encoding="csv">
 280,279,295,312,311,263,312,311,264,280,311,263,280,280,264,296,295,296,263,295,312,296,263,279,280,279,279,311,279,263,295,263,264,295,263,295,279,296,264,263,295,279,263,264,263,295,263,279,
@@ -372,7 +372,7 @@
   <objectgroup id="51" name="objects">
    <object id="209" type="trigger" x="0" y="104" width="1" height="16">
     <properties>
-     <property name="target" value="eleventh_level"/>
+     <property name="target" value="eleven_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>

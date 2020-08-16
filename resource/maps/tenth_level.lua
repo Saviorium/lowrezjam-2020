@@ -673,7 +673,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "eleventh_level",
+                ["target"] = "eleven_level",
                 ["type"] = "exit"
               }
             },
@@ -1094,7 +1094,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "eleventh_level",
+                ["target"] = "eleven_level",
                 ["type"] = "exit"
               }
             },
@@ -1191,7 +1191,7 @@ return {
               name = "",
               type = "trigger",
               shape = "rectangle",
-              x = 76,
+              x = 73,
               y = 98,
               width = 1,
               height = 22,
@@ -1547,7 +1547,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "eleventh_level",
+                ["target"] = "eleven_level",
                 ["type"] = "exit"
               }
             },
