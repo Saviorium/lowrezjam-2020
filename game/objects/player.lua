@@ -160,11 +160,11 @@ function Player:updateAnimation(dt)
                 self.sprite:setTag("jumpup")
             end
         elseif math.abs(self.speed.x) > 0 then
-            print("run is lava:")
-            print(self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb" and self.sprite.tagName ~= "push" and "true" or "false")
-            print(self.sprite.tagName)
+            -- print("run is lava:")
+            -- print(self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb" and self.sprite.tagName ~= "push" and "true" or "false")
+            -- print(self.sprite.tagName)
             if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb" and self.sprite.tagName ~= "push") then
-                print(self.pushingBox)
+                -- print(self.pushingBox)
                 if self.pushingBox == true then
                     if self.sprite.tagName ~= "push" then
                         self.sprite:setTag("push")

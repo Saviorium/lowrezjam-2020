@@ -186,22 +186,6 @@ return {
               properties = {}
             },
             {
-              id = 28,
-              name = "",
-              type = "trigger",
-              shape = "rectangle",
-              x = 196,
-              y = -4,
-              width = 2,
-              height = 16,
-              rotation = 0,
-              visible = true,
-              properties = {
-                ["target"] = "1",
-                ["type"] = "dialog"
-              }
-            },
-            {
               id = 29,
               name = "",
               type = "trigger",
@@ -252,15 +236,15 @@ return {
               name = "",
               type = "trigger",
               shape = "rectangle",
-              x = 35,
+              x = 39,
               y = 28,
               width = 1,
               height = 28,
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "dialog",
-                ["type"] = "1"
+                ["target"] = "4",
+                ["type"] = "dialog"
               }
             }
           }

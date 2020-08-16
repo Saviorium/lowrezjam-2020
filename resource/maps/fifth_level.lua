@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 21,
-  nextobjectid = 170,
+  nextobjectid = 171,
   properties = {},
   tilesets = {
     {
@@ -303,6 +303,23 @@ return {
               properties = {
                 ["target"] = "sixth_level",
                 ["type"] = "exit"
+              }
+            },
+            {
+              id = 170,
+              name = "",
+              type = "trigger",
+              shape = "rectangle",
+              x = 10,
+              y = 90,
+              width = 1,
+              height = 36,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["need_sync"] = false,
+                ["target"] = "4",
+                ["type"] = "dialog"
               }
             }
           }
