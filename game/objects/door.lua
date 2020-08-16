@@ -32,6 +32,12 @@ function Door:update(dt)
     self.sprite:update(dt)
 end
 
+function Door:invertOpenClose() -- normally open door
+    self:handleEventActivate()
+    self.handleEventActivate = Door.handleEventDeactivate
+    self.handleEventDeactivate = Door.handleEventActivate
+end
+
 function Door:handleEventActivate()
     self.isOpen = true
     self.sprite:setTag("open")

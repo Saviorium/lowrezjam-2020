@@ -1430,7 +1430,8 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["left"] = true
+                ["left"] = true,
+                ["open"] = false
               }
             },
             {
@@ -1924,7 +1925,9 @@ return {
               height = 16,
               rotation = 0,
               visible = true,
-              properties = {}
+              properties = {
+                ["open"] = true
+              }
             },
             {
               id = 108,

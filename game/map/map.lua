@@ -82,6 +82,9 @@ Map = Class {
                 else
                     newObject = Door(self.HC, object.x, object.y, object.properties.left)
                 end
+                if object.properties.open then
+                    newObject:invertOpenClose()
+                end
                 newObject.collider.mainCollider.layer = 'door'
             end
 

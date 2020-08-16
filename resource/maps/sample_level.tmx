@@ -206,6 +206,7 @@
    <object id="104" type="door" x="52" y="104" width="4" height="16">
     <properties>
      <property name="left" type="bool" value="true"/>
+     <property name="open" type="bool" value="false"/>
     </properties>
    </object>
    <object id="107" type="button" x="64" y="48" width="8" height="8">
@@ -307,7 +308,11 @@
     </properties>
    </object>
    <object id="90" type="door" x="49" y="40" width="4" height="16"/>
-   <object id="103" type="door" x="48" y="104" width="4" height="16"/>
+   <object id="103" type="door" x="48" y="104" width="4" height="16">
+    <properties>
+     <property name="open" type="bool" value="true"/>
+    </properties>
+   </object>
    <object id="108" type="button" x="72" y="112" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>
