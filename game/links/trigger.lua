@@ -3,7 +3,6 @@ Class = require "lib.hump.class"
 Trigger = Class {
     init = function(self, type, target, isSyncable, level, hc, x, y, width, height) --conditionFunction, triggerFunction, name)
         self.position = Vector( x, y )
-        -- self.name = name
         self.conditionFunction = self.defaultCondition
         self.level = level
         self.type = type
@@ -29,7 +28,6 @@ Trigger = Class {
             end
         elseif type == 'dialog' then
             self.triggerFunction = function(level)
-                print(self.isSyncable)
                 if self.isSyncable then
                     if self:isPlayerInSync() then
                         level.dialog = DialogWindow(target)
@@ -54,16 +52,12 @@ function Trigger:draw()
 end
 
 function Trigger:isPlayerInSync()
-    -- print(self.level.isPlayerInSync)
     return self.level.isPlayerInSync
 end
 
 function Trigger:tryToStartAction()
     if self.conditionFunction(self) and self.enabled then
         self.triggerFunction(self.level)
-        -- if not self.type == 'exit' then
-        --     self.enabled = false
-        -- end
     end
 end
 
