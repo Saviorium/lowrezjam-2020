@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 98,
-  nextobjectid = 460,
+  nextobjectid = 462,
   properties = {},
   tilesets = {
     {
@@ -1106,7 +1106,9 @@ return {
               height = 4,
               rotation = 0,
               visible = true,
-              properties = {}
+              properties = {
+                ["vertical"] = true
+              }
             },
             {
               id = 405,
@@ -1907,7 +1909,9 @@ return {
               height = 4,
               rotation = 0,
               visible = true,
-              properties = {}
+              properties = {
+                ["vertical"] = true
+              }
             }
           }
         },
@@ -2686,6 +2690,22 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 461,
+              name = "",
+              type = "trigger",
+              shape = "rectangle",
+              x = 28,
+              y = 152,
+              width = 1,
+              height = 32,
+              rotation = 0,
+              visible = true,
+              properties = {
+                ["target"] = "9",
+                ["type"] = "dialog"
+              }
             }
           }
         },

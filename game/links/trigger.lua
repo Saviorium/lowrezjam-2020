@@ -18,6 +18,8 @@ Trigger = Class {
                     if self:isPlayerInSync() then
                         if target == 'intro' then
                             StateManager.switch(states.intro)
+                        elseif target == 'end_game' then
+                            StateManager.switch(states.end_game)
                         else
                             StateManager.switch(states.game, target)
                         end

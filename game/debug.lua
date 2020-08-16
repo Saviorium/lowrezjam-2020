@@ -3,8 +3,8 @@ Debug = {
     DrawDebugForMapPiece = 0,
     DrawDebugColliders = 0,
     LogEvents = 0,
-    LogLevelNames = 1,
-    ShowFps = 1
+    LogLevelNames = 0,
+    ShowFps = 0
 }
 
 -- usage: vardump(x1, test, myVar) or vardump({ship = self, dt = dt})

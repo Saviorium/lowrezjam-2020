@@ -16,7 +16,7 @@ function intro:update(dt)
     if self.timer < 1 then
         self.timer = self.timer + dt
     else
-        if self.index > 10 then
+        if self.index > 13 then
             StateManager.switch(states.game, 'fourth_level')
         else
             self.index = self.index + 1

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="32" height="48" tilewidth="4" tileheight="4" infinite="0" nextlayerid="98" nextobjectid="460">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="32" height="48" tilewidth="4" tileheight="4" infinite="0" nextlayerid="98" nextobjectid="462">
  <editorsettings>
   <export target="twelve_level.lua" format="lua"/>
  </editorsettings>
@@ -300,7 +300,11 @@
 </data>
   </layer>
   <objectgroup id="96" name="objects">
-   <object id="401" type="door" x="88" y="128" width="16" height="4"/>
+   <object id="401" type="door" x="88" y="128" width="16" height="4">
+    <properties>
+     <property name="vertical" type="bool" value="true"/>
+    </properties>
+   </object>
    <object id="405" type="trigger" x="88" y="-1" width="16" height="1">
     <properties>
      <property name="target" value="final_level"/>
@@ -577,7 +581,11 @@
    <object id="382" type="player" x="15" y="172">
     <point/>
    </object>
-   <object id="433" type="door" x="24" y="64" width="16" height="4"/>
+   <object id="433" type="door" x="24" y="64" width="16" height="4">
+    <properties>
+     <property name="vertical" type="bool" value="true"/>
+    </properties>
+   </object>
   </objectgroup>
   <objectgroup id="87" name="solid">
    <object id="383" x="0" y="192">
@@ -853,6 +861,12 @@
    </object>
    <object id="358" type="player" x="15" y="172">
     <point/>
+   </object>
+   <object id="461" type="trigger" x="28" y="152" width="1" height="32">
+    <properties>
+     <property name="target" value="9"/>
+     <property name="type" value="dialog"/>
+    </properties>
    </object>
   </objectgroup>
   <objectgroup id="77" name="solid">
