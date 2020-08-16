@@ -4,10 +4,16 @@ HC              = require 'lib/hardoncollider'
 Level           = require "game.map.level"
 local sti       = require "lib/sti"
 local Player    = require "game.objects.player"
+tracks          = require "resource/tracks"
 
 local game = {}
 
+musicPlaying = nil -- fixme: global
+
 function game:enter(prev_state, level)
+    if not musicPlaying then
+        musicPlaying = tracks.play_sound( tracks.list_of_sounds.music )
+    end
     self.level = Level(level)
     self.levelName = level
 end

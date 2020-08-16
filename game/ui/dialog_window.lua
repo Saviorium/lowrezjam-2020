@@ -41,16 +41,26 @@ DialogWindow =
         self.rows = math.floor(self.textHeight/self.fontForText.height)
         self.symbolsInRow = math.ceil(64/self.fontForText.width)
 
+        self.skipButtonIsDown = false
+
     end
 }
 
 function DialogWindow:update(dt)
     self.changedSlide = self.changedSlide < 1 and self.changedSlide + dt or self.changedSlide
 
-    if love.keyboard.isDown(self.buttonToContinue) and self.changedSlide >= 1 then
-        self:nextSlide(dt)
-        self.changedSlide = 0
-        self.index = 0
+    if love.keyboard.isDown(self.buttonToContinue) then
+        if self.changedSlide < 1 and not self.skipButtonIsDown then
+            self.changedSlide = 1
+        end
+        if self.changedSlide >= 1 and not self.skipButtonIsDown then
+            self:nextSlide(dt)
+            self.changedSlide = 0
+            self.index = 0
+        end
+        self.skipButtonIsDown = true
+    else
+        self.skipButtonIsDown = false
     end
 
     if self.index <= self.symbolsInRow * self.rows then
