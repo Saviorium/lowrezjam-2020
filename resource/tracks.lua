@@ -41,9 +41,10 @@ function tracks.set_next_track(index, loaded_tracks)
     index = index + 1
 end
 
-function tracks.play_sound(sound)
+function tracks.play_sound(sound, isForever)
     source = love.audio.newSource(sound.filepath, "static")
     source:setVolume(sound.volume)
+    source:setLooping(isForever)
     source:play()
     return source
 end

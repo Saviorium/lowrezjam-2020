@@ -74,7 +74,7 @@ function Player:setVelocityForFrame(dt)
         self.isGrounded = false
         self:turnCapCollider(self.direction)
         if not self.sound then
-            self.sound = tracks.play_sound( tracks.list_of_sounds.jump )
+            self.sound = tracks.play_sound( tracks.list_of_sounds.jump, false )
         end
     elseif love.keyboard.isDown(self.buttons["down"]) and (self.canJumpDown or self.isHanging) then
         self:disableCapCollider()

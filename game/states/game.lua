@@ -12,7 +12,7 @@ musicPlaying = nil -- fixme: global
 
 function game:enter(prev_state, level)
     if not musicPlaying then
-        musicPlaying = tracks.play_sound( tracks.list_of_sounds.music )
+        musicPlaying = tracks.play_sound( tracks.list_of_sounds.music, true)
     end
     self.level = Level(level)
     self.levelName = level

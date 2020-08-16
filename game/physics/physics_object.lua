@@ -91,7 +91,7 @@ function PhysicsObject:calcAllCollisionsResult()
         self.isGrounded = self.deltaVector.y < -self.minGroundNormal
         if self.isGrounded then
             if not self.sound then
-                self.sound = tracks.play_sound( tracks.list_of_sounds.dropdown )
+                self.sound = tracks.play_sound( tracks.list_of_sounds.dropdown, false )
             end
         end
     end

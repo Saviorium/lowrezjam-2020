@@ -67,7 +67,7 @@ function Button:handlePushDown()
         self.isPushed = true
         self.sprite:setTag("down")
         if not self.sound then
-            self.sound = tracks.play_sound( tracks.list_of_sounds.buttonSelect )
+            self.sound = tracks.play_sound( tracks.list_of_sounds.buttonSelect, false )
         end
         if self.group then
             self:handleGroupDown()
