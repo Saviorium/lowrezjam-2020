@@ -61,6 +61,15 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 24, "h": 24 },
     "sourceSize": { "w": 24, "h": 24 },
     "duration": 100
+   },
+   {
+    "filename": "player_portrait_7.aseprite",
+    "frame": { "x": 175, "y": 0, "w": 24, "h": 24 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 24, "h": 24 },
+    "sourceSize": { "w": 24, "h": 24 },
+    "duration": 100
    }
  ],
  "meta": {
@@ -68,7 +77,7 @@
   "version": "1.2.21",
   "image": "player_portrait.png",
   "format": "I8",
-  "size": { "w": 174, "h": 24 },
+  "size": { "w": 199, "h": 24 },
   "scale": "1",
   "frameTags": [
    { "name": "neutral", "from": 0, "to": 0, "direction": "forward" },
@@ -77,7 +86,8 @@
    { "name": "fun", "from": 3, "to": 3, "direction": "forward" },
    { "name": "hehe", "from": 4, "to": 4, "direction": "forward" },
    { "name": "hmm", "from": 5, "to": 5, "direction": "forward" },
-   { "name": "ugh", "from": 6, "to": 6, "direction": "forward" }
+   { "name": "ugh", "from": 6, "to": 6, "direction": "forward" },
+   { "name": "huh", "from": 7, "to": 7, "direction": "forward" }
   ],
   "layers": [
    { "name": "Layer 3", "opacity": 255, "blendMode": "normal" }

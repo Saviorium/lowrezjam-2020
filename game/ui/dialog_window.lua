@@ -82,6 +82,9 @@ function DialogWindow:draw()
     if currentSlide.leftPersonSprite then
         self.portraits.left:setTag(currentSlide.leftPersonSprite)
     end
+    if currentSlide.rightPersonSprite then
+        self.portraits.right:setTag(currentSlide.rightPersonSprite)
+    end
     love.graphics.setColor(leftColor)
     if currentSlide.leftPerson then
         self.portraits.left:draw(0,  0)
@@ -97,7 +100,7 @@ function DialogWindow:draw()
                          Fonts.thin.font,
                          2,
                          64 - self.textHeight + 2,
-                         64)
+                         64 - 2)
                          love.graphics.setColor(1,1,1)
 
 end
