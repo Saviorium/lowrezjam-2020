@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 28,
-  nextobjectid = 98,
+  nextobjectid = 102,
   properties = {},
   tilesets = {
     {
@@ -799,32 +799,6 @@ return {
               properties = {}
             },
             {
-              id = 33,
-              name = "",
-              type = "",
-              shape = "rectangle",
-              x = 128,
-              y = 40,
-              width = 1,
-              height = 16,
-              rotation = 0,
-              visible = true,
-              properties = {}
-            },
-            {
-              id = 34,
-              name = "",
-              type = "",
-              shape = "rectangle",
-              x = -1,
-              y = 40,
-              width = 1,
-              height = 16,
-              rotation = 0,
-              visible = true,
-              properties = {}
-            },
-            {
               id = 49,
               name = "",
               type = "jumpable",
@@ -859,6 +833,32 @@ return {
               y = 20,
               width = 8,
               height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 99,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 127,
+              y = 32,
+              width = 1,
+              height = 32,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 101,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 0,
+              y = 32,
+              width = 1,
+              height = 32,
               rotation = 0,
               visible = true,
               properties = {}
@@ -985,7 +985,7 @@ return {
               name = "",
               type = "trigger",
               shape = "rectangle",
-              x = 0,
+              x = 1,
               y = 40,
               width = 1,
               height = 16,
@@ -1126,32 +1126,6 @@ return {
               properties = {}
             },
             {
-              id = 81,
-              name = "",
-              type = "",
-              shape = "rectangle",
-              x = 128,
-              y = 40,
-              width = 1,
-              height = 16,
-              rotation = 0,
-              visible = true,
-              properties = {}
-            },
-            {
-              id = 82,
-              name = "",
-              type = "",
-              shape = "rectangle",
-              x = 0,
-              y = 36,
-              width = 1,
-              height = 28,
-              rotation = 0,
-              visible = true,
-              properties = {}
-            },
-            {
               id = 83,
               name = "",
               type = "jumpable",
@@ -1186,6 +1160,32 @@ return {
               y = 20,
               width = 8,
               height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 98,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 127,
+              y = 32,
+              width = 1,
+              height = 32,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 100,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 0,
+              y = 32,
+              width = 1,
+              height = 32,
               rotation = 0,
               visible = true,
               properties = {}
@@ -1293,22 +1293,6 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
-            },
-            {
-              id = 54,
-              name = "",
-              type = "trigger",
-              shape = "rectangle",
-              x = 0,
-              y = 40,
-              width = 1,
-              height = 16,
-              rotation = 0,
-              visible = true,
-              properties = {
-                ["target"] = "eigth_level",
-                ["type"] = "exit"
-              }
             },
             {
               id = 55,
@@ -1480,7 +1464,7 @@ return {
               name = "",
               type = "",
               shape = "rectangle",
-              x = 128,
+              x = 127,
               y = 32,
               width = 1,
               height = 32,
@@ -1493,7 +1477,7 @@ return {
               name = "",
               type = "",
               shape = "rectangle",
-              x = -1,
+              x = 0,
               y = 32,
               width = 1,
               height = 32,

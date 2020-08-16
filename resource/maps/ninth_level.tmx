@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="4" tileheight="4" infinite="0" nextlayerid="48" nextobjectid="208">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="4" tileheight="4" infinite="0" nextlayerid="48" nextobjectid="209">
  <editorsettings>
   <export target="ninth_level.lua" format="lua"/>
  </editorsettings>
@@ -276,6 +276,7 @@
      <property name="type" value="dialog"/>
     </properties>
    </object>
+   <object id="208" type="door" x="64" y="104" width="4" height="16"/>
   </objectgroup>
   <objectgroup id="47" name="solid">
    <object id="194" x="0" y="56">
@@ -387,7 +388,8 @@
    <object id="167" type="door" x="64" y="40" width="4" height="16"/>
    <object id="171" type="button" x="12" y="112" width="8" height="8">
     <properties>
-     <property name="link_" type="object" value="206"/>
+     <property name="link_a" type="object" value="206"/>
+     <property name="link_b" type="object" value="208"/>
     </properties>
    </object>
    <object id="172" type="door" x="4" y="40" width="4" height="16"/>

@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 48,
-  nextobjectid = 208,
+  nextobjectid = 209,
   properties = {},
   tilesets = {
     {
@@ -1187,9 +1187,22 @@ return {
               visible = true,
               properties = {
                 ["need_sync"] = false,
-                ["target"] = "dialog",
-                ["type"] = "7"
+                ["target"] = "7",
+                ["type"] = "dialog"
               }
+            },
+            {
+              id = 208,
+              name = "",
+              type = "door",
+              shape = "rectangle",
+              x = 64,
+              y = 104,
+              width = 4,
+              height = 16,
+              rotation = 0,
+              visible = true,
+              properties = {}
             }
           }
         },
@@ -1570,7 +1583,8 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["link_"] = { id = 206 }
+                ["link_a"] = { id = 206 },
+                ["link_b"] = { id = 208 }
               }
             },
             {

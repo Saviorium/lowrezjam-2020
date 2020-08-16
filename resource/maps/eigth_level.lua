@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 38,
-  nextobjectid = 149,
+  nextobjectid = 151,
   properties = {},
   tilesets = {
     {
@@ -737,7 +737,6 @@ return {
               properties = {
                 ["autooff"] = true,
                 ["delay"] = 2,
-                ["group"] = "group1",
                 ["link_r"] = { id = 86 }
               }
             },
@@ -1017,13 +1016,13 @@ return {
               properties = {}
             },
             {
-              id = 142,
+              id = 150,
               name = "",
               type = "",
               shape = "rectangle",
-              x = 192,
-              y = 36,
-              width = 1,
+              x = 190,
+              y = 35,
+              width = 2,
               height = 27,
               rotation = 0,
               visible = true,
@@ -1229,7 +1228,6 @@ return {
               properties = {
                 ["autooff"] = true,
                 ["delay"] = 2,
-                ["group"] = "group1",
                 ["link_r"] = { id = 105 }
               }
             },
@@ -1509,14 +1507,14 @@ return {
               properties = {}
             },
             {
-              id = 138,
+              id = 149,
               name = "",
               type = "",
               shape = "rectangle",
-              x = 192,
-              y = 40,
-              width = 1,
-              height = 16,
+              x = 190,
+              y = 35,
+              width = 2,
+              height = 27,
               rotation = 0,
               visible = true,
               properties = {}
@@ -1720,7 +1718,6 @@ return {
               properties = {
                 ["autooff"] = true,
                 ["delay"] = 2,
-                ["group"] = "group1",
                 ["link_r"] = { id = 122 }
               }
             },
@@ -2004,9 +2001,9 @@ return {
               name = "",
               type = "",
               shape = "rectangle",
-              x = 192,
-              y = 34,
-              width = 1,
+              x = 190,
+              y = 35,
+              width = 2,
               height = 27,
               rotation = 0,
               visible = true,
