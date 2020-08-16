@@ -3,28 +3,23 @@ local scenario = {}
 table.insert(scenario, { 	leftPerson = 'white',
 						 	rightPerson = nil,
 						 	whoTalks = 'Girl',
-						 	text = 'God I am so tired.',
+						 	text = 'What?! The building on the photo looks blurry… ',
 						})
 	     
 table.insert(scenario, { 	leftPerson = 'white',
 						 	rightPerson = nil,
 						 	whoTalks = 'Girl',
-						 	text = 'At least I can go to my favorite place.',
+						 	text = 'Like it is three of them? Is that camera broken? ',
 						})
 table.insert(scenario, { 	leftPerson = 'white',
 						 	rightPerson = nil,
 						 	whoTalks = 'Girl',
-						 	text = 'It is the only thing that can help me to recover.',
+						 	text = 'God don’t tell me it is.',
 						})
 table.insert(scenario, { 	leftPerson = 'white',
 						 	rightPerson = nil,
 						 	whoTalks = 'Girl',
-						 	text = 'Guess I should visit it.',
-						})
-table.insert(scenario, { 	leftPerson = 'white',
-						 	rightPerson = nil,
-						 	whoTalks = 'Girl',
-						 	text = 'I always mark my way with X sign, so even now i can easily find my way.',
+						 	text = 'Anyway, I need to go home. Its late now.  I will do something about it tomorrow.',
 						})
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="24" tilewidth="8" tileheight="8" infinite="0" nextlayerid="98" nextobjectid="453">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="24" tilewidth="8" tileheight="8" infinite="0" nextlayerid="98" nextobjectid="460">
  <editorsettings>
-  <export target="ninth_level.lua" format="lua"/>
+  <export target="twelve_level.lua" format="lua"/>
  </editorsettings>
  <tileset firstgid="1" source="../graphics/placeholder_tileset.tsx"/>
  <imagelayer id="6" name="grid">
@@ -35,7 +35,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <group id="5" name="1" visible="0">
+ <group id="5" name="1">
   <layer id="1" name="background" width="16" height="24">
    <data encoding="csv">
 17,2684354571,2684354571,2684354571,2684354571,2684354571,2684354571,2684354577,17,2684354571,2684354571,0,0,2684354571,2684354571,2684354577,
@@ -96,7 +96,7 @@
    <object id="339" type="door" x="56" y="168" width="8" height="16"/>
    <object id="345" type="trigger" x="88" y="-1" width="16" height="1">
     <properties>
-     <property name="target" value="fifth_level"/>
+     <property name="target" value="final_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -121,7 +121,7 @@
    <object id="422" type="jumpable" x="88" y="8" width="16" height="4"/>
   </objectgroup>
  </group>
- <group id="93" name="2" visible="0">
+ <group id="93" name="2">
   <layer id="94" name="background" width="16" height="24">
    <data encoding="csv">
 17,2684354571,2684354571,2684354571,2684354571,2684354571,2684354571,2684354577,17,2684354571,2684354571,0,0,2684354571,2684354571,2684354577,
@@ -182,7 +182,7 @@
    <object id="401" type="door" x="88" y="128" width="16" height="8"/>
    <object id="405" type="trigger" x="88" y="-1" width="16" height="1">
     <properties>
-     <property name="target" value="fifth_level"/>
+     <property name="target" value="final_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -207,7 +207,7 @@
    <object id="428" type="jumpable" x="88" y="8" width="16" height="4"/>
   </objectgroup>
  </group>
- <group id="88" name="3" visible="0">
+ <group id="88" name="3">
   <layer id="89" name="background" width="16" height="24">
    <data encoding="csv">
 17,2684354571,2684354571,2684354571,2684354571,2684354571,2684354571,2684354577,17,2684354571,2684354571,0,0,2684354571,2684354571,2684354577,
@@ -267,7 +267,7 @@
   <objectgroup id="91" name="objects">
    <object id="393" type="trigger" x="88" y="-1" width="16" height="1">
     <properties>
-     <property name="target" value="fifth_level"/>
+     <property name="target" value="final_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -293,7 +293,7 @@
    <object id="440" type="jumpable" x="88" y="8" width="16" height="4"/>
   </objectgroup>
  </group>
- <group id="83" name="4" visible="0">
+ <group id="83" name="4">
   <layer id="84" name="background" width="16" height="24">
    <data encoding="csv">
 17,2684354571,2684354571,2684354571,2684354571,2684354571,2684354571,2684354577,17,2684354571,2684354571,0,0,2684354571,2684354571,2684354577,
@@ -353,7 +353,7 @@
   <objectgroup id="86" name="objects">
    <object id="381" type="trigger" x="88" y="-1" width="16" height="1">
     <properties>
-     <property name="target" value="fifth_level"/>
+     <property name="target" value="final_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -436,10 +436,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
   </layer>
-  <objectgroup id="81" name="objects">
-   <object id="369" type="trigger" x="88" y="-1" width="16" height="1">
+  <objectgroup id="81" name="objects" offsetx="0" offsety="-1">
+   <object id="369" type="trigger" x="88" y="0" width="16" height="1">
     <properties>
-     <property name="target" value="fifth_level"/>
+     <property name="target" value="final_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -465,7 +465,7 @@
    <object id="452" type="jumpable" x="88" y="8" width="16" height="4"/>
   </objectgroup>
  </group>
- <group id="73" name="6" visible="0">
+ <group id="73" name="6">
   <layer id="74" name="background" width="16" height="24">
    <data encoding="csv">
 17,2684354571,2684354571,2684354571,2684354571,2684354571,2684354571,2684354577,17,2684354571,2684354571,0,0,2684354571,2684354571,2684354577,
@@ -534,7 +534,7 @@
    </object>
    <object id="357" type="trigger" x="88" y="-1" width="16" height="1">
     <properties>
-     <property name="target" value="fifth_level"/>
+     <property name="target" value="final_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -546,11 +546,17 @@
    <object id="359" x="0" y="192">
     <polygon points="0,0 128,0 128,-192 104,-192 104,-184 120,-184 120,-136 40,-136 40,-120 56,-120 56,-88 72,-88 72,-120 120,-120 120,-72 104,-72 104,-56 120,-56 120,-8 0,-8"/>
    </object>
-   <object id="360" x="0" y="168">
+   <object id="360" x="0" y="167">
     <polygon points="0,0 8,0 8,-32 56,-32 56,0 72,0 72,-32 88,-32 88,-48 8,-48 8,-96 24,-96 24,-112 8,-112 8,-160 56,-160 56,-128 72,-128 72,-160 88,-160 88,-168 0,-168"/>
    </object>
    <object id="361" x="-1" y="160" width="1" height="32"/>
-   <object id="362" x="80" y="-1" width="33" height="1"/>
+   <object id="362" x="79" y="-1" width="33" height="1"/>
+   <object id="453" type="jumpable" x="88" y="160" width="16" height="4"/>
+   <object id="454" type="jumpable" x="88" y="136" width="16" height="4"/>
+   <object id="455" type="jumpable" x="24" y="96" width="16" height="4"/>
+   <object id="456" type="jumpable" x="24" y="72" width="16" height="4"/>
+   <object id="457" type="jumpable" x="88" y="32" width="16" height="4"/>
+   <object id="459" type="jumpable" x="88" y="8" width="16" height="4"/>
   </objectgroup>
  </group>
 </map>

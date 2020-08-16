@@ -9,7 +9,7 @@ return {
   tilewidth = 8,
   tileheight = 8,
   nextlayerid = 98,
-  nextobjectid = 435,
+  nextobjectid = 460,
   properties = {},
   tilesets = {
     {
@@ -511,7 +511,7 @@ return {
       type = "group",
       id = 5,
       name = "1",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -635,7 +635,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "fifth_level",
+                ["target"] = "final_level",
                 ["type"] = "exit"
               }
             },
@@ -849,7 +849,7 @@ return {
       type = "group",
       id = 93,
       name = "2",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -973,7 +973,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "fifth_level",
+                ["target"] = "final_level",
                 ["type"] = "exit"
               }
             },
@@ -1187,7 +1187,7 @@ return {
       type = "group",
       id = 88,
       name = "3",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -1298,7 +1298,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "fifth_level",
+                ["target"] = "final_level",
                 ["type"] = "exit"
               }
             },
@@ -1438,6 +1438,84 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 435,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 160,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 436,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 136,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 437,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 24,
+              y = 96,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 438,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 24,
+              y = 72,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 439,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 32,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 440,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 8,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
             }
           }
         }
@@ -1447,7 +1525,7 @@ return {
       type = "group",
       id = 83,
       name = "4",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -1558,7 +1636,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "fifth_level",
+                ["target"] = "final_level",
                 ["type"] = "exit"
               }
             },
@@ -1698,6 +1776,84 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 441,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 160,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 442,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 136,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 443,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 24,
+              y = 96,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 444,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 24,
+              y = 72,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 445,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 32,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 446,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 8,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
             }
           }
         }
@@ -1803,7 +1959,7 @@ return {
           visible = true,
           opacity = 1,
           offsetx = 0,
-          offsety = 0,
+          offsety = -1,
           properties = {},
           objects = {
             {
@@ -1812,13 +1968,13 @@ return {
               type = "trigger",
               shape = "rectangle",
               x = 88,
-              y = -1,
+              y = 0,
               width = 16,
               height = 1,
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "fifth_level",
+                ["target"] = "final_level",
                 ["type"] = "exit"
               }
             },
@@ -1955,6 +2111,84 @@ return {
               y = -1,
               width = 33,
               height = 1,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 447,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 160,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 448,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 136,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 449,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 24,
+              y = 96,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 450,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 24,
+              y = 72,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 451,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 32,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 452,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 8,
+              width = 16,
+              height = 4,
               rotation = 0,
               visible = true,
               properties = {}
@@ -2097,7 +2331,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "fifth_level",
+                ["target"] = "final_level",
                 ["type"] = "exit"
               }
             },
@@ -2168,7 +2402,7 @@ return {
               type = "",
               shape = "polygon",
               x = 0,
-              y = 168,
+              y = 167,
               width = 0,
               height = 0,
               rotation = 0,
@@ -2221,6 +2455,84 @@ return {
               y = -1,
               width = 33,
               height = 1,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 453,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 160,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 454,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 136,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 455,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 24,
+              y = 96,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 456,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 24,
+              y = 72,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 457,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 32,
+              width = 16,
+              height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 459,
+              name = "",
+              type = "jumpable",
+              shape = "rectangle",
+              x = 88,
+              y = 8,
+              width = 16,
+              height = 4,
               rotation = 0,
               visible = true,
               properties = {}

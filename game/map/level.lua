@@ -194,6 +194,7 @@ LEVELS = {
     ninth_level = generateLayerColors(3, 0, {"r", "g", "b"}),
     tenth_level = generateLayerColors(3, 0, {"r", "g", "b"}),
     eleven_level = generateLayerColors(3, 0, {"r", "g", "b"}),
+    twelve_level = generateLayerColors(6, 0, {"1", "2", "3", "4", "5", "6"}),
     eleven_test = generateLayerColors(2, 0.1666667)
 }
 
