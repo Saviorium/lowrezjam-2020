@@ -157,8 +157,20 @@ function Player:updateAnimation(dt)
                 self.sprite:setTag("jumpup")
             end
         elseif math.abs(self.speed.x) > 0 then
-            if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb") then
-                self.sprite:setTag("run")
+            print("run is lava:")
+            print(self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb" and self.sprite.tagName ~= "push" and "true" or "false")
+            print(self.sprite.tagName)
+            if (self.sprite.tagName ~= "run" and self.sprite.tagName ~= "turn" and self.sprite.tagName ~= "climb" and self.sprite.tagName ~= "push") then
+                print(self.pushingBox)
+                if self.pushingBox == true then
+                    if self.sprite.tagName ~= "push" then
+                        self.sprite:setTag("push")
+                    end
+                else
+                    if self.sprite.tagName ~= "run" then
+                        self.sprite:setTag("run")
+                    end
+                end
             end
         elseif self.sprite.tagName ~= "brake" and self.sprite.tagName ~= "jumpdown" and self.sprite.tagName ~= "idle" and self.speed.y == 0 and self.speed.x == 0 then
             self.sprite:setTag("brake")
@@ -169,8 +181,10 @@ function Player:updateAnimation(dt)
 
     self.prevDirection = self.direction
     self.sprite:update(dt)
+    if self.pushingBox and self.deltaVector.x == 0 then
+        self.pushingBox = false
+    end
 
-    self.pushingBox = not (self.deltaVector.x == 0 and self.pushingBox)
     self:updateArrow(dt)
 end
 
