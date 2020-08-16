@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 58,
-  nextobjectid = 270,
+  nextobjectid = 272,
   properties = {},
   tilesets = {
     {
@@ -682,13 +682,14 @@ return {
               name = "",
               type = "door",
               shape = "rectangle",
-              x = 128,
+              x = 124,
               y = 40,
               width = 4,
               height = 16,
               rotation = 0,
               visible = true,
               properties = {
+                ["left"] = true,
                 ["open"] = true
               }
             },
@@ -697,7 +698,7 @@ return {
               name = "",
               type = "player",
               shape = "point",
-              x = 184,
+              x = 181,
               y = 46,
               width = 0,
               height = 0,
@@ -809,19 +810,6 @@ return {
               properties = {}
             },
             {
-              id = 147,
-              name = "",
-              type = "",
-              shape = "rectangle",
-              x = 192,
-              y = 40,
-              width = 1,
-              height = 16,
-              rotation = 0,
-              visible = true,
-              properties = {}
-            },
-            {
               id = 157,
               name = "",
               type = "jumpable",
@@ -888,12 +876,12 @@ return {
                 { x = 188, y = 64 },
                 { x = 188, y = 16 },
                 { x = 164, y = 16 },
-                { x = 164, y = 24 },
-                { x = 156, y = 24 },
+                { x = 164, y = 23 },
+                { x = 156, y = 23 },
                 { x = 156, y = 16 },
                 { x = 144, y = 16 },
-                { x = 144, y = 20 },
-                { x = 136, y = 20 },
+                { x = 144, y = 19 },
+                { x = 136, y = 19 },
                 { x = 136, y = 16 },
                 { x = 116, y = 16 },
                 { x = 116, y = 20 },
@@ -912,12 +900,12 @@ return {
                 { x = 92, y = 36 },
                 { x = 92, y = 40 },
                 { x = 136, y = 40 },
-                { x = 136, y = 32 },
-                { x = 144, y = 32 },
+                { x = 136, y = 33 },
+                { x = 144, y = 33 },
                 { x = 144, y = 40 },
                 { x = 156, y = 40 },
-                { x = 156, y = 36 },
-                { x = 164, y = 36 },
+                { x = 156, y = 37 },
+                { x = 164, y = 37 },
                 { x = 164, y = 40 },
                 { x = 172, y = 40 },
                 { x = 172, y = 32 },
@@ -950,10 +938,23 @@ return {
               name = "",
               type = "jumpable",
               shape = "rectangle",
-              x = 180,
+              x = 179,
               y = 100,
-              width = 8,
+              width = 10,
               height = 4,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 271,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 191,
+              y = 34,
+              width = 1,
+              height = 27,
               rotation = 0,
               visible = true,
               properties = {}
@@ -966,7 +967,7 @@ return {
       type = "group",
       id = 53,
       name = "g",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -1102,13 +1103,14 @@ return {
               name = "",
               type = "door",
               shape = "rectangle",
-              x = 128,
+              x = 124,
               y = 40,
               width = 4,
               height = 16,
               rotation = 0,
               visible = true,
               properties = {
+                ["left"] = true,
                 ["open"] = true
               }
             },
@@ -1117,7 +1119,7 @@ return {
               name = "",
               type = "player",
               shape = "point",
-              x = 184,
+              x = 181,
               y = 46,
               width = 0,
               height = 0,
@@ -1189,7 +1191,7 @@ return {
               name = "",
               type = "trigger",
               shape = "rectangle",
-              x = 71,
+              x = 76,
               y = 98,
               width = 1,
               height = 22,
@@ -1197,8 +1199,8 @@ return {
               visible = true,
               properties = {
                 ["need_sync"] = true,
-                ["target"] = "dialog",
-                ["type"] = "8"
+                ["target"] = "8",
+                ["type"] = "dialog"
               }
             }
           }
@@ -1243,19 +1245,6 @@ return {
                 { x = -8, y = -40 },
                 { x = -8, y = 0 }
               },
-              properties = {}
-            },
-            {
-              id = 230,
-              name = "",
-              type = "",
-              shape = "rectangle",
-              x = 192,
-              y = 40,
-              width = 1,
-              height = 16,
-              rotation = 0,
-              visible = true,
               properties = {}
             },
             {
@@ -1409,6 +1398,19 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 270,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 191,
+              y = 34,
+              width = 1,
+              height = 27,
+              rotation = 0,
+              visible = true,
+              properties = {}
             }
           }
         }
@@ -1418,7 +1420,7 @@ return {
       type = "group",
       id = 48,
       name = "b",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -1554,13 +1556,14 @@ return {
               name = "",
               type = "door",
               shape = "rectangle",
-              x = 128,
+              x = 124,
               y = 40,
               width = 4,
               height = 16,
               rotation = 0,
               visible = true,
               properties = {
+                ["left"] = true,
                 ["open"] = true
               }
             },
@@ -1569,7 +1572,7 @@ return {
               name = "",
               type = "player",
               shape = "point",
-              x = 184,
+              x = 181,
               y = 46,
               width = 0,
               height = 0,
@@ -1762,10 +1765,10 @@ return {
               name = "",
               type = "",
               shape = "rectangle",
-              x = 192,
-              y = 40,
+              x = 191,
+              y = 34,
               width = 1,
-              height = 16,
+              height = 27,
               rotation = 0,
               visible = true,
               properties = {}

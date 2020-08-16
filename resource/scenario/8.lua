@@ -8,7 +8,12 @@ table.insert(scenario, { 	leftPerson = 'blue', leftPersonSprite = "neutral",
 table.insert(scenario, { 	leftPerson = 'blue', leftPersonSprite = "neutral",
 						 	rightPerson = nil, rightPersonSprite = "neutral",
 						 	whoTalks = 'left',
-						 	text = 'It\'s better to do this one by one while others will wait in the locked room upstairs.' ,
+						 	text = 'It\'s better to do this one by one' ,
 						})
+table.insert(scenario, { 	leftPerson = 'blue', leftPersonSprite = "neutral",
+						rightPerson = nil, rightPersonSprite = "neutral",
+						whoTalks = 'left',
+						text = 'While others will wait in the locked room upstairs.' ,
+				   })
 
 return scenario
