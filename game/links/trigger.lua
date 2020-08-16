@@ -12,12 +12,16 @@ Trigger = Class {
         else
             self.isSyncable = isSyncable
         end
-        -- self.isSyncable = isSyncable == false and isSyncable or true
+
         if type == 'exit' then
             self.triggerFunction = function(level)
                 if self.isSyncable then
                     if self:isPlayerInSync() then
-                        StateManager.switch(states.game, target)
+                        if target == 'intro' then
+                            StateManager.switch(states.intro)
+                        else
+                            StateManager.switch(states.game, target)
+                        end
                     end
                 else
                     StateManager.switch(states.game, target)

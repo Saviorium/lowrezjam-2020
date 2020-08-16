@@ -23,7 +23,7 @@ function TitleScreen:keypressed(key)
 end
 
 function TitleScreen:update(dt)
-	if self.timer < 4 then
+	if self.timer < 2 then
 		self.timer = self.timer + dt
 	else
     	self:nextState()

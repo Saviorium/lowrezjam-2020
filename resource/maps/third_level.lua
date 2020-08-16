@@ -232,7 +232,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "fourth_level",
+                ["target"] = "intro",
                 ["type"] = "exit"
               }
             },

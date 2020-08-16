@@ -11,6 +11,7 @@ states = {
     titleScreen = require "game.states.title_screen",
     menu = require "game.states.menu",
     game = require "game.states.game",
+    intro = require "game.states.intro",
 }
 
 strings = {""}
@@ -25,7 +26,7 @@ function love.load()
     mainCanvas = PixelCanvas(config.graphics.resolution.x, config.graphics.resolution.y, config.graphics.scale)
     setScale(config.graphics.scale)
     -- StateManager.switch(states.titleScreen)
-    StateManager.switch(states.game, 'seventh_level')
+    StateManager.switch(states.game, 'third_level')
 end
 
 function love.draw()
