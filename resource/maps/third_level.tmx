@@ -119,7 +119,7 @@
   <objectgroup id="3" name="objects">
    <object id="31" type="trigger" x="255" y="4" width="1" height="16">
     <properties>
-     <property name="target" value="fourth_level"/>
+     <property name="target" value="intro"/>
      <property name="type" value="exit"/>
     </properties>
    </object>

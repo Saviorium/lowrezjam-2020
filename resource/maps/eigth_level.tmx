@@ -500,7 +500,7 @@
    </object>
    <object id="131" type="jumpable" x="80" y="56" width="16" height="4"/>
    <object id="132" type="jumpable" x="80" y="68" width="16" height="4"/>
-   <object id="133" x="88" y="80" width="8" height="4"/>
+   <object id="133" type="jumpable" x="88" y="80" width="8" height="4"/>
    <object id="134" type="jumpable" x="148" y="16" width="16" height="4"/>
    <object id="135" type="jumpable" x="168" y="36" width="16" height="4"/>
    <object id="139" x="-1" y="35" width="1" height="26"/>
