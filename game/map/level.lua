@@ -38,7 +38,7 @@ Level = Class {
         self.backgroundTileMap = self.map.layers.background
         self.backgroundColor = {0, 0, 0}
     end,
-    playerSyncMaxDistance = 0.5 -- if players farther than this, player is not in sync
+    playerSyncMaxDistance = 1 -- if players farther than this, player is not in sync
 }
 
 function Level:addObject(id, obj)

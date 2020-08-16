@@ -6,6 +6,7 @@ Trigger = Class {
         -- self.name = name
         self.conditionFunction = self.defaultCondition
         self.level = level
+        self.type = type
         if type == 'exit' then
             self.triggerFunction = function(level)
                 if self:isPlayerInSync() then
@@ -30,13 +31,16 @@ function Trigger:draw()
 end
 
 function Trigger:isPlayerInSync()
+    print(self.level.isPlayerInSync)
     return self.level.isPlayerInSync
 end
 
 function Trigger:tryToStartAction()
     if self.conditionFunction(self) and self.enabled then
         self.triggerFunction(self.level)
-        self.enabled = false
+        if not self.type == exit then
+            self.enabled = false
+        end
     end
 end
 

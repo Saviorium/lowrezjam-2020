@@ -16,12 +16,22 @@ function TitleScreen:draw()
     end
 end
 
+function TitleScreen:keypressed(key)
+    if key == "space" then
+        self:nextState()
+    end
+end
+
 function TitleScreen:update(dt)
 	if self.timer < 4 then
 		self.timer = self.timer + dt
 	else
-    	StateManager.switch(states.game, 'first_level')
+    	self:nextState()
 	end
+end
+
+function TitleScreen:nextState()
+	StateManager.switch(states.game, 'first_level')
 end
 
 return TitleScreen
