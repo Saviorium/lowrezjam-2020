@@ -736,7 +736,7 @@ return {
               visible = true,
               properties = {
                 ["autooff"] = true,
-                ["delay"] = 3,
+                ["delay"] = 2,
                 ["group"] = "group1",
                 ["link_r"] = { id = 86 }
               }
@@ -1228,7 +1228,7 @@ return {
               visible = true,
               properties = {
                 ["autooff"] = true,
-                ["delay"] = 3,
+                ["delay"] = 2,
                 ["group"] = "group1",
                 ["link_r"] = { id = 105 }
               }
@@ -1719,7 +1719,7 @@ return {
               visible = true,
               properties = {
                 ["autooff"] = true,
-                ["delay"] = 3,
+                ["delay"] = 2,
                 ["group"] = "group1",
                 ["link_r"] = { id = 122 }
               }

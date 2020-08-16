@@ -143,7 +143,7 @@
    <object id="87" type="button" x="172" y="28" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>
-     <property name="delay" type="float" value="3"/>
+     <property name="delay" type="float" value="2"/>
      <property name="group" value="group1"/>
      <property name="link_r" type="object" value="86"/>
     </properties>
@@ -299,7 +299,7 @@
    <object id="106" type="button" x="148" y="24" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>
-     <property name="delay" type="float" value="3"/>
+     <property name="delay" type="float" value="2"/>
      <property name="group" value="group1"/>
      <property name="link_r" type="object" value="105"/>
     </properties>
@@ -454,7 +454,7 @@
    <object id="123" type="button" x="148" y="8" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>
-     <property name="delay" type="float" value="3"/>
+     <property name="delay" type="float" value="2"/>
      <property name="group" value="group1"/>
      <property name="link_r" type="object" value="122"/>
     </properties>
