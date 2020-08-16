@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "door_up_0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 16, "h": 6 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 6 },
+    "sourceSize": { "w": 16, "h": 6 },
+    "duration": 100
+   },
+   {
+    "filename": "door_up_1.aseprite",
+    "frame": { "x": 17, "y": 0, "w": 16, "h": 6 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 6 },
+    "sourceSize": { "w": 16, "h": 6 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21",
+  "image": "door_up.png",
+  "format": "I8",
+  "size": { "w": 33, "h": 6 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "closed", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "open", "from": 1, "to": 1, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

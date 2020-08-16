@@ -78,9 +78,9 @@ Map = Class {
 
             if object.type == "door" then
                 if object.properties.toggle then
-                    newObject = DoorToggle(self.HC, object.x, object.y, object.properties.left)
+                    newObject = DoorToggle(self.HC, object.x, object.y, object.properties.vertical, object.properties.left)
                 else
-                    newObject = Door(self.HC, object.x, object.y, object.properties.left)
+                    newObject = Door(self.HC, object.x, object.y, object.properties.vertical, object.properties.left)
                 end
                 if object.properties.open then
                     newObject:invertOpenClose()
