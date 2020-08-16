@@ -90,7 +90,9 @@ function PhysicsObject:calcAllCollisionsResult()
         self:move(Vector(0,self.deltaVector.y/2))
         self.isGrounded = self.deltaVector.y < -self.minGroundNormal
         if self.isGrounded then
-            tracks.play_sound( tracks.list_of_sounds.dropdown )
+            if not self.sound then
+                self.sound = tracks.play_sound( tracks.list_of_sounds.dropdown )
+            end
         end
     end
     

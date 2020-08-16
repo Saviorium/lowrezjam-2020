@@ -49,6 +49,11 @@ function Button:update(dt)
             self.timerSwitchOff = self.timerSwitchOff - dt
         end
     end
+    if self.sound then
+        if not self.sound:isPlaying() then
+            self.sound = nil
+        end
+    end
     self.sprite:update(dt)
 end
 
@@ -61,7 +66,9 @@ function Button:handlePushDown()
     if not self.isPushed then
         self.isPushed = true
         self.sprite:setTag("down")
-        tracks.play_sound( tracks.list_of_sounds.buttonSelect )
+        if not self.sound then
+            self.sound = tracks.play_sound( tracks.list_of_sounds.buttonSelect )
+        end
         if self.group then
             self:handleGroupDown()
         else

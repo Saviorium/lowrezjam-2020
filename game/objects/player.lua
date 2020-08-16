@@ -57,6 +57,7 @@ Player =
         self.fPressed = false
 
         self.timer = Timer
+        self.sound = nil
     end,
     maxJumpable = 0.4,
 }
@@ -72,7 +73,9 @@ function Player:setVelocityForFrame(dt)
         moveDirection.y = -1
         self.isGrounded = false
         self:turnCapCollider(self.direction)
-        tracks.play_sound( tracks.list_of_sounds.jump )
+        if not self.sound then
+            self.sound = tracks.play_sound( tracks.list_of_sounds.jump )
+        end
     elseif love.keyboard.isDown(self.buttons["down"]) and (self.canJumpDown or self.isHanging) then
         self:disableCapCollider()
         self.isHanging = false
@@ -183,6 +186,12 @@ function Player:updateAnimation(dt)
     self.sprite:update(dt)
     if self.pushingBox and self.deltaVector.x == 0 then
         self.pushingBox = false
+    end
+
+    if self.sound then
+        if not self.sound:isPlaying() then
+            self.sound = nil
+        end
     end
 
     self:updateArrow(dt)
