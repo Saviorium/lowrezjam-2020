@@ -28,7 +28,7 @@
 100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100
 </data>
  </layer>
- <group id="5" name="r">
+ <group id="5" name="r" visible="0">
   <layer id="1" name="background" width="32" height="16">
    <data encoding="csv">
 311,279,280,279,279,279,279,312,312,295,263,312,280,296,263,280,312,311,312,311,296,263,279,311,295,264,279,264,280,296,295,312,
@@ -76,7 +76,7 @@
    </object>
    <object id="41" type="trigger" x="0" y="40" width="1" height="16">
     <properties>
-     <property name="target" value="eight_level"/>
+     <property name="target" value="eigth_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -162,7 +162,7 @@
    </object>
    <object id="71" type="trigger" x="0" y="40" width="1" height="16">
     <properties>
-     <property name="target" value="eight_level"/>
+     <property name="target" value="eigth_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>
@@ -192,13 +192,13 @@
     <polygon points="0,0 60,0 60,-12 44,-12 44,-16 60,-16 68,-16 68,0 128,0 128,8 0,8"/>
    </object>
    <object id="81" x="128" y="40" width="1" height="16"/>
-   <object id="82" x="-1" y="36" width="1" height="28"/>
+   <object id="82" x="0" y="36" width="1" height="28"/>
    <object id="83" type="jumpable" x="8" y="24" width="16" height="4"/>
    <object id="84" type="jumpable" x="8" y="36" width="8" height="4"/>
    <object id="85" type="jumpable" x="36" y="20" width="8" height="4"/>
   </objectgroup>
  </group>
- <group id="18" name="g">
+ <group id="18" name="g" visible="0">
   <layer id="19" name="background" width="32" height="16">
    <data encoding="csv">
 311,279,280,279,279,279,279,312,312,295,263,312,280,296,263,280,312,311,312,311,296,263,279,311,295,264,279,264,280,296,295,312,
@@ -245,7 +245,7 @@
    </object>
    <object id="54" type="trigger" x="0" y="40" width="1" height="16">
     <properties>
-     <property name="target" value="eight_level"/>
+     <property name="target" value="eigth_level"/>
      <property name="type" value="exit"/>
     </properties>
    </object>

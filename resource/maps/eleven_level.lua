@@ -9,7 +9,7 @@ return {
   tilewidth = 4,
   tileheight = 4,
   nextlayerid = 69,
-  nextobjectid = 418,
+  nextobjectid = 421,
   properties = {},
   tilesets = {
     {
@@ -749,7 +749,9 @@ return {
               height = 4,
               rotation = 0,
               visible = true,
-              properties = {}
+              properties = {
+                ["vertical"] = true
+              }
             },
             {
               id = 285,
@@ -1036,6 +1038,19 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 420,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 127,
+              y = 36,
+              width = 1,
+              height = 24,
+              rotation = 0,
+              visible = true,
+              properties = {}
             }
           }
         }
@@ -1232,7 +1247,9 @@ return {
               height = 4,
               rotation = 0,
               visible = true,
-              properties = {}
+              properties = {
+                ["vertical"] = true
+              }
             },
             {
               id = 290,
@@ -1499,6 +1516,19 @@ return {
               rotation = 0,
               visible = true,
               properties = {}
+            },
+            {
+              id = 419,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 127,
+              y = 36,
+              width = 1,
+              height = 24,
+              rotation = 0,
+              visible = true,
+              properties = {}
             }
           }
         }
@@ -1695,7 +1725,9 @@ return {
               height = 4,
               rotation = 0,
               visible = true,
-              properties = {}
+              properties = {
+                ["vertical"] = true
+              }
             },
             {
               id = 308,
@@ -1957,6 +1989,19 @@ return {
               shape = "rectangle",
               x = 127,
               y = 164,
+              width = 1,
+              height = 24,
+              rotation = 0,
+              visible = true,
+              properties = {}
+            },
+            {
+              id = 418,
+              name = "",
+              type = "",
+              shape = "rectangle",
+              x = 127,
+              y = 36,
               width = 1,
               height = 24,
               rotation = 0,

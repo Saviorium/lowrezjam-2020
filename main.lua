@@ -25,7 +25,7 @@ function love.load()
     mainCanvas = PixelCanvas(config.graphics.resolution.x, config.graphics.resolution.y, config.graphics.scale)
     setScale(config.graphics.scale)
     -- StateManager.switch(states.titleScreen)
-    StateManager.switch(states.game, 'ninth_level')
+    StateManager.switch(states.game, 'seventh_level')
 end
 
 function love.draw()

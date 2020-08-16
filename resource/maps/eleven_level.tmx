@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="48" height="48" tilewidth="4" tileheight="4" infinite="0" nextlayerid="69" nextobjectid="418">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="48" height="48" tilewidth="4" tileheight="4" infinite="0" nextlayerid="69" nextobjectid="421">
  <editorsettings>
   <export target="eleven_level.lua" format="lua"/>
  </editorsettings>
@@ -175,7 +175,11 @@
      <property name="type" value="exit"/>
     </properties>
    </object>
-   <object id="270" type="door" x="88" y="64" width="16" height="4"/>
+   <object id="270" type="door" x="88" y="64" width="16" height="4">
+    <properties>
+     <property name="vertical" type="bool" value="true"/>
+    </properties>
+   </object>
    <object id="285" type="button" x="76" y="48" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="false"/>
@@ -215,6 +219,7 @@
    <object id="413" x="20" y="96" width="32" height="8"/>
    <object id="414" x="144" y="96" width="32" height="8"/>
    <object id="417" x="127" y="164" width="1" height="24"/>
+   <object id="420" x="127" y="36" width="1" height="24"/>
   </objectgroup>
  </group>
  <group id="58" name="b">
@@ -332,7 +337,11 @@
      <property name="type" value="exit"/>
     </properties>
    </object>
-   <object id="288" type="door" x="88" y="64" width="16" height="4"/>
+   <object id="288" type="door" x="88" y="64" width="16" height="4">
+    <properties>
+     <property name="vertical" type="bool" value="true"/>
+    </properties>
+   </object>
    <object id="290" type="button" x="156" y="88" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>
@@ -362,6 +371,7 @@
    <object id="411" x="144" y="96" width="32" height="8"/>
    <object id="412" x="20" y="96" width="32" height="8"/>
    <object id="416" x="127" y="164" width="1" height="24"/>
+   <object id="419" x="127" y="36" width="1" height="24"/>
   </objectgroup>
  </group>
  <group id="63" name="g">
@@ -479,7 +489,11 @@
      <property name="type" value="exit"/>
     </properties>
    </object>
-   <object id="307" type="door" x="88" y="64" width="16" height="4"/>
+   <object id="307" type="door" x="88" y="64" width="16" height="4">
+    <properties>
+     <property name="vertical" type="bool" value="true"/>
+    </properties>
+   </object>
    <object id="308" type="button" x="32" y="88" width="8" height="8">
     <properties>
      <property name="autooff" type="bool" value="true"/>
@@ -509,6 +523,7 @@
    <object id="409" x="20" y="96" width="32" height="8"/>
    <object id="410" x="144" y="96" width="32" height="8"/>
    <object id="415" x="127" y="164" width="1" height="24"/>
+   <object id="418" x="127" y="36" width="1" height="24"/>
   </objectgroup>
  </group>
 </map>

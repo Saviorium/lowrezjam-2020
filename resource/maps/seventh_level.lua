@@ -530,7 +530,7 @@ return {
       type = "group",
       id = 5,
       name = "r",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -651,7 +651,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "eight_level",
+                ["target"] = "eigth_level",
                 ["type"] = "exit"
               }
             },
@@ -992,7 +992,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "eight_level",
+                ["target"] = "eigth_level",
                 ["type"] = "exit"
               }
             },
@@ -1198,7 +1198,7 @@ return {
       type = "group",
       id = 18,
       name = "g",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -1306,7 +1306,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "eight_level",
+                ["target"] = "eigth_level",
                 ["type"] = "exit"
               }
             },

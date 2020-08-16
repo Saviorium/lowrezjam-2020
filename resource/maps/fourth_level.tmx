@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="112" height="48" tilewidth="4" tileheight="4" infinite="0" nextlayerid="30" nextobjectid="878">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="112" height="48" tilewidth="4" tileheight="4" infinite="0" nextlayerid="30" nextobjectid="880">
  <editorsettings>
   <export target="fourth_level.lua" format="lua"/>
  </editorsettings>
@@ -224,7 +224,7 @@
    <object id="833" x="448" y="-1" width="1" height="193"/>
    <object id="854" x="260" y="172" width="16" height="16"/>
    <object id="855" x="240" y="152" width="20" height="36"/>
-   <object id="858" x="-1" y="77" width="1" height="115"/>
+   <object id="858" x="0" y="77" width="1" height="115"/>
    <object id="862" type="jumpable" x="344" y="144" width="16" height="3"/>
    <object id="864" x="344" y="168" width="16" height="3"/>
    <object id="865" x="416" y="120">
@@ -243,6 +243,7 @@
     <polygon points="0,0 4,0 4,-10 80,-10 80,-18 8,-18 8,-16 6,-16 6,-14 4,-14 4,-12 2,-12 2,-10 0,-10 0,0"/>
    </object>
    <object id="876" x="80" y="180" width="8" height="8"/>
+   <object id="879" x="0" y="75" width="1" height="115"/>
   </objectgroup>
  </group>
  <group id="25" name="first">
