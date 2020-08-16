@@ -188,7 +188,12 @@ LEVELS = {
     fourth_level = generateLayerColors(2, 0.1666667, {"first", "second"}),
     fifth_level = generateLayerColors(2, 0.1666667, {"first", "second"}),
     sample_level = generateLayerColors(3, 0, {"r", "g", "b"}),
-    rainbow_test = generateLayerColors(2, 0.1666667)
+    sixth_level = generateLayerColors(3, 0, {"r", "g", "b"}),
+    seventh_level = generateLayerColors(3, 0, {"r", "g", "b"}),
+    eigth_level = generateLayerColors(3, 0, {"r", "g", "b"}),
+    ninth_level = generateLayerColors(3, 0, {"r", "g", "b"}),
+    tenth_level = generateLayerColors(3, 0, {"r", "g", "b"}),
+    eleven_test = generateLayerColors(2, 0.1666667)
 }
 
 return Level
