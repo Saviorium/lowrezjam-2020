@@ -1947,7 +1947,7 @@ return {
             {
               id = 133,
               name = "",
-              type = "",
+              type = "jumpable",
               shape = "rectangle",
               x = 88,
               y = 80,
