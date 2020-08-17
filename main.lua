@@ -18,6 +18,10 @@ states = {
 strings = {""}
 
 maxScale = 1
+sound = {
+    mute = false,
+    muteMusic = false
+}
 
 function love.load()
    if arg[#arg] == "-debug" then
@@ -58,6 +62,15 @@ function love.keypressed(key)
     if key == "1" or key == "2" or key == "3" or key == "4" or key == "5" then
         local scaleFactor = math.pow(2, tonumber(key) - 1)
         setScale(scaleFactor)
+    end
+    if key == "m" then
+        if sound.mute then
+            sound.mute = false
+            love.audio.setVolume(1)
+        else
+            sound.mute = true
+            love.audio.setVolume(0)
+        end
     end
     if StateManager.current().keypressed then
         StateManager.current():keypressed(key)

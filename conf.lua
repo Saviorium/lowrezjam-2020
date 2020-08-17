@@ -12,7 +12,9 @@ config = {
         left = "a",
         right = "d",
         use = "f",
-        nextLayer = "q"
+        nextLayer = "q",
+        skipDialog = "space",
+        mute = "m"
     }
 }
 function love.conf(t)
