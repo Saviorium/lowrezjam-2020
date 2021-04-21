@@ -1,21 +1,17 @@
-Class         = require "lib.hump.class"
-Vector        = require "lib.hump.vector"
-PhysicsObject = require "game.physics.physics_object"
-Box           = require "game.objects.box"
-Button        = require "game.objects.button"
-Switch        = require "game.objects.switch"
-Door          = require "game.objects.door"
-DoorToggle    = require "game.objects.door_toggle"
-Images        = require "resource.images"
-DialogWindow  = require "game.ui.dialog_window"
-Trigger  = require "game.links.trigger"
-ColliderLayer  = require "game.physics.collider_layer"
+local Player        = require "game.objects.player"
+local Box           = require "game.objects.box"
+local Button        = require "game.objects.button"
+local Switch        = require "game.objects.switch"
+local Door          = require "game.objects.door"
+local DoorToggle    = require "game.objects.door_toggle"
+local Trigger  = require "game.links.trigger"
+local ColliderLayer  = require "game.physics.collider_layer"
 
-Map = Class {
+local Map = Class {
     init = function(self, map, layerName, HC, level)
         self.HC = HC
         self.level = level
-        
+
         self.curentRoomPos = Vector(0,0)
         self.displayStartPos = Vector(
             (config.graphics.resolution.x - config.game.roomSize.x) / 2,
@@ -99,8 +95,8 @@ Map = Class {
                        triggerSync = property
                     end
                 end
-                newObject = Trigger(triggerType, 
-                                    triggerTarget, 
+                newObject = Trigger(triggerType,
+                                    triggerTarget,
                                     triggerSync,
                                     self.level,
                                     self.HC,
@@ -244,14 +240,14 @@ function Map:update( dt )
         for shape, delta in pairs(collisions) do
             local collideObject
             if shape.layer == 'terrain' or shape.layer == 'jumpable' then
-               collideObject = shape.layer 
+               collideObject = shape.layer
             else
-                for ind, secondObject in pairs(self.objects) do
+                for _, secondObject in pairs(self.objects) do
                     collideObject = secondObject.collider.mainCollider == shape and secondObject or collideObject
                 end
             end
 
-            if collideObject then    
+            if collideObject then
                 self.collideObjects[object.collider.mainCollider.layer]:regiterCollision(object, collideObject, delta)
             end
         end

@@ -1,11 +1,10 @@
-Class   = require "lib.hump.class"
 HC      = require "lib.hardoncollider"
-Layer   = require "game.map.level_layer"
-Map     = require "game.map.map"
-Link    = require "game.links.link"
+local Layer   = require "game.map.level_layer"
+local Map     = require "game.map.map"
+local Link    = require "game.links.link"
 local sti     = require "lib/sti"
 
-Level = Class {
+local Level = Class {
     init = function(self, name)
         if Debug and Debug.LogLevelNames == 1 then
             print("Switched to level "..name)
@@ -158,7 +157,7 @@ local function generateLayerColors(n, initialShift, layerNames)
     if not initialShift then
         initialShift = 0
     end
-    local color = nil
+    local color
     for i = 0, n-1, 1 do
         color = hslToRgb(math.fmod(initialShift+i/n, 1), 1, 0.5, 1)
         if not layerNames then
@@ -171,7 +170,6 @@ local function generateLayerColors(n, initialShift, layerNames)
 end
 
 function Level:checkPlayersSync(playerPositions)
-    local playersDistances = {}
     local previousPosition = nil
     for _, position in pairs(playerPositions) do
         if not previousPosition then previousPosition = position end

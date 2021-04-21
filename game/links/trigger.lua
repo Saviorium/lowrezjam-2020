@@ -1,13 +1,13 @@
-Class = require "lib.hump.class"
+local DialogWindow  = require "game.ui.dialog_window"
 
-Trigger = Class {
+local Trigger = Class {
     init = function(self, type, target, isSyncable, level, hc, x, y, width, height) --conditionFunction, triggerFunction, name)
         self.position = Vector( x, y )
         self.conditionFunction = self.defaultCondition
         self.level = level
         self.type = type
         if isSyncable == nil then
-            self.isSyncable = true 
+            self.isSyncable = true
         else
             self.isSyncable = isSyncable
         end

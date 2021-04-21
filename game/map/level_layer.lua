@@ -1,6 +1,4 @@
-Class = require "lib.hump.class"
-
-LevelLayer = Class {
+local LevelLayer = Class {
     init = function(self, map, color)
         self.map = map
         self.canvas = love.graphics.newCanvas()

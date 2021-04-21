@@ -1,10 +1,6 @@
-Images          = require "resource.images"
 Fonts           = require "resource.fonts"
-HC              = require 'lib/hardoncollider'
-Level           = require "game.map.level"
-local sti       = require "lib/sti"
-local Player    = require "game.objects.player"
-tracks          = require "resource/tracks"
+local Level     = require "game.map.level"
+local tracks    = require "resource/tracks"
 
 local game = {}
 

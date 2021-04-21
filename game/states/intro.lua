@@ -1,12 +1,9 @@
-Images          = require "resource.images"
-
 local intro = {}
 
 function intro:enter()
     self.timer = 0
     self.index = 1
     self.screen = Images['screen-'..self.index].img
-    print(serpent.block(Images['screen-'..self.index]))
 end
 
 

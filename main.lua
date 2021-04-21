@@ -1,6 +1,9 @@
 require "conf"
 require "game.utils"
 
+Class = require "lib.hump.class"
+Vector = require "lib.hump.vector"
+
 Debug = require "game.debug"
 serpent = require "lib.debug.serpent"
 

@@ -1,7 +1,6 @@
 require "love.audio"
 
 local tracks = {}
---moo https://freesound.org/people/Yudena/sounds/377603/
 tracks.list_of_sounds = {
     jump = {
         filepath = "resource/music/sounds/jump.wav",
