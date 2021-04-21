@@ -1,12 +1,12 @@
-StateManager = require "lib.hump.gamestate"
-PixelCanvas = require "game.pixel_canvas"
-Images = require "resource.images"
-
 require "conf"
 require "game.utils"
 
 Debug = require "game.debug"
 serpent = require "lib.debug.serpent"
+
+StateManager = require "lib.hump.gamestate"
+local PixelCanvas = require "game.pixel_canvas"
+
 states = {
     titleScreen = require "game.states.title_screen",
     menu = require "game.states.menu",
@@ -15,10 +15,23 @@ states = {
     end_game = require "game.states.end_game",
 }
 
-strings = {""}
+local maxScale = 1
+local mainCanvas
 
-maxScale = 1
-sound = {
+local function getMaxScale()
+    local width, height = love.window.getDesktopDimensions()
+    local maxWidthScale  = width  / config.graphics.resolution.x
+    local maxHeightScale = height / config.graphics.resolution.y
+    return math.floor( math.min(maxWidthScale, maxHeightScale) )
+end
+
+local function setScale(scaleFactor)
+    scaleFactor = math.min(maxScale, scaleFactor)
+    mainCanvas:setScale(scaleFactor)
+    love.window.setMode(config.graphics.resolution.x*scaleFactor, config.graphics.resolution.y*scaleFactor)
+end
+
+local sound = {
     mute = false,
     muteMusic = false
 }
@@ -77,15 +90,3 @@ function love.keypressed(key)
     end
 end
 
-function getMaxScale()
-    local width, height = love.window.getDesktopDimensions()
-    local maxWidthScale  = width  / config.graphics.resolution.x
-    local maxHeightScale = height / config.graphics.resolution.y
-    return math.floor( math.min(maxWidthScale, maxHeightScale) )
-end
-
-function setScale(scaleFactor)
-    scaleFactor = math.min(maxScale, scaleFactor)
-    mainCanvas:setScale(scaleFactor)
-    love.window.setMode(config.graphics.resolution.x*scaleFactor, config.graphics.resolution.y*scaleFactor)
-end

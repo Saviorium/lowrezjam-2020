@@ -4,7 +4,7 @@ Debug = {
     DrawDebugColliders = 0,
     LogEvents = 0,
     LogLevelNames = 0,
-    ShowFps = 0
+    ShowFps = 1
 }
 
 -- usage: vardump(x1, test, myVar) or vardump({ship = self, dt = dt})

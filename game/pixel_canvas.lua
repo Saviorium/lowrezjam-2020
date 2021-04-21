@@ -1,6 +1,6 @@
-Class = require "lib.hump.class"
+local Class = require "lib.hump.class"
 
-PixelCanvas = Class {
+local PixelCanvas = Class {
     init = function(self, width, height, scale)
         self.canvas = love.graphics.newCanvas(width, height)
         self.canvas:setFilter("nearest", "nearest")

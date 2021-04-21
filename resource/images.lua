@@ -1,17 +1,16 @@
-Peachy = require "lib.peachy.peachy"
-Class = require "lib.hump.class"
+local Peachy = require "lib.peachy.peachy"
 
 local Images = {}
 local dir = "/resource/images"
 
-Img = Class {
+local Img = Class {
     init = function(self, img, path)
         self.img = img --хранит само изображение
         self.path = path --хранит путь внутри папки с изображениями, без расширения файла
     end
 }
 
-function recursimeImport( path, sprites )
+local function recursiveImport( path, sprites )
     local lfs = love.filesystem
     local filesTable = lfs.getDirectoryItems(path)
     for _,file in ipairs(filesTable) do
@@ -27,18 +26,18 @@ function recursimeImport( path, sprites )
             if file == 'sprites' then
                 sprites = true
             end
-            recursimeImport(path_to_file, sprites)
+            recursiveImport(path_to_file, sprites)
         end
     end
 end
 
-recursimeImport(dir, false)
+recursiveImport(dir, false)
 
 function Images.getNewPeachySprite(self, name)
-    if Images[name] == null then
+    if Images[name] == nil then
         error("I dont have image with name "..name, 2)
     else
-        jsonFilePath = Images[name].path..".json"
+        local jsonFilePath = Images[name].path..".json"
         if love.filesystem.getInfo(jsonFilePath) --если нет файла json
         then
             return Peachy.new(jsonFilePath, Images[name].img)
@@ -47,7 +46,5 @@ function Images.getNewPeachySprite(self, name)
         end
     end
 end
--- for index, obj in pairs(love.filesystem.getInfo( path_to_file)) do 
---     print(index, obj)
--- end
+
 return Images
