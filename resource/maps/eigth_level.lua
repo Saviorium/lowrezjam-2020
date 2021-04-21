@@ -686,7 +686,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "nint_level",
+                ["target"] = "ninth_level",
                 ["type"] = "exit"
               }
             },
@@ -1176,7 +1176,7 @@ return {
               rotation = 0,
               visible = true,
               properties = {
-                ["target"] = "nint_level",
+                ["target"] = "ninth_level",
                 ["type"] = "exit"
               }
             },
